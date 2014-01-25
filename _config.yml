@@ -100,5 +100,5 @@ github_skip_forks: true
 # facebook_like: false
 
 # duoshuo comments
-duoshuo_comments: true
-duoshuo_short_name: makeLaugh
+# duoshuo_comments: true
+# duoshuo_short_name: makeLaugh

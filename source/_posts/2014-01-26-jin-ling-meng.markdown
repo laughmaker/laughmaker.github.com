@@ -3,7 +3,6 @@ layout: post
 title: "金陵梦"
 date: 2014-01-26 17:36:11 +0800
 comments: true
-<!--published: false-->
 categories: 金陵记
 ---
 

@@ -66,7 +66,7 @@ $(document).ready(
 	<li><a href="/">Blog</a></li>
 	<!-- <li><a href="/portfolio">Portfolio</a></li>	 -->
 	<li><a href="/archives">Archive</a></li>
-	<li><a href="/_includes/custom/asides/about.html">About</a></li>
+	<li><a href="/about">About</a></li>
 </ul>
 </nav>
 <nav id="mobile-nav">
@@ -76,7 +76,7 @@ $(document).ready(
 	<li><a href="/">Blog</a></li>
 	<!-- <li><a href="/portfolio">Portfolio</a></li>	 -->
 	<li><a href="/archives">Archive</a></li>
-	<li><a href="/_includes/custom/asides/about.html">About</a></li>
+	<li><a href="/about">About</a></li>
 </ul>
 </div>
 	</div>
@@ -95,6 +95,100 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/01/26/nsstringde-nei-cun-guan-li/">
+		
+			NSString的内存管理</a>
+	</h2>
+	<div class="entry-content">
+		<blockquote><p>本文参考了这篇文章，主要做了补充说明：<a href="http://www.cnblogs.com/hellocby/archive/2012/08/23/2652201.html">点击查看</a></p></blockquote>
+
+<p><strong>生成NSString的方式:</strong></p>
+
+<p>方法1.直接赋值:</p>
+
+<pre><code>NSString *testStr1 = @"a";
+</code></pre>
+
+<p>方法2.类函数初始化生成:</p>
+
+<pre><code>NSString *testStr2 = [NSString stringWithString:@"b"];
+
+NSString *testStr3 = [NSString stringWithFormat:@"c"];
+</code></pre>
+
+<p> 方法3.实例方法初始化生成:　</p>
+
+<pre><code>NSString *testStr4 = [[NSString alloc] initWithString:@"d"];
+
+NSString *testStr5 = [[NSString alloc] initWithFormat:@"e"];
+</code></pre>
+
+<p>首先查看它们的地址和引用计数：</p>
+
+<pre><code>2012-10-11 17:35:25.601 StringDemo[8514:11303] test1Address:0x4698
+
+2012-10-11 17:35:25.601 StringDemo[8514:11303] test2Address:0x46a8
+
+2012-10-11 17:35:25.602 StringDemo[8514:11303] test3Address:0x746c820
+
+2012-10-11 17:35:25.602 StringDemo[8514:11303] test4Address:0x46c8
+
+2012-10-11 17:35:25.603 StringDemo[8514:11303] test5Address:0x7455990
+
+2012-10-11 17:35:25.585 StringDemo[8514:11303] test1:4294967295
+
+2012-10-11 17:35:25.586 StringDemo[8514:11303] test2:4294967295
+
+2012-10-11 17:35:25.596 StringDemo[8514:11303] test3:1
+
+2012-10-11 17:35:25.600 StringDemo[8514:11303] test4:4294967295
+
+2012-10-11 17:35:25.600 StringDemo[8514:11303] test5:1
+</code></pre>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;从上可以看出，<code>test1,test2,test4</code>都是在一个内存区域，也就是上文所说的常量内存区。test3,test5在一个内存区，也就是堆区。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;这里就有一个疑问：<code>[NSString alloc] initWithString:@"d"</code>这种方式初始化的字符串，也就是test4.应该是位于堆区的，但为什么会跑到常量内存区来呢？据说是因为xcode对这种方式做了处理，还包括<code>[NSString stringWithString:@"b"]</code>这种方式，这两种初始化字符串都等同于@&ldquo;ddd&#8221;了。所以说test2,test4都同等于test1了。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;还有，对于<code>NSString *testStr3 = [NSString stringWithFormat:@"c"]</code>;这种初始化的字符串，只要一写release语句就会挂掉，但其它的都不会挂掉，test1,test2,test4好理解，因为release本来就不会起作用;但testStr5无论release多少次也不会挂掉，只会在控制台报警告：malloc: <strong><em> error for object 0x744d650: double free</em></strong> set a breakpoint in malloc_error_break to debug。这个猜测应该是也xcode做了优化吧。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;对现在4.4之后的编译器，<code>NSString *testStr2 = [NSString stringWithString:@"b"];</code>这种写法会报警告了：Using &lsquo;stringWithString&rsquo; with a literal is redundant。也就是说这种写法是多余的了，它给的建议是用＝@&ldquo;b&#8221;这种方式来代替了。</p>
+
+<p><strong>小结下吧：</strong></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;对NSString的初始化方法，<code>对于test1,test2,test4这三种的话建议用＝@“字符串”来使用</code>，因为本来就是一样的。test3,test5这两种的话，建议用texst3这种，方便点，不用管内存问题，系统自已管理。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-26T14:03:07+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2014</time></div>
+	
+
+
+	
+
+<!-- 	 -->
+</div></article>
 
 
     <article class="post">

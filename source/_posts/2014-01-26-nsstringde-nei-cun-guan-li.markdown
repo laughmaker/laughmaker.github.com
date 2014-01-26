@@ -5,9 +5,10 @@ date: 2014-01-26 14:03:07 +0800
 comments: true
 categories: 
 ---
+*    **本文参考了这篇文章，主要做了补充说明：[点击查看](http://www.cnblogs.com/hellocby/archive/2012/08/23/2652201.html)，详细说明NSString的内存管理差异。***
 
->本文参考了这篇文章，主要做了补充说明：[点击查看](http://www.cnblogs.com/hellocby/archive/2012/08/23/2652201.html)
 
+<!-- more -->
 
 **生成NSString的方式:**
 

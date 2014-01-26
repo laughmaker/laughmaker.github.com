@@ -6,7 +6,9 @@ comments: true
 categories: 
 ---
 
->关于NSString在属性声明中的copy和retain，我想存在一些误解，即和其它不一样的地方。
+*    **关于NSString在属性声明中的copy和retain，我想存在一些误解，即和其它不一样的地方。***
+
+<!-- more -->
 
 **首先做以下几个变量声明：**
 

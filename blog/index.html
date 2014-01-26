@@ -66,7 +66,7 @@ $(document).ready(
 	<li><a href="/">Blog</a></li>
 	<!-- <li><a href="/portfolio">Portfolio</a></li>	 -->
 	<li><a href="/archives">Archive</a></li>
-	<li><a href="/about.html">About</a></li>
+	<li><a href="/about">About</a></li>
 </ul>
 </nav>
 <nav id="mobile-nav">
@@ -76,7 +76,7 @@ $(document).ready(
 	<li><a href="/">Blog</a></li>
 	<!-- <li><a href="/portfolio">Portfolio</a></li>	 -->
 	<li><a href="/archives">Archive</a></li>
-	<li><a href="/about.html">About</a></li>
+	<li><a href="/about">About</a></li>
 </ul>
 </div>
 	</div>
@@ -105,94 +105,11 @@ $(document).ready(
 			NSString属性声明中的copy和retain区别</a>
 	</h2>
 	<div class="entry-content">
-		<blockquote><p>关于NSString在属性声明中的copy和retain，我想存在一些误解，即和其它不一样的地方。</p></blockquote>
+		<p><em>    <strong>关于NSString在属性声明中的copy和retain，我想存在一些误解，即和其它不一样的地方。</strong></em></p>
 
-<p><strong>首先做以下几个变量声明：</strong></p>
-
-<pre><code>@property (retain, nonatomic) NSString *retainStr;
-@property (copy, nonatomic)   NSString *copyStr;
-@property (retain, nonatomic) NSMutableString *retainMStr;
-@property (copy, nonatomic)   NSMutableString *copyMStr;
-</code></pre>
-
-<p><strong>实现代码如下：</strong></p>
-
-<pre><code>NSMutableString *mStr = [NSMutableString string];
-[mStr setString:@"我没变"];
-self.retainStr   = mStr;
-self.copyStr     = mStr;
-self.retainMStr = mStr;
-self.copyMStr   = mStr;
-
-NSLog(@"retainStr:%@",  self.retainStr);
-NSLog(@"copyStr:%@",    self.copyStr);
-NSLog(@"retainMStr:%@", self.retainMStr);
-NSLog(@"copyMStr:%@",   self.copyMStr);
-NSLog(@"\n");
-
-[mStr setString:@"我变了"];
-NSLog(@"retainStr:%@",  self.retainStr);
-NSLog(@"copyStr:%@",    self.copyStr);
-NSLog(@"retainMStr:%@", self.retainMStr);
-NSLog(@"copyMStr:%@",   self.copyMStr);
-NSLog(@"\n");
-
-NSString *str = @"我来了";//[[NSString alloc] initWithFormat:@"我来了"];//两种方式都一样。
-self.retainStr  = str;
-self.copyStr    = str;
-self.retainMStr = [str mutableCopy];
-self.copyMStr   = [str mutableCopy];
-NSLog(@"retainStr:%@",  self.retainStr);
-NSLog(@"copyStr:%@",    self.copyStr);
-NSLog(@"retainMStr:%@", self.retainMStr);
-NSLog(@"copyMStr:%@",   self.copyMStr);
-NSLog(@"\n");
-
-str =@"我走了";//[[NSStringalloc] initWithFormat:@"我走了"];//两种方式都一样
-NSLog(@"retainStr:%@",  self.retainStr);
-NSLog(@"copyStr:%@",    self.copyStr);
-NSLog(@"retainMStr:%@", self.retainMStr);
-NSLog(@"copyMStr:%@",   self.copyMStr);
-NSLog(@"\n");
-</code></pre>
-
-<p><strong>打印结果如下：</strong></p>
-
-<pre><code>2012-10-12 13:53:14.858 StringDemo[1515:11303] retainStr:我没变
-2012-10-12 13:53:14.860 StringDemo[1515:11303] copyStr:我没变
-2012-10-12 13:53:14.861 StringDemo[1515:11303] retainMStr:我没变
-2012-10-12 13:53:14.862 StringDemo[1515:11303] copyMStr:我没变
-2012-10-12 13:53:14.863 StringDemo[1515:11303] 
-2012-10-12 13:53:14.864 StringDemo[1515:11303] retainStr:我变了
-2012-10-12 13:53:14.865 StringDemo[1515:11303] copyStr:我没变
-2012-10-12 13:53:14.866 StringDemo[1515:11303] retainMStr:我变了
-2012-10-12 13:53:14.867 StringDemo[1515:11303] copyMStr:我没变
-2012-10-12 13:53:14.868 StringDemo[1515:11303] 
-2012-10-12 13:53:14.869 StringDemo[1515:11303] retainStr:我来了
-2012-10-12 13:53:14.869 StringDemo[1515:11303] copyStr:我来了
-2012-10-12 13:53:14.870 StringDemo[1515:11303] retainMStr:我来了
-2012-10-12 13:53:14.871 StringDemo[1515:11303] copyMStr:我来了
-2012-10-12 13:53:14.872 StringDemo[1515:11303] 
-2012-10-12 13:53:14.873 StringDemo[1515:11303] retainStr:我来了
-2012-10-12 13:53:14.874 StringDemo[1515:11303] copyStr:我来了
-2012-10-12 13:53:14.875 StringDemo[1515:11303] retainMStr:我来了
-2012-10-12 13:53:14.876 StringDemo[1515:11303] copyMStr:我来了
-</code></pre>
-
-<p><strong>由此可以看出：</strong></p>
-
-<ul>
-<li>对源头是NSMutableString的字符串，retain仅仅是指针引用，增加了引用计数器，这样源头改变的时候，用这种retain方式声明的变量（无论被赋值的变量是可变的还是不可变的），它也会跟着改变; 而copy声明的变量，它不会跟着源头改变，它实际上是深拷贝。</li>
-<li>对源头是NSString的字符串，无论是retain声明的变量还是copy声明的变量，当第二次源头的字符串重新指向其它的地方的时候，它还是指向原来的最初的那个位置，也就是说其实二者都是指针引用，也就是浅拷贝。</li>
-</ul>
-
-
-<p>   另外说明一下，这两者对内存计数的影响都是一样的，都会增加内存引用计数，都需要在最后的时候做处理。</p>
-
-<p>   其实说白了，对字符串为啥要用这两种方式？我觉得还是一个安全问题，比如声明的一个NSString <em>str变量，然后把一个NSMutableString </em>mStr变量的赋值给它了，如果要求str跟着mStr变化，那么就用retain;如果str不能跟着mStr一起变化，那就用copy。而对于要把NSString类型的字符串赋值给str，那两都没啥区别。不会影响安全性，内存管理也一样。</p>
 
 		
-		
+		<a href="/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie/" class="more-link">Read on &rarr;</a>
 	</div>
 
 
@@ -227,55 +144,11 @@ NSLog(@"\n");
 			NSString的内存管理</a>
 	</h2>
 	<div class="entry-content">
-		<blockquote><p>本文参考了这篇文章，主要做了补充说明：<a href="http://www.cnblogs.com/hellocby/archive/2012/08/23/2652201.html">点击查看</a></p></blockquote>
+		<p><em>    <strong>本文参考了这篇文章，主要做了补充说明：<a href="http://www.cnblogs.com/hellocby/archive/2012/08/23/2652201.html">点击查看</a>，详细说明NSString的内存管理差异。</strong></em></p>
 
-<p><strong>生成NSString的方式:</strong></p>
-
-<p>方法1.直接赋值:</p>
-
-<pre><code>NSString *testStr1 = @"a";
-</code></pre>
-
-<p>方法2.类函数初始化生成:</p>
-
-<pre><code>NSString *testStr2 = [NSString stringWithString:@"b"];
-NSString *testStr3 = [NSString stringWithFormat:@"c"];
-</code></pre>
-
-<p> 方法3.实例方法初始化生成:　</p>
-
-<pre><code>NSString *testStr4 = [[NSString alloc] initWithString:@"d"];
-NSString *testStr5 = [[NSString alloc] initWithFormat:@"e"];
-</code></pre>
-
-<p>首先查看它们的地址和引用计数：</p>
-
-<pre><code>2012-10-11 17:35:25.601 StringDemo[8514:11303] test1Address:0x4698
-2012-10-11 17:35:25.601 StringDemo[8514:11303] test2Address:0x46a8
-2012-10-11 17:35:25.602 StringDemo[8514:11303] test3Address:0x746c820
-2012-10-11 17:35:25.602 StringDemo[8514:11303] test4Address:0x46c8
-2012-10-11 17:35:25.603 StringDemo[8514:11303] test5Address:0x7455990
-2012-10-11 17:35:25.585 StringDemo[8514:11303] test1:4294967295
-2012-10-11 17:35:25.586 StringDemo[8514:11303] test2:4294967295
-2012-10-11 17:35:25.596 StringDemo[8514:11303] test3:1
-2012-10-11 17:35:25.600 StringDemo[8514:11303] test4:4294967295
-2012-10-11 17:35:25.600 StringDemo[8514:11303] test5:1
-</code></pre>
-
-<p>  从上可以看出，<code>test1,test2,test4</code>都是在一个内存区域，也就是上文所说的常量内存区。test3,test5在一个内存区，也就是堆区。</p>
-
-<p>  这里就有一个疑问：<code>[NSString alloc] initWithString:@"d"</code>这种方式初始化的字符串，也就是test4.应该是位于堆区的，但为什么会跑到常量内存区来呢？据说是因为xcode对这种方式做了处理，还包括<code>[NSString stringWithString:@"b"]</code>这种方式，这两种初始化字符串都等同于@&ldquo;ddd&#8221;了。所以说test2,test4都同等于test1了。</p>
-
-<p>  还有，对于<code>NSString *testStr3 = [NSString stringWithFormat:@"c"]</code>;这种初始化的字符串，只要一写release语句就会挂掉，但其它的都不会挂掉，test1,test2,test4好理解，因为release本来就不会起作用;但testStr5无论release多少次也不会挂掉，只会在控制台报警告：malloc: <strong><em> error for object 0x744d650: double free</em></strong> set a breakpoint in malloc_error_break to debug。这个猜测应该是也xcode做了优化吧。</p>
-
-<p>  对现在4.4之后的编译器，<code>NSString *testStr2 = [NSString stringWithString:@"b"];</code>这种写法会报警告了：Using &lsquo;stringWithString&rsquo; with a literal is redundant。也就是说这种写法是多余的了，它给的建议是用＝@&ldquo;b&#8221;这种方式来代替了。</p>
-
-<p><strong>小结下吧：</strong></p>
-
-<p>  对NSString的初始化方法，<code>对于test1,test2,test4这三种的话建议用＝@“字符串”来使用</code>，因为本来就是一样的。test3,test5这两种的话，建议用texst3这种，方便点，不用管内存问题，系统自已管理。</p>
 
 		
-		
+		<a href="/blog/2014/01/26/nsstringde-nei-cun-guan-li/" class="more-link">Read on &rarr;</a>
 	</div>
 
 
@@ -310,27 +183,11 @@ NSString *testStr5 = [[NSString alloc] initWithFormat:@"e"];
 			新年计划</a>
 	</h2>
 	<div class="entry-content">
-		<p><code>
-影的告别〔1〕
-人睡到不知道时候的时候，就会有影来告别，说出那些话——
-有我所不乐意的在天堂里，我不愿去；有我所不乐意的在地狱里，我不愿去；有我所不乐意的在你们将来的黄金世界里，我不愿去。
-然而你就是我所不乐意的。
-朋友，我不想跟随你了，我不愿住。
-我不愿意！
-呜乎呜乎，我不愿意，我不如彷徨于无地。
-我不过一个影，要别你而沉没在黑暗里了。然而黑暗又会吞并我，然而光明又会使我消失。
-然而我不愿彷徨于明暗之间，我不如在黑暗里沉没。
-然而我终于彷徨于明暗之间，我不知道是黄昏还是黎明。我姑且举灰黑的手装作喝干一杯酒，我将在不知道时候的时候独自远行。
-呜乎呜乎，倘若黄昏，黑夜自然会来沉没我，否则我要被白天消失，如果现是黎明。
-朋友，时候近了。
-我将向黑暗里彷徨于无地。
-你还想我的赠品。我能献你甚么呢？无已，则仍是黑暗和虚空而已。但是，我愿意只是黑暗，或者会消失于你的白天；我愿意只是虚空，决不占你的心地。
-我愿意这样，朋友——我独自远行，不但没有你，并且再没有别的影在黑暗里。只有我被黑暗沉没，那世界全属于我自己。
-一九二四年九月二十四日。
-</code></p>
+		<p> <em>    <strong>2014，我的任务，我的成长！</strong></em></p>
+
 
 		
-		
+		<a href="/blog/2014/01/11/xin-nian-ji-hua/" class="more-link">Read on &rarr;</a>
 	</div>
 
 
@@ -365,10 +222,11 @@ NSString *testStr5 = [[NSString alloc] initWithFormat:@"e"];
 			你好，github</a>
 	</h2>
 	<div class="entry-content">
-		<p><code>我的第一个博客，欢迎大家光临！</code></p>
+		<p><strong>    <em>我的第一个博客，欢迎大家光临！</em></strong></p>
+
 
 		
-		
+		<a href="/blog/2014/01/10/ni-hao-%2Cgithub/" class="more-link">Read on &rarr;</a>
 	</div>
 
 

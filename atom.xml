@@ -4,7 +4,7 @@
   <title><![CDATA[闻竹]]></title>
   <link href="http://makeLaugh.github.io/atom.xml" rel="self"/>
   <link href="http://makeLaugh.github.io/"/>
-  <updated>2014-01-26T15:00:13+08:00</updated>
+  <updated>2014-01-26T15:54:59+08:00</updated>
   <id>http://makeLaugh.github.io/</id>
   <author>
     <name><![CDATA[makeLaugh]]></name>
@@ -18,7 +18,10 @@
     <link href="http://makeLaugh.github.io/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie/"/>
     <updated>2014-01-26T14:39:00+08:00</updated>
     <id>http://makeLaugh.github.io/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie</id>
-    <content type="html"><![CDATA[<blockquote><p>关于NSString在属性声明中的copy和retain，我想存在一些误解，即和其它不一样的地方。</p></blockquote>
+    <content type="html"><![CDATA[<p><em>    <strong>关于NSString在属性声明中的copy和retain，我想存在一些误解，即和其它不一样的地方。</strong></em></p>
+
+<!-- more -->
+
 
 <p><strong>首先做以下几个变量声明：</strong></p>
 
@@ -111,7 +114,10 @@ NSLog(@"\n");
     <link href="http://makeLaugh.github.io/blog/2014/01/26/nsstringde-nei-cun-guan-li/"/>
     <updated>2014-01-26T14:03:07+08:00</updated>
     <id>http://makeLaugh.github.io/blog/2014/01/26/nsstringde-nei-cun-guan-li</id>
-    <content type="html"><![CDATA[<blockquote><p>本文参考了这篇文章，主要做了补充说明：<a href="http://www.cnblogs.com/hellocby/archive/2012/08/23/2652201.html">点击查看</a></p></blockquote>
+    <content type="html"><![CDATA[<p><em>    <strong>本文参考了这篇文章，主要做了补充说明：<a href="http://www.cnblogs.com/hellocby/archive/2012/08/23/2652201.html">点击查看</a>，详细说明NSString的内存管理差异。</strong></em></p>
+
+<!-- more -->
+
 
 <p><strong>生成NSString的方式:</strong></p>
 
@@ -165,24 +171,38 @@ NSString *testStr5 = [[NSString alloc] initWithFormat:@"e"];
     <link href="http://makeLaugh.github.io/blog/2014/01/11/xin-nian-ji-hua/"/>
     <updated>2014-01-11T23:08:13+08:00</updated>
     <id>http://makeLaugh.github.io/blog/2014/01/11/xin-nian-ji-hua</id>
-    <content type="html"><![CDATA[<p><code>
-影的告别〔1〕
-人睡到不知道时候的时候，就会有影来告别，说出那些话——
-有我所不乐意的在天堂里，我不愿去；有我所不乐意的在地狱里，我不愿去；有我所不乐意的在你们将来的黄金世界里，我不愿去。
-然而你就是我所不乐意的。
-朋友，我不想跟随你了，我不愿住。
-我不愿意！
-呜乎呜乎，我不愿意，我不如彷徨于无地。
-我不过一个影，要别你而沉没在黑暗里了。然而黑暗又会吞并我，然而光明又会使我消失。
-然而我不愿彷徨于明暗之间，我不如在黑暗里沉没。
-然而我终于彷徨于明暗之间，我不知道是黄昏还是黎明。我姑且举灰黑的手装作喝干一杯酒，我将在不知道时候的时候独自远行。
-呜乎呜乎，倘若黄昏，黑夜自然会来沉没我，否则我要被白天消失，如果现是黎明。
-朋友，时候近了。
-我将向黑暗里彷徨于无地。
-你还想我的赠品。我能献你甚么呢？无已，则仍是黑暗和虚空而已。但是，我愿意只是黑暗，或者会消失于你的白天；我愿意只是虚空，决不占你的心地。
-我愿意这样，朋友——我独自远行，不但没有你，并且再没有别的影在黑暗里。只有我被黑暗沉没，那世界全属于我自己。
-一九二四年九月二十四日。
-</code></p>
+    <content type="html"><![CDATA[<p> <em>    <strong>2014，我的任务，我的成长！</strong></em></p>
+
+<!-- more -->
+
+
+<ol>
+<li>搭建一个自己的博客，保持每两周更新至少一篇博文</li>
+<li>熟练掌握PHP语言和后台开发技术</li>
+<li>熟练掌握Javascript语言和前端开发技术</li>
+<li>熟练掌握MySql技术;</li>
+<li>深入学习iOS开发技术，阅读一本关于iOS高级开发的书籍</li>
+<li>全面学习iOS7新技术（6月前完成）</li>
+<li>初步学习一门新的语言：Go语言/D语言</li>
+<li>温习C语言(C语言的重要性超出了之前的预料)</li>
+<li>旅游：至少远游三次（出南京）。</li>
+<li>以史为鉴：阅读《易中天大中华史》，全面了解中国历史; 了解欧洲发展史</li>
+<li>锻炼身体，每周最少打一次篮球。</li>
+</ol>
+
+
+<p>    新年计划的制定，基于几个考虑：
+    </br>
+    首先，写博客是一个积累知识和锻炼自己写作能力的过程;
+    </br>
+    其次，后台和前端技术，也许不会去找这方面的工作，但是，现在所有的项目，基本上都逃离不了这些知识，学习这些知识可以扩充自己的视野和知识面，学习C语言和新语言也一样，学C语言更多的是深入学习编程技术，本身OC也是基于C的扩展。
+    </br>
+    再次，学历史，知过去，看未来。
+    </br>
+    最后，身体是革命的本钱; 远游放松心情，锻炼强健体魄。
+    
+    
+    </p>
 ]]></content>
   </entry>
   
@@ -191,7 +211,14 @@ NSString *testStr5 = [[NSString alloc] initWithFormat:@"e"];
     <link href="http://makeLaugh.github.io/blog/2014/01/10/ni-hao-%2Cgithub/"/>
     <updated>2014-01-10T22:04:54+08:00</updated>
     <id>http://makeLaugh.github.io/blog/2014/01/10/ni-hao-,github</id>
-    <content type="html"><![CDATA[<p><code>我的第一个博客，欢迎大家光临！</code></p>
+    <content type="html"><![CDATA[<p><strong>    <em>我的第一个博客，欢迎大家光临！</em></strong></p>
+
+<!-- more -->
+
+
+<p>    从这里，算是正式开启我的博客之路了，之前在博客园写过一些博客，写得断断续续的，这次终于正式的搭建了一个自己的博客，以后尽力保持有新的感触、新的成长，就会做一些记录，记录生活成长的点滴！
+    </br>
+    我只想说，您好，github，博客，2014，我来了！</p>
 ]]></content>
   </entry>
   

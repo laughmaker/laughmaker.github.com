@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[闻竹]]></title>
-  <link href="http://makeLaugh.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: iOS | 闻竹]]></title>
+  <link href="http://makeLaugh.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://makeLaugh.github.io/"/>
   <updated>2014-01-26T17:24:31+08:00</updated>
   <id>http://makeLaugh.github.io/</id>
@@ -154,71 +154,15 @@ NSString *testStr5 = [[NSString alloc] initWithFormat:@"e"];
 
 <p>  从上可以看出，<code>test1,test2,test4</code>都是在一个内存区域，也就是上文所说的常量内存区。test3,test5在一个内存区，也就是堆区。</p>
 
-<p>  这里就有一个疑问：<code>[NSString alloc] initWithString:@"d"</code>这种方式初始化的字符串，也就是test4.应该是位于堆区的，但为什么会跑到常量内存区来呢？据说是因为xcode对这种方式做了处理，还包括<code>[NSString stringWithString:@"b"]</code>这种方式，这两种初始化字符串都等同于@&ldquo;ddd&#8221;了。所以说test2,test4都同等于test1了。</p>
+<p>  这里就有一个疑问：<code>[NSString alloc] initWithString:@"d"</code>这种方式初始化的字符串，也就是test4.应该是位于堆区的，但为什么会跑到常量内存区来呢？据说是因为xcode对这种方式做了处理，还包括<code>[NSString stringWithString:@"b"]</code>这种方式，这两种初始化字符串都等同于@&ldquo;ddd"了。所以说test2,test4都同等于test1了。</p>
 
 <p>  还有，对于<code>NSString *testStr3 = [NSString stringWithFormat:@"c"]</code>;这种初始化的字符串，只要一写release语句就会挂掉，但其它的都不会挂掉，test1,test2,test4好理解，因为release本来就不会起作用;但testStr5无论release多少次也不会挂掉，只会在控制台报警告：malloc: <strong><em> error for object 0x744d650: double free</em></strong> set a breakpoint in malloc_error_break to debug。这个猜测应该是也xcode做了优化吧。</p>
 
-<p>  对现在4.4之后的编译器，<code>NSString *testStr2 = [NSString stringWithString:@"b"];</code>这种写法会报警告了：Using &lsquo;stringWithString&rsquo; with a literal is redundant。也就是说这种写法是多余的了，它给的建议是用＝@&ldquo;b&#8221;这种方式来代替了。</p>
+<p>  对现在4.4之后的编译器，<code>NSString *testStr2 = [NSString stringWithString:@"b"];</code>这种写法会报警告了：Using &lsquo;stringWithString&rsquo; with a literal is redundant。也就是说这种写法是多余的了，它给的建议是用＝@&ldquo;b"这种方式来代替了。</p>
 
 <p><strong>小结下吧：</strong></p>
 
 <p>  对NSString的初始化方法，<code>对于test1,test2,test4这三种的话建议用＝@“字符串”来使用</code>，因为本来就是一样的。test3,test5这两种的话，建议用texst3这种，方便点，不用管内存问题，系统自已管理。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[新年计划]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/01/11/xin-nian-ji-hua/"/>
-    <updated>2014-01-11T23:08:13+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/01/11/xin-nian-ji-hua</id>
-    <content type="html"><![CDATA[<p> <em>    <strong>2014，我的任务，我的成长！</strong></em></p>
-
-<!-- more -->
-
-
-<ol>
-<li>搭建一个自己的博客，保持每两周更新至少一篇博文</li>
-<li>熟练掌握PHP语言和后台开发技术</li>
-<li>熟练掌握Javascript语言和前端开发技术</li>
-<li>熟练掌握MySql技术;</li>
-<li>深入学习iOS开发技术，阅读一本关于iOS高级开发的书籍</li>
-<li>全面学习iOS7新技术（6月前完成）</li>
-<li>初步学习一门新的语言：Go语言/D语言</li>
-<li>温习C语言(C语言的重要性超出了之前的预料)</li>
-<li>旅游：至少远游三次（出南京）。</li>
-<li>以史为鉴：阅读《易中天大中华史》，全面了解中国历史; 了解欧洲发展史</li>
-<li>锻炼身体，每周最少打一次篮球。</li>
-</ol>
-
-
-<p>    新年计划的制定，基于几个考虑：
-    </br>
-    首先，写博客是一个积累知识和锻炼自己写作能力的过程;
-    </br>
-    其次，后台和前端技术，也许不会去找这方面的工作，但是，现在所有的项目，基本上都逃离不了这些知识，学习这些知识可以扩充自己的视野和知识面，学习C语言和新语言也一样，学C语言更多的是深入学习编程技术，本身OC也是基于C的扩展。
-    </br>
-    再次，学历史，知过去，看未来。
-    </br>
-    最后，身体是革命的本钱; 远游放松心情，锻炼强健体魄。
-    
-    
-    </p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[你好，github]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/01/10/ni-hao-%2Cgithub/"/>
-    <updated>2014-01-10T22:04:54+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/01/10/ni-hao-,github</id>
-    <content type="html"><![CDATA[<p><strong>    <em>我的第一个博客，欢迎大家光临！</em></strong></p>
-
-<!-- more -->
-
-
-<p>    从这里，算是正式开启我的博客之路了，之前在博客园写过一些博客，写得断断续续的，这次终于正式的搭建了一个自己的博客，以后尽力保持有新的感触、新的成长，就会做一些记录，记录生活成长的点滴！
-    </br>
-    我只想说，您好，github，博客，2014，我来了！</p>
 ]]></content>
   </entry>
   

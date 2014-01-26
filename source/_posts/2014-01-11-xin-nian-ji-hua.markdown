@@ -3,7 +3,7 @@ layout: post
 title: "新年计划"
 date: 2014-01-11 23:08:13 +0800
 comments: true
-categories: 
+categories: 闻竹
 ---
 
  *    **2014，我的任务，我的成长！***

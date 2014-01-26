@@ -3,7 +3,7 @@ layout: post
 title: "NSString属性声明中的copy和retain区别"
 date: 2014-01-26 14:39:00 +0800
 comments: true
-categories: 
+categories: iOS
 ---
 
 *    **关于NSString在属性声明中的copy和retain，我想存在一些误解，即和其它不一样的地方。***

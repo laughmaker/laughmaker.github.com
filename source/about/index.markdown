@@ -9,7 +9,7 @@ footer: true
 
 ## 闻竹 : makeLaugh
 
----
+
 #### 个人信息
 * email：674081011@qq.com
 * blog：http://www.smellbamboo.com

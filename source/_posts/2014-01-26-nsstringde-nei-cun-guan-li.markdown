@@ -8,7 +8,6 @@ categories: iOS
 *    **本文参考了这篇文章，主要针对[这篇文章](http://www.cnblogs.com/hellocby/archive/2012/08/23/2652201.html)做了一些补充说明，详细说明NSString的内存管理差异。***
 
 
-<!-- more -->
 
 **生成NSString的方式:**
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | 闻竹]]></title>
   <link href="http://makeLaugh.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://makeLaugh.github.io/"/>
-  <updated>2014-01-27T17:00:11+08:00</updated>
+  <updated>2014-02-11T14:49:24+08:00</updated>
   <id>http://makeLaugh.github.io/</id>
   <author>
     <name><![CDATA[makeLaugh]]></name>
@@ -19,9 +19,6 @@
     <updated>2014-01-27T10:28:48+08:00</updated>
     <id>http://makeLaugh.github.io/blog/2014/01/27/iosxiang-mu-jia-gou-tan-suo</id>
     <content type="html"><![CDATA[<p><strong><em>做了iOS项目两年多，对怎么来做好项目架构，做过一些思考，也参考了一些别人的写法，这里写下自己的一些想法与思考，在我的github上面有<a href="https://github.com/makeLaugh/TWAPP">示例代码</a>。</em></strong></p>
-
-<!--more-->
-
 
 <h4>首先来看项目在硬盘上的实际目录结构</h4>
 
@@ -119,9 +116,6 @@ AppGeneral分为两个目录：AppDefine和AppEngine</p>
     <id>http://makeLaugh.github.io/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie</id>
     <content type="html"><![CDATA[<p><em>    <strong>关于NSString在属性声明中的copy和retain，我想存在一些误解，即和其它不一样的地方。</strong></em></p>
 
-<!-- more -->
-
-
 <p><strong>首先做以下几个变量声明：</strong></p>
 
 <pre><code>@property (retain, nonatomic) NSString *retainStr;
@@ -214,9 +208,6 @@ NSLog(@"\n");
     <updated>2014-01-26T14:03:07+08:00</updated>
     <id>http://makeLaugh.github.io/blog/2014/01/26/nsstringde-nei-cun-guan-li</id>
     <content type="html"><![CDATA[<p><em>    <strong>本文参考了这篇文章，主要针对<a href="http://www.cnblogs.com/hellocby/archive/2012/08/23/2652201.html">这篇文章</a>做了一些补充说明，详细说明NSString的内存管理差异。</strong></em></p>
-
-<!-- more -->
-
 
 <p><strong>生成NSString的方式:</strong></p>
 

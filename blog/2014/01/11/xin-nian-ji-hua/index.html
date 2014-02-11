@@ -99,9 +99,6 @@ $(document).ready(
 	<h2 class="title">新年计划</h2>
 	<div class="entry-content"><p> <em>    <strong>2014，我的任务，我的成长！</strong></em></p>
 
-<!-- more -->
-
-
 <ol>
 <li>搭建一个自己的博客，保持每两周更新至少一篇博文</li>
 <li>熟练掌握PHP语言和后台开发技术</li>
@@ -158,8 +155,6 @@ $(document).ready(
 	
 
 	
-		| <a href="#comments">Comments</a>
-	
 </div></article>
 
 	<div class="share">
@@ -176,12 +171,12 @@ $(document).ready(
 
 
 
-｛% if site.duoshuo_short_name and site.duoshuo_comments == true and page.comments == true %｝
+<!-- ｛% if site.duoshuo_short_name and site.duoshuo_comments == true and page.comments == true %｝
   <section>
     <h1>Comments</h1>
     <div id="comments" aria-live="polite">｛% include post/duoshuo.html %｝</div>
   </section>
-｛% endif %｝</div>
+｛% endif %｝ --></div>
 	<footer id="footer" class="inner">Copyright &copy; 2014
 
     makeLaugh

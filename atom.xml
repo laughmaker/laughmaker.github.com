@@ -4,7 +4,7 @@
   <title><![CDATA[闻竹]]></title>
   <link href="http://makeLaugh.github.io/atom.xml" rel="self"/>
   <link href="http://makeLaugh.github.io/"/>
-  <updated>2014-05-02T20:22:07+08:00</updated>
+  <updated>2014-05-02T20:25:06+08:00</updated>
   <id>http://makeLaugh.github.io/</id>
   <author>
     <name><![CDATA[makeLaugh]]></name>
@@ -12,24 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[测试文章]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/04/28/ce-shi-wen-zhang/"/>
-    <updated>2014-04-28T20:08:27+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/04/28/ce-shi-wen-zhang</id>
-    <content type="html"><![CDATA[<p>咋还不好啊。我测试一下行不行啊！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[新的一天！]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/04/28/xin-de-%5B%3F%5D-tian-%21/"/>
-    <updated>2014-04-28T17:42:51+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/04/28/xin-de-[?]-tian-!</id>
-    <content type="html"><![CDATA[<p>我的博客重新开好了，新的一天开始了！</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[MKNetworkEngine的一层小封装]]></title>

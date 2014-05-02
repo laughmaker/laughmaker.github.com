@@ -27,9 +27,9 @@
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'> -->
   
 
 </head>
@@ -56,8 +56,9 @@
 </form>
   
 <ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/">主页</a></li>
+  <li><a href="/blog/archives">文章归档</a></li>
+  <li><a href="/about/index.html">关于我</a></li>
 </ul>
 
 </nav>
@@ -97,18 +98,18 @@
 
 <p><strong>生成NSString的方式:</strong></p>
 
-<p>方法1.直接赋值:</p>
+<p>方法1.直接赋值:   </p>
 
 <pre><code>NSString *testStr1 = @"a";
 </code></pre>
 
-<p>方法2.类函数初始化生成:</p>
+<p>方法2.类函数初始化生成:     </p>
 
 <pre><code>NSString *testStr2 = [NSString stringWithString:@"b"];
 NSString *testStr3 = [NSString stringWithFormat:@"c"];
 </code></pre>
 
-<p> 方法3.实例方法初始化生成:　</p>
+<p>方法3.实例方法初始化生成:　</p>
 
 <pre><code>NSString *testStr4 = [[NSString alloc] initWithString:@"d"];
 NSString *testStr5 = [[NSString alloc] initWithFormat:@"e"];
@@ -130,15 +131,16 @@ NSString *testStr5 = [[NSString alloc] initWithFormat:@"e"];
 
 <p>  从上可以看出，<code>test1,test2,test4</code>都是在一个内存区域，也就是上文所说的常量内存区。test3,test5在一个内存区，也就是堆区。</p>
 
-<p>  这里就有一个疑问：<code>[NSString alloc] initWithString:@"d"</code>这种方式初始化的字符串，也就是test4.应该是位于堆区的，但为什么会跑到常量内存区来呢？据说是因为xcode对这种方式做了处理，还包括<code>[NSString stringWithString:@"b"]</code>这种方式，这两种初始化字符串都等同于@&ldquo;ddd&#8221;了。所以说test2,test4都同等于test1了。</p>
+<p>  这里就有一个疑问：<code>[NSString alloc] initWithString:@"d"</code>这种方式初始化的字符串，也就是test4.应该是位于堆区的，但为什么会跑到常量内存区来呢？据说是因为xcode对这种方式做了处理，还包括<code>[NSString stringWithString:@"b"]</code>这种方式，这两种初始化字符串都等同于@”ddd”了。所以说test2,test4都同等于test1了。</p>
 
-<p>  还有，对于<code>NSString *testStr3 = [NSString stringWithFormat:@"c"]</code>;这种初始化的字符串，只要一写release语句就会挂掉，但其它的都不会挂掉，test1,test2,test4好理解，因为release本来就不会起作用;但testStr5无论release多少次也不会挂掉，只会在控制台报警告：malloc: <strong><em> error for object 0x744d650: double free</em></strong> set a breakpoint in malloc_error_break to debug。这个猜测应该是也xcode做了优化吧。</p>
+<p>  还有，对于<code>NSString *testStr3 = [NSString stringWithFormat:@"c"]</code>;这种初始化的字符串，只要一写release语句就会挂掉，但其它的都不会挂掉，test1,test2,test4好理解，因为release本来就不会起作用;但testStr5无论release多少次也不会挂掉，只会在控制台报警告：malloc: <strong>* error for object 0x744d650: double free</strong>* set a breakpoint in malloc_error_break to debug。这个猜测应该是也xcode做了优化吧。</p>
 
-<p>  对现在4.4之后的编译器，<code>NSString *testStr2 = [NSString stringWithString:@"b"];</code>这种写法会报警告了：Using &lsquo;stringWithString&rsquo; with a literal is redundant。也就是说这种写法是多余的了，它给的建议是用＝@&ldquo;b&#8221;这种方式来代替了。</p>
+<p>  对现在4.4之后的编译器，<code>NSString *testStr2 = [NSString stringWithString:@"b"];</code>这种写法会报警告了：Using ‘stringWithString’ with a literal is redundant。也就是说这种写法是多余的了，它给的建议是用＝@”b”这种方式来代替了。</p>
 
 <p><strong>小结下吧：</strong></p>
 
 <p>  对NSString的初始化方法，<code>对于test1,test2,test4这三种的话建议用＝@“字符串”来使用</code>，因为本来就是一样的。test3,test5这两种的话，建议用texst3这种，方便点，不用管内存问题，系统自已管理。</p>
+
 </div>
 
 

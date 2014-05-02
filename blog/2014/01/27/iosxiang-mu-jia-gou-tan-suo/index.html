@@ -9,7 +9,8 @@
   <meta name="author" content="makeLaugh">
 
   
-  <meta name="description" content="    做了iOS项目两年多，对怎么来做好项目架构，做过一些思考，也参考了一些别人的写法，这里写下自己的一些想法与思考，在我的github上面有示例代码。 首先来看项目在硬盘上的实际目录结构     在这里，我给每个功能块，都建立实际的目录文件夹来管理，每个功能块里，都建立三个文件夹： &hellip;">
+  <meta name="description" content="    做了iOS项目两年多，对怎么来做好项目架构，做过一些思考，也参考了一些别人的写法，这里写下自己的一些想法与思考，在我的github上面有示例代码。 首先来看项目在硬盘上的实际目录结构 &lt;/br&gt;
+    在这里，我给每个功能块，都建立实际的目录文件夹来管理，每个功能块里， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -27,9 +28,9 @@
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'> -->
   
 
 </head>
@@ -56,8 +57,9 @@
 </form>
   
 <ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/">主页</a></li>
+  <li><a href="/blog/archives">文章归档</a></li>
+  <li><a href="/about/index.html">关于我</a></li>
 </ul>
 
 </nav>
@@ -95,91 +97,83 @@
 
 <div class="entry-content"><p>    做了iOS项目两年多，对怎么来做好项目架构，做过一些思考，也参考了一些别人的写法，这里写下自己的一些想法与思考，在我的github上面有<a href="https://github.com/makeLaugh/TWAPP">示例代码</a>。</p>
 
-<h4>首先来看项目在硬盘上的实际目录结构</h4>
+<h4 id="section">首先来看项目在硬盘上的实际目录结构</h4>
 
-<p><img src="/images/blog/2014/iOS%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E6%8E%A2%E7%B4%A2/1.png" alt="实体目录结构" />
-</br>
-    在这里，我给每个功能块，都建立实际的目录文件夹来管理，每个功能块里，都建立三个文件夹：Controller、Model、View，这样做，主要是让整个目录结构很清晰，易于管理。</p>
+<p><img src="/images/blog/2014/iOS项目架构探索/1.png" alt="实体目录结构" />
+&lt;/br&gt;
+    在这里，我给每个功能块，都建立实际的目录文件夹来管理，每个功能块里，都建立三个文件夹：Controller、Model、View，这样做，主要是让整个目录结构很清晰，易于管理。	</p>
 
-<h4>再来看看在Xcode中的目录结构</h4>
+<h4 id="xcode">再来看看在Xcode中的目录结构</h4>
 
-<p><img src="/images/blog/2014/iOS%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E6%8E%A2%E7%B4%A2/2.png" alt="整个项目目录" />
-</br>
+<p><img src="/images/blog/2014/iOS项目架构探索/2.png" alt="整个项目目录" />
+&lt;/br&gt;
     在Xcode里，整体目录结构和实体文件夹结构保持一致。</p>
 
-<h4>项目里的Lib目录</h4>
+<h4 id="lib">项目里的Lib目录</h4>
 
-<p><img src="/images/blog/2014/iOS%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E6%8E%A2%E7%B4%A2/3.png" alt="Lib目录" />
-</br>
+<p><img src="/images/blog/2014/iOS项目架构探索/3.png" alt="Lib目录" />
+&lt;/br&gt;
     主要用于管理第三方类库，比如我这里添加了FMDB、MKNetworkKit、SDWebImage等几个常用的类库，还有Category里主要是用来管理自己写的一些常用分类; Views管理一些常用的第三方类库。</p>
 
-<h4>这里是APP真正的结构了，写代码最多的地方</h4>
+<h4 id="app">这里是APP真正的结构了，写代码最多的地方</h4>
 
-<p><img src="/images/blog/2014/iOS%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E6%8E%A2%E7%B4%A2/4.png" alt="APP代码目录" /></p>
+<p><img src="/images/blog/2014/iOS项目架构探索/4.png" alt="APP代码目录" /></p>
 
 <ul>
-<li>Controller：放各种ViewController，实现逻辑控制，为了缩短类名，我ViewController都缩写为VC</li>
-<li>View：管理ViewController的各个子View</li>
-<li>Model：数据模型文件夹，各种数据模型都放在里面，如果简单的Controller，可能不需要</li>
+  <li>Controller：放各种ViewController，实现逻辑控制，为了缩短类名，我ViewController都缩写为VC</li>
+  <li>View：管理ViewController的各个子View</li>
+  <li>Model：数据模型文件夹，各种数据模型都放在里面，如果简单的Controller，可能不需要</li>
 </ul>
 
+<h4 id="app-1">这里是很多APP都可以通用的一个目录，需要做的修改很少，很多甚至直接拖进去都可以直接使用的</h4>
 
-<h4>这里是很多APP都可以通用的一个目录，需要做的修改很少，很多甚至直接拖进去都可以直接使用的</h4>
-
-<p><img src="/images/blog/2014/iOS%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E6%8E%A2%E7%B4%A2/5.png" alt="AppGeneral目录" />
-</br>
+<p><img src="/images/blog/2014/iOS项目架构探索/5.png" alt="AppGeneral目录" />
+&lt;/br&gt;
 AppGeneral分为两个目录：AppDefine和AppEngine</p>
 
 <ul>
-<li>AppDefine：这里管理一些常用的定义
-
-<ul>
-<li>Appconfig.h：定义了项目里一些常用的常量，比如常用的字体、颜色、常量等等</li>
-<li>MacroDefine.h：定义一通用的一些宏定义，所有项目通用，以m开头</li>
-<li>NetworkAPI.h：定义项目里的网络接口</li>
-</ul>
-</li>
-<li>AppEngine:这里定义了一些通用的数据模型和UI
-
-<ul>
-<li>TWModel：定义了一些通用的数据模型
-
-<ul>
-<li>TWModel.h：模型的引入头文件，方便引用</li>
-<li>TWTableDataSource.h：定义TableView的通用DataSource，以减轻使用UITableView的VC复杂度</li>
-<li>TWTableDelegate.h：定义TableView的通用Delegate，以减轻使用UITableView的VC复杂度</li>
-<li>TWTableModel.h：TableView的通用数据模型，对TableView的数据做简单的处理</li>
-<li>TWNetworkRequest.h：对MKNetworkEngine的一层封装，简化网络请求</li>
-</ul>
-</li>
-<li>TWUIKit:定制项目里一些通用的UI样式，这样在具体使用的时候，就不需要再单独进行设置，这里的设置可能每个项目都需要自行根据需求设定
-
-<ul>
-<li>TWKit.h：UI的引入头文件，方便引用</li>
-<li>TWButton.h：定制Button的样式，如形状，字体大小等等</li>
-<li>TWCell.h：定制Cell的几个通用方法，配合TWTableDataSorce和TWTableDelegate使用</li>
-<li>TWLable：定义Label，如背景为透明，字体大小等</li>
-<li>TWTextField：定制TextField，如圆角，字体大小，背景色等</li>
-<li>TWTextView：同上</li>
-<li>TWViewController.h：定制ViewController，如显示加载页面等</li>
-<li>TWBarButtonItem.h：定制BarButtonItem按钮，如导航栏按钮，在iOS7和之前显示是不一样的，这里把它设置为一样的，使样式统一，体验一致</li>
-</ul>
-</li>
-</ul>
-</li>
+  <li>AppDefine：这里管理一些常用的定义
+    <ul>
+      <li>Appconfig.h：定义了项目里一些常用的常量，比如常用的字体、颜色、常量等等</li>
+      <li>MacroDefine.h：定义一通用的一些宏定义，所有项目通用，以m开头</li>
+      <li>NetworkAPI.h：定义项目里的网络接口</li>
+    </ul>
+  </li>
+  <li>AppEngine:这里定义了一些通用的数据模型和UI
+    <ul>
+      <li>TWModel：定义了一些通用的数据模型
+        <ul>
+          <li>TWModel.h：模型的引入头文件，方便引用</li>
+          <li>TWTableDataSource.h：定义TableView的通用DataSource，以减轻使用UITableView的VC复杂度</li>
+          <li>TWTableDelegate.h：定义TableView的通用Delegate，以减轻使用UITableView的VC复杂度</li>
+          <li>TWTableModel.h：TableView的通用数据模型，对TableView的数据做简单的处理</li>
+          <li>TWNetworkRequest.h：对MKNetworkEngine的一层封装，简化网络请求</li>
+        </ul>
+      </li>
+      <li>TWUIKit:定制项目里一些通用的UI样式，这样在具体使用的时候，就不需要再单独进行设置，这里的设置可能每个项目都需要自行根据需求设定
+        <ul>
+          <li>TWKit.h：UI的引入头文件，方便引用</li>
+          <li>TWButton.h：定制Button的样式，如形状，字体大小等等</li>
+          <li>TWCell.h：定制Cell的几个通用方法，配合TWTableDataSorce和TWTableDelegate使用</li>
+          <li>TWLable：定义Label，如背景为透明，字体大小等</li>
+          <li>TWTextField：定制TextField，如圆角，字体大小，背景色等</li>
+          <li>TWTextView：同上</li>
+          <li>TWViewController.h：定制ViewController，如显示加载页面等</li>
+          <li>TWBarButtonItem.h：定制BarButtonItem按钮，如导航栏按钮，在iOS7和之前显示是不一样的，这里把它设置为一样的，使样式统一，体验一致</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
 
-
-<h4>最后来看.pch文件引用</h4>
-
-<p><img src="/images/blog/2014/iOS%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E6%8E%A2%E7%B4%A2/6.png" alt="PCH文件" />
-</br>
+<h4 id="pch">最后来看.pch文件引用</h4>
+<p><img src="/images/blog/2014/iOS项目架构探索/6.png" alt="PCH文件" />
+&lt;/br&gt;
     这里我把一些常用的基本上不会改变的、可能会在很多地方都使用到的头文件，一次在这个文件里引用，这样就不会每次使用的时候，都去引入一次了。</p>
 
-<h3>总结一下</h3>
-
+<h3 id="section-1">总结一下</h3>
 <p>    我觉得，项目架构，最主要的是要使项目结构清晰，易于管理，然后是简化开发。所以我首先把项目文件夹规范起来，定义各个文件夹的作用，这是为了文件管理，使结构清晰。然后，定义一些通用的模板和全局样式，这样就不至于写很多重复的代码，简化开发。
-    </br>
+    &lt;/br&gt;
     另外，这里面，其实有一些东西，是可以单独拿出来写一下，比如TWTableDataSource、TWTableDelegate和Views里的一些东西等等，后续再写。</p>
 </div>
 

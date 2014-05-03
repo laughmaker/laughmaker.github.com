@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | 闻竹]]></title>
   <link href="http://makeLaugh.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://makeLaugh.github.io/"/>
-  <updated>2014-05-03T09:00:20+08:00</updated>
+  <updated>2014-05-03T12:21:15+08:00</updated>
   <id>http://makeLaugh.github.io/</id>
   <author>
     <name><![CDATA[makeLaugh]]></name>
@@ -246,7 +246,7 @@ typedef void (^TWFailedBlock)   (NSString *error);
     <id>http://makeLaugh.github.io/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie</id>
     <content type="html"><![CDATA[<p>    关于NSString在属性声明中的copy和retain，我想存在一些误解，即和其它不一样的地方。</p>
 
-<p><strong>首先做以下几个变量声明：</strong></p>
+<p><strong>首先做以下几个变量声明：</strong>   </p>
 
 <pre><code>@property (retain, nonatomic) NSString *retainStr;
 @property (copy, nonatomic)   NSString *copyStr;

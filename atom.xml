@@ -4,7 +4,7 @@
   <title><![CDATA[闻竹]]></title>
   <link href="http://makeLaugh.github.io/atom.xml" rel="self"/>
   <link href="http://makeLaugh.github.io/"/>
-  <updated>2014-05-03T09:00:20+08:00</updated>
+  <updated>2014-05-03T12:21:15+08:00</updated>
   <id>http://makeLaugh.github.io/</id>
   <author>
     <name><![CDATA[makeLaugh]]></name>
@@ -263,7 +263,7 @@ typedef void (^TWFailedBlock)   (NSString *error);
     <id>http://makeLaugh.github.io/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie</id>
     <content type="html"><![CDATA[<p>    关于NSString在属性声明中的copy和retain，我想存在一些误解，即和其它不一样的地方。</p>
 
-<p><strong>首先做以下几个变量声明：</strong></p>
+<p><strong>首先做以下几个变量声明：</strong>   </p>
 
 <pre><code>@property (retain, nonatomic) NSString *retainStr;
 @property (copy, nonatomic)   NSString *copyStr;
@@ -425,15 +425,11 @@ NSString *testStr5 = [[NSString alloc] initWithFormat:@"e"];
   <li>锻炼身体，每周最少打一次篮球(不下雨)。</li>
 </ol>
 
-<p>    新年计划的制定，基于几个考虑：</p>
-
-<p>    首先，写博客是一个积累知识和锻炼自己写作能力的过程;</p>
-
-<p>    其次，后台和前端技术，也许不会去找这方面的工作，但是，现在所有的项目，基本上都逃离不了这些知识，学习这些知识可以扩充自己的视野和知识面，学习C语言和新语言也一样，学C语言更多的是深入学习编程技术，本身OC也是基于C的扩展。</p>
-
-<p>    再次，学历史，知过去，看未来。</p>
-
-<p>    最后，身体是革命的本钱; 远游放松心情，锻炼强健体魄。
+<p>    新年计划的制定，基于几个考虑：<br />
+    首先，写博客是一个积累知识和锻炼自己写作能力的过程;<br />
+    其次，后台和前端技术，也许不会去找这方面的工作，但是，现在所有的项目，基本上都逃离不了这些知识，学习这些知识可以扩充自己的视野和知识面，学习C语言和新语言也一样，学C语言更多的是深入学习编程技术，本身OC也是基于C的扩展。  <br />
+    再次，学历史，知过去，看未来。<br />
+    最后，身体是革命的本钱; 远游放松心情，锻炼强健体魄。
     
     
     </p>

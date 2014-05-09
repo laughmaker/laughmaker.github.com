@@ -6,8 +6,6 @@ comments: true
 categories: Web
 ---
 
-# CentOS6.3配置PHP5.4＋NGINX＋Mongodb服务器环境
-
 首先系统安装完成后，执行：`yum -y update` 命令，升级补丁。
 
 ---
@@ -105,7 +103,7 @@ categories: Web
 	增加用户即可,具体的代码：useradd www -M -s /sbin/nologin
 
 
-－－－
+---
 
 ## 安装NGINX
 
@@ -148,7 +146,6 @@ categories: Web
 ---
 
 ### 以上将三个库都安装完成了，下面需要装三个关联起来。
-
 
 ##### 首先配置NGINX，支持PHP解析
 
@@ -202,7 +199,7 @@ categories: Web
 
 ##### 安装PHP对Mongodb的驱动
 
-1.**[下载驱动]**(http://github.com/mongodb/mongo-php-driver)
+1.**[下载驱动](http://github.com/mongodb/mongo-php-driver)**
 
 2.**解压，并进入到该目录。**
 

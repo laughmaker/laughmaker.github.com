@@ -1,9 +1,10 @@
 ---
-layout: post
-title: "实现UIImageView的动画功能"
-date: 2014-02-12 22:19:54 +0800
-comments: true
+layout: post  
+title: "实现UIImageView的动画功能"  
+date: 2014-02-12 22:19:54 +0800  
+comments: true  
 published: false
+
 categories: iOS
 ---
 

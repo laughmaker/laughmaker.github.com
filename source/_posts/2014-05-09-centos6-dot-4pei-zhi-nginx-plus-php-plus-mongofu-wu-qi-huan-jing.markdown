@@ -58,16 +58,21 @@ categories: Web
 	
 **备注：**
 
-	若./configure...时，报：`configure: error: Cannot find ldap libraries in /usr/lib`错误，则执行：cp -frp /usr/lib64/libldap* /usr/lib/ 命令，再./configure....
-	若./configure...时，报`make: *** [sapi/cli/php] Error 1`错误，则执行：先#make clean后 #make ZEND_EXTRA_LIBS='-liconv' 命令，再make install
+	./configure...时，若报：
+	`configure: error: Cannot find ldap libraries in /usr/lib`错误，
+	则执行：cp -frp /usr/lib64/libldap* /usr/lib/ 命令，
+	再./configure....
+	若make时报`make: *** [sapi/cli/php] Error 1`错误，
+	则执行：先#make clean后 #make ZEND_EXTRA_LIBS='-liconv' 命令，
+	再make install
 	
 **添加配置文件：**
 
 在安装文件目录，执行以下命令：
 
-	* cp php.ini-production /usr/local/php/lib/php.ini
-	* cp php.ini-production /usr/local/php/etc/php.ini
-	* cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
+* cp php.ini-production /usr/local/php/lib/php.ini
+* cp php.ini-production /usr/local/php/etc/php.ini
+* cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
 	
 编辑php-fpm.conf文件为以下内容：
 

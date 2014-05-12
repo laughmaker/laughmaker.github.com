@@ -9,7 +9,10 @@
   <meta name="author" content="makeLaugh">
 
   
-  <meta name="description" content="首先系统安装完成后，执行：yum -y update 命令，升级补丁。 安装PHP5.4 参考教程 1.安装支持套件 yum -y install gcc gcc-c++ autoconf libjpeg libjpeg-devel libpng libpng-devel freetype &hellip;">
+  <meta name="description" content="总则： 1.多使用分支操作，体会git强大的分支功能。
+2.在创建代码仓库的时候，默认会创建一个master分支，这个分支做为一个稳定分支，只合并稳定的代码。
+3.另外创建一个dev分支，这个分支做为日常的开发测试使用，dev分支测试稳家后，方合并到master分支去。
+4. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +68,104 @@
   <div id="main">
     <div id="content">
       
+
+
+    <article class="post">
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/11/gitjian-dan-shi-yong-cao-zuo/">Git简单实用操作</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-11T12:00:04+08:00" pubdate data-updated="true">May 11<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>总则：</strong>  </p>
+
+<pre><code>1.多使用分支操作，体会git强大的分支功能。
+2.在创建代码仓库的时候，默认会创建一个master分支，这个分支做为一个稳定分支，只合并稳定的代码。
+3.另外创建一个dev分支，这个分支做为日常的开发测试使用，dev分支测试稳家后，方合并到master分支去。
+4.如果需要开发计划外的功能时，可基于当前的开发分支，创建一个feature分支，完成后如果需要则合并到dev分支，如无需再使用则可删除。
+5.如果遇到bug需要紧急修复，则可基于master分支创建fixed分支，修复完成测试通过，则合并到master分支，删除fixed分支。
+</code></pre>
+
+<p><strong>本地操作</strong></p>
+
+<ul>
+  <li>初始化：git init</li>
+  <li>添加所有修改文件到git仓库：git add -A</li>
+  <li>添加某单个文件到git仓库：git add 文件件</li>
+  <li>确认修改内容：git commit -m “修改内容叙述”</li>
+</ul>
+
+<p><strong>与服务器相连</strong></p>
+
+<ul>
+  <li>克隆一个仓库：git clone 远端地址</li>
+  <li>查看连接的远端地址：git remote -v</li>
+  <li>连接到远端服务器：git remote add origin 远端地址</li>
+  <li>与远端服务器断开连接：git remote rm origin</li>
+  <li>将远端代码合并到本地：git pull origin master</li>
+  <li>将本地代码上传到远端服务器：git push origin master</li>
+</ul>
+
+<p><strong>分支与合并</strong></p>
+
+<ul>
+  <li>查看分支：git branch -a</li>
+  <li>基于当前分支创建分支并切换到新的分支：git checkout -b 分支名</li>
+  <li>当前在master分支，将dev分支合并到master：git merge dev</li>
+  <li>删除本地分支：git branch -d 分支名</li>
+  <li>删除远端分支：
+    <ul>
+      <li>1.git push origin –delete 分支名  </li>
+      <li>2.git push origin :分支名 //用空分支覆盖远端分支方式 </li>
+    </ul>
+  </li>
+  <li>克隆远端某个分支：git checkout –track -b foobar origin/foobar</li>
+  <li>提交本地的test分支到远端的master分支：git push origin test:master</li>
+  <li>提交本地的test分支作为远端的test分支：git push origin test:test</li>
+</ul>
+
+<p><strong>查看状态</strong></p>
+
+<ul>
+  <li>查看当前哪些文件更改了而没有添加到仓库跟踪：git status</li>
+  <li>查看历史提交记录：git log</li>
+</ul>
+
+<p><strong>版本回溯</strong></p>
+
+<p>  <em>为了安全起见，最好基于所在分支创建一个分支，回到历史版本，找到需要的代码，然后再删除该分支。</em></p>
+
+<ul>
+  <li>在当前分支新建分支：git checkout -b 分支名</li>
+  <li>查看历史提交记录，找到提交记录id：git log</li>
+  <li>回到需要的历史版本：git checkout commitId</li>
+  <li>找到需要的代码，复制出来，切换回原分支，删除该分支</li>
+</ul>
+
+</div>
+  
+  
+
+</article>
 
 
     <article class="post">
@@ -153,18 +254,24 @@ make install
 
 <p><strong>备注：</strong></p>
 
-<pre><code>若./configure...时，报：`configure: error: Cannot find ldap libraries in /usr/lib`错误，则执行：cp -frp /usr/lib64/libldap* /usr/lib/ 命令，再./configure....
-若./configure...时，报`make: *** [sapi/cli/php] Error 1`错误，则执行：先#make clean后 #make ZEND_EXTRA_LIBS='-liconv' 命令，再make install
+<pre><code>./configure...时，若报：
+`configure: error: Cannot find ldap libraries in /usr/lib`错误，
+则执行：cp -frp /usr/lib64/libldap* /usr/lib/ 命令，
+再./configure....
+若make时报`make: *** [sapi/cli/php] Error 1`错误，
+则执行：先#make clean后 #make ZEND_EXTRA_LIBS='-liconv' 命令，
+再make install
 </code></pre>
 
 <p><strong>添加配置文件：</strong></p>
 
 <p>在安装文件目录，执行以下命令：</p>
 
-<pre><code>* cp php.ini-production /usr/local/php/lib/php.ini
-* cp php.ini-production /usr/local/php/etc/php.ini
-* cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
-</code></pre>
+<ul>
+  <li>cp php.ini-production /usr/local/php/lib/php.ini</li>
+  <li>cp php.ini-production /usr/local/php/etc/php.ini</li>
+  <li>cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf</li>
+</ul>
 
 <p>编辑php-fpm.conf文件为以下内容：</p>
 
@@ -521,40 +628,6 @@ typedef void (^TWFailedBlock)   (NSString *error);
 </code></pre>
 
 <p>    具体实现就不贴了，看我给的链接里的示例吧，这只是我针对自己的项目的一点简单封装，以我的要求来实现的，仅作参考吧！</p>
-</div>
-  
-  
-
-</article>
-
-
-    <article class="post">
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/12/ioszhong-dan-xuan-an-niu-de-shi-xian/">iOS中单选按钮的实现</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-12T22:09:57+08:00" pubdate data-updated="true">Feb 12<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>    iOS SDK中，默认是没有单选按钮的，但这个控件在实际应用中，其实还是比较常用的。</p>
 </div>
   
   

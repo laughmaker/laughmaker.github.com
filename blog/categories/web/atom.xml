@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Web | 闻竹]]></title>
   <link href="http://makeLaugh.github.io/blog/categories/web/atom.xml" rel="self"/>
   <link href="http://makeLaugh.github.io/"/>
-  <updated>2014-05-09T14:06:43+08:00</updated>
+  <updated>2014-05-12T09:08:13+08:00</updated>
   <id>http://makeLaugh.github.io/</id>
   <author>
     <name><![CDATA[makeLaugh]]></name>
@@ -78,18 +78,24 @@ make install
 
 <p><strong>备注：</strong></p>
 
-<pre><code>若./configure...时，报：`configure: error: Cannot find ldap libraries in /usr/lib`错误，则执行：cp -frp /usr/lib64/libldap* /usr/lib/ 命令，再./configure....
-若./configure...时，报`make: *** [sapi/cli/php] Error 1`错误，则执行：先#make clean后 #make ZEND_EXTRA_LIBS='-liconv' 命令，再make install
+<pre><code>./configure...时，若报：
+`configure: error: Cannot find ldap libraries in /usr/lib`错误，
+则执行：cp -frp /usr/lib64/libldap* /usr/lib/ 命令，
+再./configure....
+若make时报`make: *** [sapi/cli/php] Error 1`错误，
+则执行：先#make clean后 #make ZEND_EXTRA_LIBS='-liconv' 命令，
+再make install
 </code></pre>
 
 <p><strong>添加配置文件：</strong></p>
 
 <p>在安装文件目录，执行以下命令：</p>
 
-<pre><code>* cp php.ini-production /usr/local/php/lib/php.ini
-* cp php.ini-production /usr/local/php/etc/php.ini
-* cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
-</code></pre>
+<ul>
+  <li>cp php.ini-production /usr/local/php/lib/php.ini</li>
+  <li>cp php.ini-production /usr/local/php/etc/php.ini</li>
+  <li>cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf</li>
+</ul>
 
 <p>编辑php-fpm.conf文件为以下内容：</p>
 

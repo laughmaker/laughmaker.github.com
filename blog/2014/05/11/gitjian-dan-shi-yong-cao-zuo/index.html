@@ -5,12 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>你好，github - 闻竹</title>
+  <title>git简单实用操作 - 闻竹</title>
   <meta name="author" content="makeLaugh">
 
   
-  <meta name="description" content="    我的第一个博客，欢迎大家光临！     从这里，算是正式开启我的博客之路了，之前在博客园写过一些博客，写得断断续续的，这次终于正式的搭建了一个自己的博客，以后尽力保持有新的感触、新的成长，就会做一些记录，记录生活成长的点滴！     我只想说，您好，github，博客，2014，我来了！
-">
+  <meta name="description" content="总则： 1.多使用分支操作，体会git强大的分支功能。
+2.在创建代码仓库的时候，默认会创建一个master分支，这个分支做为一个稳定分支，只合并稳定的代码。
+3.另外创建一个dev分支，这个分支做为日常的开发测试使用，dev分支测试稳家后，方合并到master分支去。
+4. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://makeLaugh.github.io/blog/2014/01/10/ni-hao-%2Cgithub">
+  <link rel="canonical" href="http://makeLaugh.github.io/blog/2014/05/11/gitjian-dan-shi-yong-cao-zuo">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="闻竹" type="application/atom+xml">
@@ -70,7 +72,7 @@
   
   <header>
     
-      <h1 class="entry-title">你好，github</h1>
+      <h1 class="entry-title">Git简单实用操作</h1>
     
     
       <p class="meta">
@@ -86,18 +88,78 @@
   
 
 
-<time datetime="2014-01-10T22:04:54+08:00" pubdate data-updated="true">Jan 10<span>th</span>, 2014</time>
+<time datetime="2014-05-11T12:00:04+08:00" pubdate data-updated="true">May 11<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>    我的第一个博客，欢迎大家光临！</p>
+<div class="entry-content"><p><strong>总则：</strong>  </p>
 
-<p>    从这里，算是正式开启我的博客之路了，之前在博客园写过一些博客，写得断断续续的，这次终于正式的搭建了一个自己的博客，以后尽力保持有新的感触、新的成长，就会做一些记录，记录生活成长的点滴！</p>
+<pre><code>1.多使用分支操作，体会git强大的分支功能。
+2.在创建代码仓库的时候，默认会创建一个master分支，这个分支做为一个稳定分支，只合并稳定的代码。
+3.另外创建一个dev分支，这个分支做为日常的开发测试使用，dev分支测试稳家后，方合并到master分支去。
+4.如果需要开发计划外的功能时，可基于当前的开发分支，创建一个feature分支，完成后如果需要则合并到dev分支，如无需再使用则可删除。
+5.如果遇到bug需要紧急修复，则可基于master分支创建fixed分支，修复完成测试通过，则合并到master分支，删除fixed分支。
+</code></pre>
 
-<p>    我只想说，您好，github，博客，2014，我来了！</p>
+<p><strong>本地操作</strong></p>
+
+<ul>
+  <li>初始化：git init</li>
+  <li>添加所有修改文件到git仓库：git add -A</li>
+  <li>添加某单个文件到git仓库：git add 文件件</li>
+  <li>确认修改内容：git commit -m “修改内容叙述”</li>
+</ul>
+
+<p><strong>与服务器相连</strong></p>
+
+<ul>
+  <li>克隆一个仓库：git clone 远端地址</li>
+  <li>查看连接的远端地址：git remote -v</li>
+  <li>连接到远端服务器：git remote add origin 远端地址</li>
+  <li>与远端服务器断开连接：git remote rm origin</li>
+  <li>将远端代码合并到本地：git pull origin master</li>
+  <li>将本地代码上传到远端服务器：git push origin master</li>
+</ul>
+
+<p><strong>分支与合并</strong></p>
+
+<ul>
+  <li>查看分支：git branch -a</li>
+  <li>基于当前分支创建分支并切换到新的分支：git checkout -b 分支名</li>
+  <li>当前在master分支，将dev分支合并到master：git merge dev</li>
+  <li>删除本地分支：git branch -d 分支名</li>
+  <li>删除远端分支：
+    <ul>
+      <li>1.git push origin –delete 分支名  </li>
+      <li>2.git push origin :分支名 //用空分支覆盖远端分支方式 </li>
+    </ul>
+  </li>
+  <li>克隆远端某个分支：git checkout –track -b foobar origin/foobar</li>
+  <li>提交本地的test分支到远端的master分支：git push origin test:master</li>
+  <li>提交本地的test分支作为远端的test分支：git push origin test:test</li>
+</ul>
+
+<p><strong>查看状态</strong></p>
+
+<ul>
+  <li>查看当前哪些文件更改了而没有添加到仓库跟踪：git status</li>
+  <li>查看历史提交记录：git log</li>
+</ul>
+
+<p><strong>版本回溯</strong></p>
+
+<p>  <em>为了安全起见，最好基于所在分支创建一个分支，回到历史版本，找到需要的代码，然后再删除该分支。</em></p>
+
+<ul>
+  <li>在当前分支新建分支：git checkout -b 分支名</li>
+  <li>查看历史提交记录，找到提交记录id：git log</li>
+  <li>回到需要的历史版本：git checkout commitId</li>
+  <li>找到需要的代码，复制出来，切换回原分支，删除该分支</li>
+</ul>
+
 </div>
 
 
@@ -120,12 +182,12 @@
   
 
 
-<time datetime="2014-01-10T22:04:54+08:00" pubdate data-updated="true">Jan 10<span>th</span>, 2014</time>
+<time datetime="2014-05-11T12:00:04+08:00" pubdate data-updated="true">May 11<span>th</span>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/wen-zhu/'>闻竹</a>
+    <a class='category' href='/blog/categories/gong-ju-jiao-cheng/'>工具教程</a>
   
 </span>
 
@@ -141,8 +203,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2014/05/09/centos6-dot-4pei-zhi-nginx-plus-php-plus-mongofu-wu-qi-huan-jing/" title="Previous Post: centos6.5配置nginx+php+mongo服务器环境">&laquo; centos6.5配置nginx+php+mongo服务器环境</a>
       
-        <a class="basic-alignment right" href="/blog/2014/01/11/xin-nian-ji-hua/" title="Next Post: 新年计划">新年计划 &raquo;</a>
       
     </p>
   </footer>

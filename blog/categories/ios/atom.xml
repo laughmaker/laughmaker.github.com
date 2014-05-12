@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | 闻竹]]></title>
   <link href="http://makeLaugh.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://makeLaugh.github.io/"/>
-  <updated>2014-05-09T14:06:43+08:00</updated>
+  <updated>2014-05-12T09:08:13+08:00</updated>
   <id>http://makeLaugh.github.io/</id>
   <author>
     <name><![CDATA[makeLaugh]]></name>
@@ -139,15 +139,6 @@ typedef void (^TWFailedBlock)   (NSString *error);
 </code></pre>
 
 <p>    具体实现就不贴了，看我给的链接里的示例吧，这只是我针对自己的项目的一点简单封装，以我的要求来实现的，仅作参考吧！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[iOS中单选按钮的实现]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/02/12/ioszhong-dan-xuan-an-niu-de-shi-xian/"/>
-    <updated>2014-02-12T22:09:57+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/02/12/ioszhong-dan-xuan-an-niu-de-shi-xian</id>
-    <content type="html"><![CDATA[<p>    iOS SDK中，默认是没有单选按钮的，但这个控件在实际应用中，其实还是比较常用的。</p>
 ]]></content>
   </entry>
   

@@ -152,18 +152,24 @@ make install
 
 <p><strong>备注：</strong></p>
 
-<pre><code>若./configure...时，报：`configure: error: Cannot find ldap libraries in /usr/lib`错误，则执行：cp -frp /usr/lib64/libldap* /usr/lib/ 命令，再./configure....
-若./configure...时，报`make: *** [sapi/cli/php] Error 1`错误，则执行：先#make clean后 #make ZEND_EXTRA_LIBS='-liconv' 命令，再make install
+<pre><code>./configure...时，若报：
+`configure: error: Cannot find ldap libraries in /usr/lib`错误，
+则执行：cp -frp /usr/lib64/libldap* /usr/lib/ 命令，
+再./configure....
+若make时报`make: *** [sapi/cli/php] Error 1`错误，
+则执行：先#make clean后 #make ZEND_EXTRA_LIBS='-liconv' 命令，
+再make install
 </code></pre>
 
 <p><strong>添加配置文件：</strong></p>
 
 <p>在安装文件目录，执行以下命令：</p>
 
-<pre><code>* cp php.ini-production /usr/local/php/lib/php.ini
-* cp php.ini-production /usr/local/php/etc/php.ini
-* cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
-</code></pre>
+<ul>
+  <li>cp php.ini-production /usr/local/php/lib/php.ini</li>
+  <li>cp php.ini-production /usr/local/php/etc/php.ini</li>
+  <li>cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf</li>
+</ul>
 
 <p>编辑php-fpm.conf文件为以下内容：</p>
 
@@ -412,6 +418,8 @@ $MONGO["servers"][$i]["mongo_auth"] = true;//enable mongo authentication?
         <a class="basic-alignment left" href="/blog/2014/02/14/mknetworkenginede-%5B%3F%5D-ceng-xiao-feng-zhuang/" title="Previous Post: MKNetworkEngine的一层小封装">&laquo; MKNetworkEngine的一层小封装</a>
       
       
+        <a class="basic-alignment right" href="/blog/2014/05/11/gitjian-dan-shi-yong-cao-zuo/" title="Next Post: git简单实用操作">git简单实用操作 &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -426,15 +434,15 @@ $MONGO["servers"][$i]["mongo_auth"] = true;//enable mongo authentication?
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/05/11/gitjian-dan-shi-yong-cao-zuo/">git简单实用操作</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/05/09/centos6-dot-4pei-zhi-nginx-plus-php-plus-mongofu-wu-qi-huan-jing/">centos6.5配置nginx+php+mongo服务器环境</a>
       </li>
     
       <li class="post">
         <a href="/blog/2014/02/14/mknetworkenginede-%5B%3F%5D-ceng-xiao-feng-zhuang/">MKNetworkEngine的一层小封装</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/12/ioszhong-dan-xuan-an-niu-de-shi-xian/">iOS中单选按钮的实现</a>
       </li>
     
       <li class="post">

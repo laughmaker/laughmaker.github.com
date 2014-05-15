@@ -58,13 +58,10 @@ categories: Web
 	
 **备注：**
 
-	./configure...时，若报：
-	`configure: error: Cannot find ldap libraries in /usr/lib`错误，
-	则执行：cp -frp /usr/lib64/libldap* /usr/lib/ 命令，
-	再./configure....
-	若make时报`make: *** [sapi/cli/php] Error 1`错误，
-	则执行：先#make clean后 #make ZEND_EXTRA_LIBS='-liconv' 命令，
-	再make install
+* 若./configure...时，报：`configure: error: Cannot find ldap libraries in /usr/lib`错误，则执行：`cp -frp /usr/lib64/libldap* /usr/lib/` 命令，再`./configure`
+* 若make时报`make: *** [sapi/cli/php] Error 1`错误，则执行：先`make clean`后 再`make ZEND_EXTRA_LIBS='-liconv'` 命令
+* 若`make ZEND_EXTRA_LIBS='-liconv'`时报`make: *** [ext/phar/phar.php] 错误 127`，则。。。
+* 最后make install
 	
 **添加配置文件：**
 
@@ -145,16 +142,17 @@ categories: Web
 	停掉mongodb，执行
 	yum update mongo-10gen mongo-10gen-server
 	
+备注：也可到[这里](http://downloads-distro.mongodb.org/repo/redhat/os/x86_64)下载最新版，手动`yum -ivh ...`安装。需要先安装mongo-10gen，再安装mongo-10gen-server。
+	
 启动Mongodb：service mongod start
-
 
 ---
 
-### 以上将三个库都安装完成了，下面需要装三个关联起来。
+**以上将三个库都安装完成了，下面需要装三个关联起来。**
 
-##### 首先配置NGINX，支持PHP解析
+**首先配置NGINX，支持PHP解析**
 
-1.打开/etc/nginx/conf.d目录下的default.conf文件。
+1.打开/etc/nginx/conf.d目录下的default.conf文件。  
 2.如下代码所示，将`location` 中的相关路径保持一致，差添加index.php解析
 
 	server {
@@ -243,7 +241,6 @@ categories: Web
 	$MONGO["servers"][$i]["mongo_auth"] = true;//enable mongo authentication?
 
 
----
 ---
 
 

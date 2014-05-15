@@ -3,7 +3,7 @@ layout: post
 title: "git简单实用操作"
 date: 2014-05-11 12:00:04 +0800
 comments: true
-categories: 工具教程
+categories: 能工巧匠
 ---
 
 

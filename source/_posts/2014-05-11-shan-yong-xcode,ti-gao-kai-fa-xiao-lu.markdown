@@ -79,23 +79,29 @@ categories: 能工巧匠
 
     1.**CocoaPods**  
     不喜欢使用命令行？没关系，装上这个插件，在Product选项里，就集成了CocoaPods选项了，直接点击就可以在Xcode里管理CocoaPods里的第三方库了。  
+    
     ![image](https://github.com/kattrali/cocoadocs-xcode-plugin/raw/master/menu.png)
 
     2.**ColorSense**  
-    是不是每次设置颜色的时候，不知道效果？用它吧，直接在代码里修改颜色，如下图：    
+    是不是每次设置颜色的时候，不知道效果？用它吧，直接在代码里修改颜色，如下图：  
+      
 	![image](images/blog/2014/Xcode效率/ColorSense.png)
 
     3.**VVDocumenter**  
     注释对于代码很重要，特别是对代码规范要求很严的公司，那更是必须写的，话说，自己写，有一个好的规范不也挺好的么，这个配合`appledoc`一起工作，简直是神器，下面有介绍。这货可以让你在写注释的时候，大幅的降低繁杂重复的工作量。见下图：  
-    ![image](http://www.cocoachina.com/cms/uploads/allimg/130918/4196_130918173834_1.gif)
+    
+    ![image](https://raw.github.com/onevcat/VVDocumenter-Xcode/master/ScreenShot.gif)
 
     4.**FuzzyAutocomplete**  
     xcode自带的自动代码匹配功能不是很完善，当你只大概记得一个方法时，这时候，xcode就无能为力了，它登场了，效果见下图：  
-    ![image](http://www.cocoachina.com/cms/uploads/allimg/131031/4196_131031114351_1.gif)
+    
+    ![image](https://github.com/FuzzyAutocomplete/FuzzyAutocompletePlugin/raw/master/demo.gif)
 
     5.**XAlign**  
     你有没有一个空格一个空格的敲，就为了对齐那该死的`@、=、*`等符号？好吧，如果你没有，那说明你没有代码洁癖，我应该恭喜你呢，还是替后来维护的人难受？  
-    ![image](http://www.cocoachina.com/cms/uploads/allimg/131211/4196_131211113618_1.gif)
+    
+    ![image](https://camo.githubusercontent.com/7973c0e352b1f91e3efe5b3550cff5df97f4589a/687474703a2f2f7166692e73682f58416c69676e2f696d616765732f657175616c2e676966)
+    ![image](https://camo.githubusercontent.com/f61bfc31e144ad6a9d7ca26fa19547a3af5da8c6/687474703a2f2f7166692e73682f58416c69676e2f696d616765732f646566696e652e676966)
 
     6.**BBUDebuggerTuckAway**  
     xcode很强大，但有的时候，它却不太讨人喜欢，我明明在编写代码了，调试窗口却死活不肯退场，死占着那个位置，让我多难受啊。好吧，我开始写代码了，你去睡一会儿吧。  
@@ -103,12 +109,14 @@ categories: 能工巧匠
 
     7.**XcodeBoost**  
     它的使用有一点小复杂，你需要花一点时间去熟悉它，了解它😃，别恐惧，其实也没有那么复杂了，它真的很强大，真的非常的强大，我还是先上图吧  
+    
     ![image](https://github.com/fortinmike/XcodeBoost/raw/master/Images/highlighting.gif)  
     ![image](https://github.com/fortinmike/XcodeBoost/raw/master/Images/copy-method-declarations.gif)  
     ![image](https://github.com/fortinmike/XcodeBoost/raw/master/Images/paste-without-reindent.gif)  
 
     8.**KSImagedNamed**
-    当我第一次看到它的时候，我内牛满面，我为什么不早点认识它呢，以前在代码里设置图片，不知道图片是什么样子，也不知道图片是什么名字的时候，在UI给我的图片包里，一个一个去找的时候，我有想疯了的感觉。这货不但可以自动匹配识别图片名字，还能预览图片，你还有什么理由不使用它呢？
+    当我第一次看到它的时候，我内牛满面，我为什么不早点认识它呢，以前在代码里设置图片，不知道图片是什么样子，也不知道图片是什么名字的时候，在UI给我的图片包里，一个一个去找的时候，我有想疯了的感觉。这货不但可以自动匹配识别图片名字，还能预览图片，你还有什么理由不使用它呢？  
+    
     ![image](http://cms.csdnimg.cn/article/201405/05/53673f77a65a3.jpg)
     
     以上是我使用过后，感觉非常不错，能够极大提高效率的几个插件，以后有新的体验了，还会更新，这些插件都可以直接通过`Alcatraz`来管理，所以不上链接了。
@@ -116,7 +124,9 @@ categories: 能工巧匠
 
     **四、文档生成工具Appledoc**  
     前面介绍了`VVDocumenter`，终于轮到它登场了，使用`VVDocumenter`写上标准的注释，然后使用appledoc，一键生成苹果官方式的文档，如下图所示：  
+    
 	![image](images/blog/2014/Xcode效率/appledoc1.png)  
+	
     首先安装，可以选择正常安装，也可以选择homebrew安装。  
     **正常安装**：  
 

@@ -3,7 +3,7 @@ layout: post
 title: "善用Xcode，提高开发效率"
 date: 2014-05-11 21:53:08 +0800
 comments: true
-published: false
+<!--published: false-->
 
 categories: 能工巧匠
 ---
@@ -18,24 +18,29 @@ categories: 能工巧匠
     对CocoaPods的介绍和安装教程网太多了，随便百度谷歌一下都满大街了，我想说，如果还没有使用它来管理毓三方库的，那得切换了，因为它实在是太简单太高效了。下面简单罗列一下使用步骤。 [详细参考教程](http://code4app.com/article/cocoapods-install-usage)
 
 * 更换ruby源，以加快安装速度，如果已经更换过的跳过：
-	* gem sources --remove https://rubygems.org/
-	* gem sources -a http://ruby.taobao.org/
-	* gem sources -l //查看新的镜像源
+
+		1. gem sources --remove https://rubygems.org/
+		2. gem sources -a http://ruby.taobao.org/
+		3. gem sources -l //查看新的镜像源
+
 * 安装ruby，一般mac都自带了ruby，若未安装，可用以下方式安装或更新到最新版  
-	* 安装RVM：curl -L https://get.rvm.io | bash -s stable --ruby
-	* 列出已知的ruby版本：rvm list known
-	* 安装最新的版本：rvm install version号
-	* 切换到安装的版本上：rvm use version号
-	* rvm rubygems latest
+
+		1. 安装RVM：curl -L https://get.rvm.io | bash -s stable --ruby
+		2. 列出已知的ruby版本：rvm list known
+		3. 安装最新的版本：rvm install version号
+		4. 切换到安装的版本上：rvm use version号
+		5. rvm rubygems latest
+		
 * 安装和使用CocoaPods
-	* 安装CocoaPods：sudo gem install cocoapods
-	* 搜索要使用的库：pod search AFNetworking，会得到如何使用、源地址等提示
-	* 编辑配置文件：vim Podfile
-	* 按上术提示，添加相关配置，并保存  
-	  platform :ios, '7.0'  
-	  pod "AFNetworking", "~> 2.0"
-	* 安装第三方库：pod install 
-	* 以后打开项目都打开`.xcworkspace`文件，而不是源来的项目文件。
+
+		1. 安装CocoaPods：sudo gem install cocoapods
+		2. 搜索要使用的库：pod search AFNetworking，会得到如何使用、源地址等提示
+		3. 编辑配置文件：vim Podfile
+		4. 按上术提示，添加相关配置，并保存  
+		   platform :ios, '7.0'  
+		   pod "AFNetworking", "~> 2.0"
+		5. 安装第三方库：pod install 
+		6. 以后打开项目都打开`.xcworkspace`文件，而不是源来的项目文件。
 
     就这样，安装完成了，以后就可以使用AFNetworking了。
     一个技巧：有时候，第三方库会有警告，为了忽略警告，只需要在Podfile文件中添加一个命令即可，`inhibit_all_warnings!`。

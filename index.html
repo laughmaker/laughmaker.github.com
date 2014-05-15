@@ -106,42 +106,36 @@
     对CocoaPods的介绍和安装教程网太多了，随便百度谷歌一下都满大街了，我想说，如果还没有使用它来管理毓三方库的，那得切换了，因为它实在是太简单太高效了。下面简单罗列一下使用步骤。 <a href="http://code4app.com/article/cocoapods-install-usage">详细参考教程</a></p>
 
 <ul>
-  <li>更换ruby源，以加快安装速度，如果已经更换过的跳过：
-    <ul>
-      <li>gem sources –remove https://rubygems.org/</li>
-      <li>gem sources -a http://ruby.taobao.org/</li>
-      <li>gem sources -l //查看新的镜像源</li>
-    </ul>
+  <li>
+    <p>更换ruby源，以加快安装速度，如果已经更换过的跳过：</p>
+
+    <pre><code>  1. gem sources --remove https://rubygems.org/
+  2. gem sources -a http://ruby.taobao.org/
+  3. gem sources -l //查看新的镜像源
+</code></pre>
   </li>
-  <li>安装ruby，一般mac都自带了ruby，若未安装，可用以下方式安装或更新到最新版<br />
-    <ul>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>安装RVM：curl -L https://get.rvm.io</td>
-              <td>bash -s stable –ruby</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
-      <li>列出已知的ruby版本：rvm list known</li>
-      <li>安装最新的版本：rvm install version号</li>
-      <li>切换到安装的版本上：rvm use version号</li>
-      <li>rvm rubygems latest</li>
-    </ul>
+  <li>
+    <p>安装ruby，一般mac都自带了ruby，若未安装，可用以下方式安装或更新到最新版  </p>
+
+    <pre><code>  1. 安装RVM：curl -L https://get.rvm.io | bash -s stable --ruby
+  2. 列出已知的ruby版本：rvm list known
+  3. 安装最新的版本：rvm install version号
+  4. 切换到安装的版本上：rvm use version号
+  5. rvm rubygems latest
+</code></pre>
   </li>
-  <li>安装和使用CocoaPods
-    <ul>
-      <li>安装CocoaPods：sudo gem install cocoapods</li>
-      <li>搜索要使用的库：pod search AFNetworking，会得到如何使用、源地址等提示</li>
-      <li>编辑配置文件：vim Podfile</li>
-      <li>按上术提示，添加相关配置，并保存<br />
-    platform :ios, ‘7.0’<br />
-    pod “AFNetworking”, “~&gt; 2.0”</li>
-      <li>安装第三方库：pod install </li>
-      <li>以后打开项目都打开<code>.xcworkspace</code>文件，而不是源来的项目文件。</li>
-    </ul>
+  <li>
+    <p>安装和使用CocoaPods</p>
+
+    <pre><code>  1. 安装CocoaPods：sudo gem install cocoapods
+  2. 搜索要使用的库：pod search AFNetworking，会得到如何使用、源地址等提示
+  3. 编辑配置文件：vim Podfile
+  4. 按上术提示，添加相关配置，并保存  
+     platform :ios, '7.0'  
+     pod "AFNetworking", "~&gt; 2.0"
+  5. 安装第三方库：pod install 
+  6. 以后打开项目都打开`.xcworkspace`文件，而不是源来的项目文件。
+</code></pre>
   </li>
 </ul>
 

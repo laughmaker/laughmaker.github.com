@@ -17,30 +17,30 @@ categories: 能工巧匠
     **二、CocoaPods**  
     对CocoaPods的介绍和安装教程网太多了，随便百度谷歌一下都满大街了，我想说，如果还没有使用它来管理毓三方库的，那得切换了，因为它实在是太简单太高效了。下面简单罗列一下使用步骤。 [详细参考教程](http://code4app.com/article/cocoapods-install-usage)
 
-* 更换ruby源，以加快安装速度，如果已经更换过的跳过：
+    **更换ruby源**，以加快安装速度，如果已经更换过的跳过：
 
-		1. gem sources --remove https://rubygems.org/
-		2. gem sources -a http://ruby.taobao.org/
-		3. gem sources -l //查看新的镜像源
+	1. gem sources --remove https://rubygems.org/
+	2. gem sources -a http://ruby.taobao.org/
+	3. gem sources -l //查看新的镜像源
 
-* 安装ruby，一般mac都自带了ruby，若未安装，可用以下方式安装或更新到最新版  
+    安装ruby，一般mac都自带了ruby，若未安装，可用以下方式安装或更新到最新版  
 
-		1. 安装RVM：curl -L https://get.rvm.io | bash -s stable --ruby
-		2. 列出已知的ruby版本：rvm list known
-		3. 安装最新的版本：rvm install version号
-		4. 切换到安装的版本上：rvm use version号
-		5. rvm rubygems latest
+	1. 安装RVM：curl -L https://get.rvm.io | bash -s stable --ruby
+	2. 列出已知的ruby版本：rvm list known
+	3. 安装最新的版本：rvm install version号
+	4. 切换到安装的版本上：rvm use version号
+	5. rvm rubygems latest
 		
-* 安装和使用CocoaPods
+    安装和使用CocoaPods
 
-		1. 安装CocoaPods：sudo gem install cocoapods
-		2. 搜索要使用的库：pod search AFNetworking，会得到如何使用、源地址等提示
-		3. 编辑配置文件：vim Podfile
-		4. 按上术提示，添加相关配置，并保存  
-		   platform :ios, '7.0'  
-		   pod "AFNetworking", "~> 2.0"
-		5. 安装第三方库：pod install 
-		6. 以后打开项目都打开`.xcworkspace`文件，而不是源来的项目文件。
+	1. 安装CocoaPods：sudo gem install cocoapods
+	2. 搜索要使用的库：pod search AFNetworking，会得到如何使用、源地址等提示
+	3. 编辑配置文件：vim Podfile
+	4. 按上术提示，添加相关配置，并保存  
+	   platform :ios, '7.0'  
+	   pod "AFNetworking", "~> 2.0"
+	5. 安装第三方库：pod install 
+	6. 以后打开项目都打开`.xcworkspace`文件，而不是源来的项目文件。
 
     就这样，安装完成了，以后就可以使用AFNetworking了。
     一个技巧：有时候，第三方库会有警告，为了忽略警告，只需要在Podfile文件中添加一个命令即可，`inhibit_all_warnings!`。
@@ -83,7 +83,7 @@ categories: 能工巧匠
 
     2.**ColorSense**  
     是不是每次设置颜色的时候，不知道效果？用它吧，直接在代码里修改颜色，如下图：  
-	![image](images/blog/2014/Xcode效率/ColorSense.png)
+    ![image](/images/blog/2014/Xcode效率/ColorSense.png)
 
     3.**VVDocumenter**  
     注释对于代码很重要，特别是对代码规范要求很严的公司，那更是必须写的，话说，自己写，有一个好的规范不也挺好的么，这个配合`appledoc`一起工作，简直是神器，下面有介绍。这货可以让你在写注释的时候，大幅的降低繁杂重复的工作量。见下图：  
@@ -99,20 +99,20 @@ categories: 能工巧匠
     ![image](https://camo.githubusercontent.com/f61bfc31e144ad6a9d7ca26fa19547a3af5da8c6/687474703a2f2f7166692e73682f58416c69676e2f696d616765732f646566696e652e676966)
 
     6.**BBUDebuggerTuckAway**  
-    xcode很强大，但有的时候，它却不太讨人喜欢，我明明在编写代码了，调试窗口却死活不肯退场，死占着那个位置，让我多难受啊。好吧，我开始写代码了，你去睡一会儿吧。  
+    xcode很强大，但有的时候，它却不太讨人喜欢，我明明在编写代码了，调试窗口却死活不肯退场，死占着那个位置，让我多难受啊。控制台，我开始写代码了，你去睡一会儿吧。  
     ![image](http://cms.csdnimg.cn/article/201405/05/53674c667516f.jpg)
 
     7.**XcodeBoost**  
-    它的使用有一点小复杂，你需要花一点时间去熟悉它，了解它😃，别恐惧，其实也没有那么复杂了，它真的很强大，真的非常的强大，我还是先上图吧  
+    它的使用有一点小复杂，你需要花一点时间去熟悉它，了解它，别恐惧，其实也没有那么复杂了，它真的很强大，真的非常的强大，有图有真相  
     ![image](https://github.com/fortinmike/XcodeBoost/raw/master/Images/highlighting.gif)  
     ![image](https://github.com/fortinmike/XcodeBoost/raw/master/Images/copy-method-declarations.gif)  
     ![image](https://github.com/fortinmike/XcodeBoost/raw/master/Images/paste-without-reindent.gif)  
-
+    
     8.**KSImagedNamed**
     当我第一次看到它的时候，我内牛满面，我为什么不早点认识它呢，以前在代码里设置图片，不知道图片是什么样子，也不知道图片是什么名字的时候，在UI给我的图片包里，一个一个去找的时候，我有想疯了的感觉。这货不但可以自动匹配识别图片名字，还能预览图片，你还有什么理由不使用它呢？  
-    ![image](http://cms.csdnimg.cn/article/201405/05/53673f77a65a3.jpg)
-    
-    以上是我使用过后，感觉非常不错，能够极大提高效率的几个插件，以后有新的体验了，还会更新，这些插件都可以直接通过`Alcatraz`来管理，所以不上链接了。
+    ![image](http://cms.csdnimg.cn/article/201405/05/53673f77a65a3.jpg)    
+
+    以上是我使用过后，感觉非常不错，能够极大提高效率的几个插件，以后有新的体验了，还会更新，这些插件都可以直接通过`Alcatraz`来管理，所以不上链接了。另声明：以上截图大部分来源于原作者网站。
 
 
     **四、文档生成工具Appledoc**  
@@ -133,7 +133,7 @@ categories: 能工巧匠
     **使用：**  
 
 	1. cd 项目目录
-	2.appledoc -o ./doc --project-name MyProject --project-company MyCompany --company-id companyId .
+	2. appledoc -o ./doc --project-name MyProject --project-company MyCompany --company-id companyId .
 	
     首先进入项目目录，然后运行上面的命令，`MyProject`是你项目的名字，`MyCompany`是你公司的名字，最后`./doc`是指在当前目录下，生成一个doc目录，里面有一个`docset-installed.txt`文件，里面记录你安装的记录和文档生成的路径，`companyId`一般写成`com.company`格式。  
     appledoc支持markdown、html等语言来写注释，详细的介绍推荐看[这篇文章](http://blog.ibireme.com/2013/08/26/appledoc-guide/)

@@ -1,0 +1,43 @@
+<h3 id="sublimephpjs">sublime配置PHP和JS调试环境</h3>
+<ul>
+  <li>点击tools -&gt; build system -&gt; new build system</li>
+  <li>
+    <p>在其中输入如下代码，保存为PHP.sublime-build </p>
+
+    <pre><code>  {
+      "cmd": ["php", "$file"],
+      "file_regex": "^(...*?):([0-9]*):?([0-9]*)",
+      "selector": "source.php"
+  }
+</code></pre>
+  </li>
+  <li>此后，即可用command+B进行编译调试了</li>
+</ul>
+
+<p>另外，添加一个new build system，命名为JSC.sublime-build，添加以下内容，即可调试js代码：</p>
+
+<pre><code>{
+	"cmd": ["/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc", "$file"],
+	"selector": "source.js"
+}
+</code></pre>
+
+<h3 id="nginx">NGINX常用的指令有</h3>
+<p>nginx -V 查看版本，以及配置文件地址<br />
+nginx -v 查看版本<br />
+nginx -c filename 指定配置文件<br />
+nginx -h 帮助<br />
+nginx -s [reload\reopen\stop\quit]  </p>
+
+<p>配置文件地址：/usr/local/etc/nginx/nginx.conf<br />
+默认访问目录：/usr/local/Cellar/nginx/1.4.2/html</p>
+
+<h3 id="brewhome-">brewhome 常用的指令</h3>
+<p>brew search mysql : 搜索具体的程序包  <br />
+brew install mysql : 安装具体的程序包<br />
+brew info mysql : 查看具体程序的信息<br />
+brew uninstall mysql : 卸载具体的应用（这里只是用mysql  作个例子）</p>
+
+<h3 id="php">PHP</h3>
+<p>homebrew安装的PHP路径：/usr/local/Cellar/php54/5.4.19/<br />
+配置文件目录：/usr/local/etc/php/5.6</p>

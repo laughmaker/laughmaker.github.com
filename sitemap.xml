@@ -36,11 +36,11 @@
         <loc>
             http://makeLaugh.github.io/blog/2014/05/09/centos6-dot-4pei-zhi-nginx-plus-php-plus-mongofu-wu-qi-huan-jing/
         </loc>
-        <lastmod>2014-05-13T21:03:30+08:00</lastmod>
+        <lastmod>2014-11-21T21:18:52+08:00</lastmod>
     </url>
     <url>
         <loc>http://makeLaugh.github.io/blog/2014/05/09/ren-sheng-ji-xu-shi-yi/</loc>
-        <lastmod>2014-05-18T21:19:13+08:00</lastmod>
+        <lastmod>2014-05-18T21:26:43+08:00</lastmod>
     </url>
     <url>
         <loc>http://makeLaugh.github.io/blog/2014/05/11/gitjian-dan-shi-yong-cao-zuo/</loc>
@@ -50,7 +50,19 @@
         <loc>
             http://makeLaugh.github.io/blog/2014/05/11/shan-yong-xcode%2Cti-gao-kai-fa-xiao-lu/
         </loc>
-        <lastmod>2014-05-16T17:20:17+08:00</lastmod>
+        <lastmod>2014-05-19T09:32:40+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://makeLaugh.github.io/blog/2015/01/04/macxia-pei-zhi-webkai-fa-huan-jing/</loc>
+        <lastmod>2015-01-04T16:10:40+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://makeLaugh.github.io/blog/2015/01/04/phpkai-fa-gui-fan/</loc>
+        <lastmod>2015-01-04T16:10:26+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://makeLaugh.github.io/blog/2015/01/04/mongodbchang-yong-cao-zuo/</loc>
+        <lastmod>2015-01-04T15:59:54+08:00</lastmod>
     </url>
     <url>
         <loc>http://makeLaugh.github.io/about/</loc>
@@ -58,19 +70,19 @@
     </url>
     <url>
         <loc>http://makeLaugh.github.io/archives/</loc>
-        <lastmod>2014-05-18T21:19:13+08:00</lastmod>
+        <lastmod>2015-01-04T16:10:40+08:00</lastmod>
     </url>
     <url>
         <loc>http://makeLaugh.github.io/blog/archives/</loc>
-        <lastmod>2014-05-18T21:19:13+08:00</lastmod>
+        <lastmod>2015-01-04T16:10:40+08:00</lastmod>
     </url>
     <url>
         <loc>http://makeLaugh.github.io/blog/</loc>
-        <lastmod>2014-05-18T21:19:13+08:00</lastmod>
+        <lastmod>2015-01-04T16:10:40+08:00</lastmod>
     </url>
     <url>
         <loc>http://makeLaugh.github.io/</loc>
-        <lastmod>2014-05-18T21:19:13+08:00</lastmod>
+        <lastmod>2015-01-04T16:10:40+08:00</lastmod>
     </url>
     <url>
         <loc>http://makeLaugh.github.io/robots.txt</loc>

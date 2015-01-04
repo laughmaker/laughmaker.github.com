@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 能工巧匠 | 闻竹]]></title>
   <link href="http://makeLaugh.github.io/blog/categories/neng-gong-qiao-jiang/atom.xml" rel="self"/>
   <link href="http://makeLaugh.github.io/"/>
-  <updated>2014-05-18T21:19:54+08:00</updated>
+  <updated>2015-01-04T16:12:06+08:00</updated>
   <id>http://makeLaugh.github.io/</id>
   <author>
     <name><![CDATA[makeLaugh]]></name>
@@ -98,7 +98,7 @@ pod 'SBAPNSPusher', '~&gt; 2.2.1'!
 
 <p>    2.<strong>ColorSense</strong><br />
     是不是每次设置颜色的时候，不知道效果？用它吧，直接在代码里修改颜色，如下图：<br />
-	<img src="/images/blog/2014/Xcode效率/ColorSense.png" alt="image" /></p>
+    <img src="/images/blog/2014/Xcode效率/ColorSense.png" alt="image" /></p>
 
 <p>    3.<strong>VVDocumenter</strong><br />
     注释对于代码很重要，特别是对代码规范要求很严的公司，那更是必须写的，话说，自己写，有一个好的规范不也挺好的么，这个配合<code>appledoc</code>一起工作，简直是神器，下面有介绍。这货可以让你在写注释的时候，大幅的降低繁杂重复的工作量。见下图：<br />
@@ -125,9 +125,9 @@ pod 'SBAPNSPusher', '~&gt; 2.2.1'!
     
     8.<strong>KSImagedNamed</strong>
     当我第一次看到它的时候，我内牛满面，我为什么不早点认识它呢，以前在代码里设置图片，不知道图片是什么样子，也不知道图片是什么名字的时候，在UI给我的图片包里，一个一个去找的时候，我有想疯了的感觉。这货不但可以自动匹配识别图片名字，还能预览图片，你还有什么理由不使用它呢？<br />
-    <img src="http://cms.csdnimg.cn/article/201405/05/53673f77a65a3.jpg" alt="image" />
-    
-    以上是我使用过后，感觉非常不错，能够极大提高效率的几个插件，以后有新的体验了，还会更新，这些插件都可以直接通过<code>Alcatraz</code>来管理，所以不上链接了。另声明：以上截图大部分来源于原作者网站。</p>
+    <img src="http://cms.csdnimg.cn/article/201405/05/53673f77a65a3.jpg" alt="image" />    </p>
+
+<p>    以上是我使用过后，感觉非常不错，能够极大提高效率的几个插件，以后有新的体验了，还会更新，这些插件都可以直接通过<code>Alcatraz</code>来管理，所以不上链接了。另声明：以上截图大部分来源于原作者网站。</p>
 
 <p>    <strong>四、文档生成工具Appledoc</strong><br />
     前面介绍了<code>VVDocumenter</code>，终于轮到它登场了，使用<code>VVDocumenter</code>写上标准的注释，然后使用appledoc，一键生成苹果官方式的文档，如下图所示：<br />

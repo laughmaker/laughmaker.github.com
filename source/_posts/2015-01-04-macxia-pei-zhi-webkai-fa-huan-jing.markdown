@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "mac下配置web开发环境"
+title: "mac下配置sublime调试环境"
 date: 2015-01-04 16:01:56 +0800
 comments: true
 categories:web
 ---
 
 
-### sublime配置PHP和JS调试环境
+### 配置PHP和JS调试环境
 * 点击tools -> build system -> new build system
 * 在其中输入如下代码，保存为PHP.sublime-build 
 
@@ -26,24 +26,73 @@ categories:web
 		"selector": "source.js"
 	}
 
+---
+
+### 配置Xdebug
 
 
-### NGINX常用的指令有 
-nginx -V 查看版本，以及配置文件地址  
-nginx -v 查看版本  
-nginx -c filename 指定配置文件  
-nginx -h 帮助  
-nginx -s [reload\reopen\stop\quit]  
+#### 安装xdebug
 
-配置文件地址：/usr/local/etc/nginx/nginx.conf  
-默认访问目录：/usr/local/Cellar/nginx/1.4.2/html
+选择一个xdebug版本
 
-### brewhome 常用的指令  
-brew search mysql : 搜索具体的程序包    
-brew install mysql : 安装具体的程序包  
-brew info mysql : 查看具体程序的信息  
-brew uninstall mysql : 卸载具体的应用（这里只是用mysql  作个例子）
+* brew search xdebug
 
-### PHP
-homebrew安装的PHP路径：/usr/local/Cellar/php54/5.4.19/  
-配置文件目录：/usr/local/etc/php/5.6
+安装xdebug
+
+* brew install php55-xdebug
+
+将以下代码片断加入到php.ini文件最后
+
+	zend_extension= "/usr/lib/php/extensions/no-debug-non-zts-20121212/xdebug.so"
+	xdebug.default_enable = On
+	xdebug.show_exception_trace = On
+	xdebug.show_local_vars = 1
+	xdebug.max_nesting_level = 50
+	xdebug.var_display_max_depth = 6
+	
+	xdebug.dump_once = On
+	xdebug.dump_globals = On
+	xdebug.dump_undefined = On
+	xdebug.dump.REQUEST = *
+	xdebug.cli_color = 2
+
+**以下为配置sublime**
+
+将项目保存为一个project
+
+* sublime->project->save project as...
+
+* 利用package control 安装xdebug client
+
+配置项目
+
+* sublime->project->edit project
+
+在其中添加类似以下内容
+
+	{
+	    "folders":
+	    [
+	        {
+	            "follow_symlinks": true,
+	            "path": "."
+	        }
+	    ],
+	    "settings": {
+	        "xdebug": {
+	             "url": "http://my.local.website/",
+	        }
+	    }
+	}
+
+开启调试，在项目文件中添加断点
+
+* xdebug->Add/Remove breakpoint
+
+进行调试
+
+	tools->xdebug->start debugging(launch browser)
+
+
+
+

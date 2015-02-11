@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>金陵梦 - 闻竹</title>
+  <title>mac下配置nginx+php+mongo环境 - 闻竹</title>
   <meta name="author" content="laughmaker">
 
   
-  <meta name="description" content="           随感-金陵梦 金陵城里金陵梦，石头城外伴石眠。 秣陵秋至池荷尽，良辰好景是他年。 2013-09-24 13:57 ">
+  <meta name="description" content="安装brew 安装： curl -LsSf http://github.com/mxcl/homebrew/tarball/master | sudo tar xvz -C/usr/local --strip 1 brew安装的软件目录： /usr/local/Cellar 常用命令： &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://laughmaker.github.io/blog/2014/01/26/jin-ling-meng">
+  <link rel="canonical" href="http://laughmaker.github.io/blog/2015/02/11/macxia-pei-zhi-nginx-plus-php-plus-mongohuan-jing">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="闻竹" type="application/atom+xml">
@@ -69,7 +69,7 @@
   
   <header>
     
-      <h1 class="entry-title">金陵梦</h1>
+      <h1 class="entry-title">Mac下配置nginx+php+mongo环境</h1>
     
     
       <p class="meta">
@@ -85,22 +85,185 @@
   
 
 
-<time datetime="2014-01-26T17:36:11+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2014</time>
+<time datetime="2015-02-11T17:30:09+08:00" pubdate data-updated="true">Feb 11<span>th</span>, 2015</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h3 id="section">           <strong>随感-金陵梦</strong></h3>
+<div class="entry-content"><h4 id="brew">安装brew</h4>
 
-<p>金陵城里金陵梦，石头城外伴石眠。</p>
+<p>安装：</p>
 
-<p>秣陵秋至池荷尽，良辰好景是他年。</p>
+<pre><code>curl -LsSf http://github.com/mxcl/homebrew/tarball/master | sudo tar xvz -C/usr/local --strip 1
+</code></pre>
 
-<p><em>2013-09-24 13:57</em></p>
+<p>brew安装的软件目录：</p>
 
-<p><img src="/images/blog/2014/金陵梦.jpg" /></p>
+<pre><code>/usr/local/Cellar
+</code></pre>
+
+<p>常用命令：</p>
+
+<ul>
+  <li>更新brew：brew update</li>
+  <li>更新所有brew安装的软件：brew upgrade</li>
+  <li>查看所有brew安装的软件：brew list</li>
+  <li>搜索具体的程序包：brew search mysql</li>
+  <li>安装具体的程序包：brew install mysql</li>
+  <li>查看具体程序的信息：brew info mysql</li>
+  <li>卸载具体的应用：brew uninstall mysql</li>
+</ul>
+
+<hr />
+
+<h4 id="pecl">安装pecl</h4>
+
+<pre><code>cd /usr/lib/php 
+sudo php install-pear-nozlib.phar 
+sudo pear channel-update pear.php.net 
+sudo pecl channel-update pecl.php.net 
+sudo pear upgrade-all
+</code></pre>
+
+<hr />
+
+<h4 id="mongo">安装mongo</h4>
+
+<p>安装</p>
+
+<pre><code>brew install mongodb
+</code></pre>
+
+<p>创建/data/db文件夹，启动数据库需要</p>
+
+<pre><code>sudo mkdir -p /data/db
+</code></pre>
+
+<p>启动数据库</p>
+
+<pre><code>sudo mongod
+</code></pre>
+
+<p>命令行启动mongo操作终端(非必须)</p>
+
+<pre><code>sudo mongo
+</code></pre>
+
+<p>停止数据库</p>
+
+<pre><code>sudo pkill mongo
+</code></pre>
+
+<hr />
+
+<h4 id="php">配置php</h4>
+
+<p>由于mac自带有php，故直接使用系统自带的php</p>
+
+<p>启动,若提示无相关文件，则创建相关文件再启动</p>
+
+<pre><code>sudo php-fpm
+</code></pre>
+
+<p>配置文件路径</p>
+
+<pre><code>/etc/php.ini
+</code></pre>
+
+<p>若无该配置文件，则创建该文件</p>
+
+<pre><code>sudo mv /etc/php.ini.default /etc/php.ini
+</code></pre>
+
+<p>php扩展路径</p>
+
+<pre><code>/usr/lib/php/extensions/
+</code></pre>
+
+<hr />
+
+<h4 id="phpmongo">配置php的mongo扩展</h4>
+
+<p>安装</p>
+
+<pre><code>sudo pecl install mongo
+</code></pre>
+
+<p>在/etc/php.ini文档中最后添加</p>
+
+<pre><code>extension=mongo.so
+</code></pre>
+
+<p>详细文档</p>
+
+<p><a href="http://docs.mongodb.org/ecosystem/drivers/php/">PHP MongoDB Driver</a></p>
+
+<hr />
+
+<h4 id="nginx">安装nginx</h4>
+
+<p>安装</p>
+
+<pre><code>brew install nginx
+</code></pre>
+
+<p>启动</p>
+
+<pre><code>sudo nginx
+</code></pre>
+
+<p>配置文件路径</p>
+
+<pre><code>/usr/local/etc/nginx/nginx.conf
+</code></pre>
+
+<p>页面访问目录</p>
+
+<pre><code>/usr/local/var/www
+</code></pre>
+
+<p>nginx常用命令</p>
+
+<pre><code>nginx -V 查看版本，以及配置文件地址  
+nginx -v 查看版本  
+nginx -c filename 指定配置文件  
+nginx -h 帮助  
+nginx -s [reload\reopen\stop\quit]
+</code></pre>
+
+<p>详细配置教程</p>
+
+<p><a href="http://oilbeater.com/nginx/2014/12/29/nginx-conf-from-zero.html">nginx配置从零开始</a></p>
+
+<hr />
+
+<h4 id="nginxphp">配置nginx支持php文件</h4>
+
+<p>打开配置文档</p>
+
+<p>sudo vim /usr/local/etc/nginx/nginx.conf</p>
+
+<p>将监听端口更改80</p>
+
+<pre><code>server {
+        listen       80;
+        server_name  localhost;
+</code></pre>
+
+<p>添加php解析支持，取消注释，并更改文件目录为/usr/local/var/www</p>
+
+<pre><code>location ~ \.php$ {
+            root           /usr/local/var/www;
+            fastcgi_pass   127.0.0.1:9000;
+            fastcgi_index  index.php;
+            fastcgi_param  SCRIPT_FILENAME  /usr/local/var/www$fastcgi_script_name;
+            include        fastcgi_params;
+        }
+</code></pre>
+
+<p><a href="http://huoding.com/2013/10/23/290">如何正确的配置nginx+php</a></p>
 </div>
 
 
@@ -123,12 +286,12 @@
   
 
 
-<time datetime="2014-01-26T17:36:11+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2014</time>
+<time datetime="2015-02-11T17:30:09+08:00" pubdate data-updated="true">Feb 11<span>th</span>, 2015</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/wen-zhu/'>闻竹</a>
+    <a class='category' href='/blog/categories/web/'>web</a>
   
 </span>
 
@@ -144,10 +307,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie/" title="Previous Post: NSString属性声明中的copy和retain区别">&laquo; NSString属性声明中的copy和retain区别</a>
+        <a class="basic-alignment left" href="/blog/2015/02/11/macxia-pei-zhi-webhuan-jing/" title="Previous Post: mac下配置web环境">&laquo; mac下配置web环境</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/01/27/iosxiang-mu-jia-gou-tan-suo/" title="Next Post: iOS项目架构探索">iOS项目架构探索 &raquo;</a>
       
     </p>
   </footer>

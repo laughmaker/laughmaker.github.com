@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: 能工巧匠 | 闻竹]]></title>
-  <link href="http://makeLaugh.github.io/blog/categories/neng-gong-qiao-jiang/atom.xml" rel="self"/>
-  <link href="http://makeLaugh.github.io/"/>
-  <updated>2015-01-05T14:32:41+08:00</updated>
-  <id>http://makeLaugh.github.io/</id>
+  <link href="http://laughmaker.github.io/blog/categories/neng-gong-qiao-jiang/atom.xml" rel="self"/>
+  <link href="http://laughmaker.github.io/"/>
+  <updated>2015-02-11T17:45:45+08:00</updated>
+  <id>http://laughmaker.github.io/</id>
   <author>
-    <name><![CDATA[makeLaugh]]></name>
+    <name><![CDATA[laughmaker]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[善用Xcode，提高开发效率]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/05/11/shan-yong-xcode%2Cti-gao-kai-fa-xiao-lu/"/>
+    <link href="http://laughmaker.github.io/blog/2014/05/11/shan-yong-xcode%2Cti-gao-kai-fa-xiao-lu/"/>
     <updated>2014-05-11T21:53:08+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/05/11/shan-yong-xcode,ti-gao-kai-fa-xiao-lu</id>
+    <id>http://laughmaker.github.io/blog/2014/05/11/shan-yong-xcode,ti-gao-kai-fa-xiao-lu</id>
     <content type="html"><![CDATA[<p>　　默认的xcode其实已经很强大的了，用起来已经很贴心舒服了，但它还可以更加强大的，以下介绍下我自己的一些增强技巧。</p>
 
 <p>　　<strong>一、配色</strong><br />
@@ -162,9 +162,9 @@ pod 'SBAPNSPusher', '~&gt; 2.2.1'!
   
   <entry>
     <title type="html"><![CDATA[git简单实用操作]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/05/11/gitjian-dan-shi-yong-cao-zuo/"/>
+    <link href="http://laughmaker.github.io/blog/2014/05/11/gitjian-dan-shi-yong-cao-zuo/"/>
     <updated>2014-05-11T12:00:04+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/05/11/gitjian-dan-shi-yong-cao-zuo</id>
+    <id>http://laughmaker.github.io/blog/2014/05/11/gitjian-dan-shi-yong-cao-zuo</id>
     <content type="html"><![CDATA[<p><strong>总则：</strong>  </p>
 
 <pre><code>1.多使用分支操作，体会git强大的分支功能。

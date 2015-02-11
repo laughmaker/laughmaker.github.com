@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>金陵梦 - 闻竹</title>
+  <title>mac下安装配置mysql - 闻竹</title>
   <meta name="author" content="laughmaker">
 
   
-  <meta name="description" content="           随感-金陵梦 金陵城里金陵梦，石头城外伴石眠。 秣陵秋至池荷尽，良辰好景是他年。 2013-09-24 13:57 ">
+  <meta name="description" content="mac下安装配置mysql 1.安装： brew install mysql 2.添加修改mysql配置
+运行： mysqld --help --verbose | more 查看这一行： Default options are read from the following files in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://laughmaker.github.io/blog/2014/01/26/jin-ling-meng">
+  <link rel="canonical" href="http://laughmaker.github.io/blog/2015/02/11/macxia-an-zhuang-pei-zhi-mysql">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="闻竹" type="application/atom+xml">
@@ -69,7 +70,7 @@
   
   <header>
     
-      <h1 class="entry-title">金陵梦</h1>
+      <h1 class="entry-title">Mac下安装配置mysql</h1>
     
     
       <p class="meta">
@@ -85,22 +86,53 @@
   
 
 
-<time datetime="2014-01-26T17:36:11+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2014</time>
+<time datetime="2015-02-11T17:00:22+08:00" pubdate data-updated="true">Feb 11<span>th</span>, 2015</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h3 id="section">           <strong>随感-金陵梦</strong></h3>
+<div class="entry-content"><h2 id="macmysql">mac下安装配置mysql</h2>
 
-<p>金陵城里金陵梦，石头城外伴石眠。</p>
+<p>1.安装：</p>
 
-<p>秣陵秋至池荷尽，良辰好景是他年。</p>
+<pre><code>brew install mysql
+</code></pre>
 
-<p><em>2013-09-24 13:57</em></p>
+<p>2.添加修改mysql配置<br />
+运行：</p>
 
-<p><img src="/images/blog/2014/金陵梦.jpg" /></p>
+<pre><code>mysqld --help --verbose | more  
+</code></pre>
+
+<p>查看这一行：</p>
+
+<pre><code>  Default options are read from the following files in the given order:
+/etc/my.cnf /etc/mysql/my.cnf /usr/local/etc/my.cnf ~/.my.cnf
+</code></pre>
+
+<p>创建连接和配置文件：</p>
+
+<pre><code>ls $(brew --prefix mysql)/support-files/my-* (用这个可以找到样例.cnf)
+cp /usr/local/opt/mysql/support-files/my-default.cnf /etc/my.cnf (拷贝到第一个默认读取目录)
+</code></pre>
+
+<p>3.解决mysql_connect():No such file or director错误</p>
+
+<p>启动mysql后,如果/tmp/mysql.sock文件存在，/var/mysql/mysql.sock不存在，则运行：</p>
+
+<pre><code>cd /var
+sudo mkdir mysql
+cd mysql
+sudo ln -s /tmp/mysql.sock mysql.sock
+</code></pre>
+
+<p>3.启动与停止</p>
+
+<pre><code>mysql.server start
+mysql.server stop
+</code></pre>
 </div>
 
 
@@ -123,12 +155,12 @@
   
 
 
-<time datetime="2014-01-26T17:36:11+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2014</time>
+<time datetime="2015-02-11T17:00:22+08:00" pubdate data-updated="true">Feb 11<span>th</span>, 2015</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/wen-zhu/'>闻竹</a>
+    <a class='category' href='/blog/categories/web/'>web</a>
   
 </span>
 
@@ -144,10 +176,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie/" title="Previous Post: NSString属性声明中的copy和retain区别">&laquo; NSString属性声明中的copy和retain区别</a>
+        <a class="basic-alignment left" href="/blog/2015/01/04/mongodbchang-yong-cao-zuo/" title="Previous Post: mongodb常用操作">&laquo; mongodb常用操作</a>
       
       
-        <a class="basic-alignment right" href="/blog/2014/01/27/iosxiang-mu-jia-gou-tan-suo/" title="Next Post: iOS项目架构探索">iOS项目架构探索 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2015/02/11/zheng-ze-biao-da-shi-jian-dan-shuo-ming/" title="Next Post: 正则表达式简单说明">正则表达式简单说明 &raquo;</a>
       
     </p>
   </footer>

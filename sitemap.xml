@@ -1,97 +1,107 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://makeLaugh.github.io/blog/2014/01/10/ni-hao-%2Cgithub/</loc>
+        <loc>http://laughmaker.github.io/blog/2014/01/10/ni-hao-%2Cgithub/</loc>
         <lastmod>2014-05-03T08:57:57+08:00</lastmod>
     </url>
     <url>
-        <loc>http://makeLaugh.github.io/blog/2014/01/11/xin-nian-ji-hua/</loc>
+        <loc>http://laughmaker.github.io/blog/2014/01/11/xin-nian-ji-hua/</loc>
         <lastmod>2014-05-03T10:18:28+08:00</lastmod>
     </url>
     <url>
-        <loc>http://makeLaugh.github.io/blog/2014/01/26/nsstringde-nei-cun-guan-li/</loc>
+        <loc>http://laughmaker.github.io/blog/2014/01/26/nsstringde-nei-cun-guan-li/</loc>
         <lastmod>2014-05-02T20:59:35+08:00</lastmod>
     </url>
     <url>
         <loc>
-            http://makeLaugh.github.io/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie/
+            http://laughmaker.github.io/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie/
         </loc>
         <lastmod>2014-05-03T10:20:25+08:00</lastmod>
     </url>
     <url>
-        <loc>http://makeLaugh.github.io/blog/2014/01/26/jin-ling-meng/</loc>
+        <loc>http://laughmaker.github.io/blog/2014/01/26/jin-ling-meng/</loc>
         <lastmod>2014-05-12T09:12:57+08:00</lastmod>
     </url>
     <url>
-        <loc>http://makeLaugh.github.io/blog/2014/01/27/iosxiang-mu-jia-gou-tan-suo/</loc>
+        <loc>http://laughmaker.github.io/blog/2014/01/27/iosxiang-mu-jia-gou-tan-suo/</loc>
         <lastmod>2014-05-12T08:58:02+08:00</lastmod>
     </url>
     <url>
         <loc>
-            http://makeLaugh.github.io/blog/2014/02/14/mknetworkenginede-%5B%3F%5D-ceng-xiao-feng-zhuang/
+            http://laughmaker.github.io/blog/2014/02/14/mknetworkenginede-%5B%3F%5D-ceng-xiao-feng-zhuang/
         </loc>
         <lastmod>2014-05-02T20:59:35+08:00</lastmod>
     </url>
     <url>
         <loc>
-            http://makeLaugh.github.io/blog/2014/05/09/centos6-dot-4pei-zhi-nginx-plus-php-plus-mongofu-wu-qi-huan-jing/
+            http://laughmaker.github.io/blog/2014/05/09/centos6-dot-4pei-zhi-nginx-plus-php-plus-mongofu-wu-qi-huan-jing/
         </loc>
         <lastmod>2014-11-21T21:18:52+08:00</lastmod>
     </url>
     <url>
-        <loc>http://makeLaugh.github.io/blog/2014/05/09/ren-sheng-ji-xu-shi-yi/</loc>
+        <loc>http://laughmaker.github.io/blog/2014/05/09/ren-sheng-ji-xu-shi-yi/</loc>
         <lastmod>2014-05-18T21:26:43+08:00</lastmod>
     </url>
     <url>
-        <loc>http://makeLaugh.github.io/blog/2014/05/11/gitjian-dan-shi-yong-cao-zuo/</loc>
+        <loc>http://laughmaker.github.io/blog/2014/05/11/gitjian-dan-shi-yong-cao-zuo/</loc>
         <lastmod>2014-05-12T09:30:40+08:00</lastmod>
     </url>
     <url>
         <loc>
-            http://makeLaugh.github.io/blog/2014/05/11/shan-yong-xcode%2Cti-gao-kai-fa-xiao-lu/
+            http://laughmaker.github.io/blog/2014/05/11/shan-yong-xcode%2Cti-gao-kai-fa-xiao-lu/
         </loc>
         <lastmod>2014-05-19T09:32:40+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://makeLaugh.github.io/blog/2015/01/04/macxia-pei-zhi-nginx-plus-php-plus-mongokai-fa-huan-jing/
-        </loc>
-        <lastmod>2015-01-05T13:22:03+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://makeLaugh.github.io/blog/2015/01/04/macxia-pei-zhi-webkai-fa-huan-jing/</loc>
-        <lastmod>2015-01-05T13:22:01+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://makeLaugh.github.io/blog/2015/01/04/phpkai-fa-gui-fan/</loc>
-        <lastmod>2015-01-04T16:10:26+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://makeLaugh.github.io/blog/2015/01/04/mongodbchang-yong-cao-zuo/</loc>
+        <loc>http://laughmaker.github.io/blog/2015/01/04/mongodbchang-yong-cao-zuo/</loc>
         <lastmod>2015-01-04T15:59:54+08:00</lastmod>
     </url>
     <url>
-        <loc>http://makeLaugh.github.io/about/</loc>
+        <loc>http://laughmaker.github.io/blog/2015/02/11/macxia-an-zhuang-pei-zhi-mysql/</loc>
+        <lastmod>2015-02-11T17:08:42+08:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://laughmaker.github.io/blog/2015/02/11/zheng-ze-biao-da-shi-jian-dan-shuo-ming/
+        </loc>
+        <lastmod>2015-02-11T17:17:12+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://laughmaker.github.io/blog/2015/02/11/phpbian-cheng-gui-fan/</loc>
+        <lastmod>2015-02-11T17:19:00+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://laughmaker.github.io/blog/2015/02/11/macxia-pei-zhi-webhuan-jing/</loc>
+        <lastmod>2015-02-11T17:27:03+08:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://laughmaker.github.io/blog/2015/02/11/macxia-pei-zhi-nginx-plus-php-plus-mongohuan-jing/
+        </loc>
+        <lastmod>2015-02-11T17:31:02+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://laughmaker.github.io/about/</loc>
         <lastmod>2014-05-03T10:29:59+08:00</lastmod>
     </url>
     <url>
-        <loc>http://makeLaugh.github.io/archives/</loc>
-        <lastmod>2015-01-05T13:22:03+08:00</lastmod>
+        <loc>http://laughmaker.github.io/archives/</loc>
+        <lastmod>2015-02-11T17:31:02+08:00</lastmod>
     </url>
     <url>
-        <loc>http://makeLaugh.github.io/blog/archives/</loc>
-        <lastmod>2015-01-05T13:22:03+08:00</lastmod>
+        <loc>http://laughmaker.github.io/blog/archives/</loc>
+        <lastmod>2015-02-11T17:31:02+08:00</lastmod>
     </url>
     <url>
-        <loc>http://makeLaugh.github.io/blog/</loc>
-        <lastmod>2015-01-05T13:22:03+08:00</lastmod>
+        <loc>http://laughmaker.github.io/blog/</loc>
+        <lastmod>2015-02-11T17:31:02+08:00</lastmod>
     </url>
     <url>
-        <loc>http://makeLaugh.github.io/</loc>
-        <lastmod>2015-01-05T13:22:03+08:00</lastmod>
+        <loc>http://laughmaker.github.io/</loc>
+        <lastmod>2015-02-11T17:31:02+08:00</lastmod>
     </url>
     <url>
-        <loc>http://makeLaugh.github.io/robots.txt</loc>
+        <loc>http://laughmaker.github.io/robots.txt</loc>
         <lastmod>2014-05-02T19:29:45+08:00</lastmod>
     </url>
 </urlset>

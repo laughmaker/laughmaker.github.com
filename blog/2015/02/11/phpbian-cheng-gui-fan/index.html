@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>金陵梦 - 闻竹</title>
+  <title>PHP编程规范 - 闻竹</title>
   <meta name="author" content="laughmaker">
 
   
-  <meta name="description" content="           随感-金陵梦 金陵城里金陵梦，石头城外伴石眠。 秣陵秋至池荷尽，良辰好景是他年。 2013-09-24 13:57 ">
+  <meta name="description" content="PHP命名规范 类文件都是以“.class.php“为后缀，且类文件名只允许字母，使用驼峰法命名，并且首字母大写，例如：DbMysql.class.php 。 配置和函数等其他类库文件之外的文件一般是分别以“.inc.php“和”.php“为后缀，且文件名命名使用小写字母和下划线的方式， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://laughmaker.github.io/blog/2014/01/26/jin-ling-meng">
+  <link rel="canonical" href="http://laughmaker.github.io/blog/2015/02/11/phpbian-cheng-gui-fan">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="闻竹" type="application/atom+xml">
@@ -69,7 +69,7 @@
   
   <header>
     
-      <h1 class="entry-title">金陵梦</h1>
+      <h1 class="entry-title">PHP编程规范</h1>
     
     
       <p class="meta">
@@ -85,22 +85,81 @@
   
 
 
-<time datetime="2014-01-26T17:36:11+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2014</time>
+<time datetime="2015-02-11T17:18:09+08:00" pubdate data-updated="true">Feb 11<span>th</span>, 2015</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h3 id="section">           <strong>随感-金陵梦</strong></h3>
+<div class="entry-content"><h4 id="php">PHP命名规范</h4>
 
-<p>金陵城里金陵梦，石头城外伴石眠。</p>
+<ol>
+  <li>类文件都是以“<strong>.class.php</strong>“为后缀，且类文件名只允许字母，使用驼峰法命名，并且首字母大写，例如：DbMysql.class.php 。</li>
+  <li>配置和函数等其他类库文件之外的文件一般是分别以“.inc.php“和”.php“为后缀，且文件名命名使用小写字母和下划线的方式，多个单词之间以下 划线分隔，例如config.inc.php ， common.php，install_function.php 。</li>
+  <li>确保文件的命名和调用大小写一致，是由于在类Unix系统上面，对大小写是敏感的。</li>
+  <li>类名和文件名一致（包括上面说的大小写一致），且类名只允许字母，例如 UserAction类的文件命名是UserAction.class.php， InfoModel类的文件名是InfoModel.class.php 。</li>
+  <li>控制器类以Action为后缀，例如 UserAction、InfoAction ，模型类以Model为后缀，例如UserModel、InfoModel ，其他类也分别以相应分类为后缀，例如Service 、Widget。</li>
+  <li>方法名只允许由字母组成，下划线是不允许的，首字母要小写，其后每个单词首字母要大写，即所谓的 “驼峰法命名” 规则，且越详细越好，应该能够描述清楚该方法的功能，例如switchModel、findPage。</li>
+  <li>属性的命名只允许由字母组成，下划线是不允许的，首字母要小写，其后每个单词首字母要大写，即所谓的 “驼峰法命名” 规则，例如tablePrefix、tableName 。</li>
+  <li>
+    <p>对于对象成员的访问，我们必须始终使用 “get” 和 “set” 方法。例如：  </p>
 
-<p>秣陵秋至池荷尽，良辰好景是他年。</p>
+    <pre><code> class Foo
+ {
+     protected $_testObj;
+     public function getTestObj()
+	
+     {
+         return $this-&gt;_testObj;
+     }
+     public function setTestObj($testObj)
+     {
+         $this-&gt;testObj = $_testObj;
+     }
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>当类成员方法被声明为 private 时，必须分别以双下划线 “<em>_“为开头；被声明为 protected 时，必须分别以单下划线 “</em>” 为开头；一般情况下的方法不含下划线。例如 ：</p>
 
-<p><em>2013-09-24 13:57</em></p>
+    <pre><code> class Foo
+ {
+     private function __example()
+     {
+         // ...
+     }
+     protected function _example()
+     {
+         // ...
+     }
+     public function example()
+     {
+         // ...
+     }
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>如果我们需要把一些经常使用的方法定义为全局函数，那么应该把它们以静态 (static) 的形式定义在类中。例如：</p>
 
-<p><img src="/images/blog/2014/金陵梦.jpg" /></p>
+    <pre><code>class Think
+{
+    // ...
+    static public function autoload($classname)
+    {
+        // ...
+    }
+}
+</code></pre>
+  </li>
+  <li>被声明为 private的类成员属性必须由双下划线 “<em>_” 作为开头；被声明为 protected 的类成员属性必须由下划线 “</em>” 作为开头；而声明为 public 的成员属性则在任何时候都不允许含有下划线。</li>
+  <li>函数的命名使用小写字母和下划线的方式，且越详细越好，应该能够描述清楚该函数的功能，例如 get_client_ip 。</li>
+  <li>当方法或函数参数不一定需要被赋值的时候，用 “null” 来代替 “false” 作为函数参数的默认值，除非该参数是 boolean 值。</li>
+  <li>变量只允许由小写字母和下划线组成，且建议用描述性的变量的命名，越详细越好，以至于像 $i 或 $n 等等都是不鼓励使用的。</li>
+  <li>类中的常量 constant 和全局范围内常量define，只能由大写字母和下划线组成，各个单词之间以下划线分割。</li>
+  <li>boolean 值和 null 值都采用小写。</li>
+</ol>
 </div>
 
 
@@ -123,12 +182,12 @@
   
 
 
-<time datetime="2014-01-26T17:36:11+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2014</time>
+<time datetime="2015-02-11T17:18:09+08:00" pubdate data-updated="true">Feb 11<span>th</span>, 2015</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/wen-zhu/'>闻竹</a>
+    <a class='category' href='/blog/categories/web/'>web</a>
   
 </span>
 
@@ -144,10 +203,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie/" title="Previous Post: NSString属性声明中的copy和retain区别">&laquo; NSString属性声明中的copy和retain区别</a>
+        <a class="basic-alignment left" href="/blog/2015/02/11/zheng-ze-biao-da-shi-jian-dan-shuo-ming/" title="Previous Post: 正则表达式简单说明">&laquo; 正则表达式简单说明</a>
       
       
-        <a class="basic-alignment right" href="/blog/2014/01/27/iosxiang-mu-jia-gou-tan-suo/" title="Next Post: iOS项目架构探索">iOS项目架构探索 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2015/02/11/macxia-pei-zhi-webhuan-jing/" title="Next Post: mac下配置web环境">mac下配置web环境 &raquo;</a>
       
     </p>
   </footer>

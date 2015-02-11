@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: http://makeLaugh.github.io/sitemap.xml
+Sitemap: http://laughmaker.github.io/sitemap.xml

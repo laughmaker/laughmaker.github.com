@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: iOS | 闻竹]]></title>
-  <link href="http://makeLaugh.github.io/blog/categories/ios/atom.xml" rel="self"/>
-  <link href="http://makeLaugh.github.io/"/>
-  <updated>2015-01-05T14:32:41+08:00</updated>
-  <id>http://makeLaugh.github.io/</id>
+  <link href="http://laughmaker.github.io/blog/categories/ios/atom.xml" rel="self"/>
+  <link href="http://laughmaker.github.io/"/>
+  <updated>2015-02-11T17:45:45+08:00</updated>
+  <id>http://laughmaker.github.io/</id>
   <author>
-    <name><![CDATA[makeLaugh]]></name>
+    <name><![CDATA[laughmaker]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MKNetworkEngine的一层小封装]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/02/14/mknetworkenginede-%5B%3F%5D-ceng-xiao-feng-zhuang/"/>
+    <link href="http://laughmaker.github.io/blog/2014/02/14/mknetworkenginede-%5B%3F%5D-ceng-xiao-feng-zhuang/"/>
     <updated>2014-02-14T13:33:09+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/02/14/mknetworkenginede-[?]-ceng-xiao-feng-zhuang</id>
+    <id>http://laughmaker.github.io/blog/2014/02/14/mknetworkenginede-[?]-ceng-xiao-feng-zhuang</id>
     <content type="html"><![CDATA[<p>    之前使用ASI做网络请求的时候，也会对ASI做一层薄薄的封装，以提高代码实际使用时的利用率，后来切换成MKNetworkEngine的时候，也做了一层小封装，现共享如下，<a href="https://github.com/makeLaugh/TWAPP">示例代码</a>在这个目录里：AppGeneral/AppEngine/TWModel/TWNetworkRequest.h里。</p>
 
 <p>    在<strong>TWNetworkRequest.h</strong>头文件里:</p>
@@ -144,9 +144,9 @@ typedef void (^TWFailedBlock)   (NSString *error);
   
   <entry>
     <title type="html"><![CDATA[iOS项目架构探索]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/01/27/iosxiang-mu-jia-gou-tan-suo/"/>
+    <link href="http://laughmaker.github.io/blog/2014/01/27/iosxiang-mu-jia-gou-tan-suo/"/>
     <updated>2014-01-27T10:28:48+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/01/27/iosxiang-mu-jia-gou-tan-suo</id>
+    <id>http://laughmaker.github.io/blog/2014/01/27/iosxiang-mu-jia-gou-tan-suo</id>
     <content type="html"><![CDATA[<p>    做了iOS项目两年多，对怎么来做好项目架构，做过一些思考，也参考了一些别人的写法，这里写下自己的一些想法与思考，在我的github上面有<a href="https://github.com/makeLaugh/TWAPP">示例代码</a>。</p>
 
 <h4 id="section">首先来看项目在硬盘上的实际目录结构</h4>
@@ -232,9 +232,9 @@ typedef void (^TWFailedBlock)   (NSString *error);
   
   <entry>
     <title type="html"><![CDATA[NSString属性声明中的copy和retain区别]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie/"/>
+    <link href="http://laughmaker.github.io/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie/"/>
     <updated>2014-01-26T14:39:00+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie</id>
+    <id>http://laughmaker.github.io/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie</id>
     <content type="html"><![CDATA[<p>    关于NSString在属性声明中的copy和retain，我想存在一些误解，即和其它不一样的地方。</p>
 
 <p><strong>首先做以下几个变量声明：</strong>   </p>
@@ -325,9 +325,9 @@ NSLog(@"\n");
   
   <entry>
     <title type="html"><![CDATA[NSString的内存管理]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/01/26/nsstringde-nei-cun-guan-li/"/>
+    <link href="http://laughmaker.github.io/blog/2014/01/26/nsstringde-nei-cun-guan-li/"/>
     <updated>2014-01-26T14:03:07+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/01/26/nsstringde-nei-cun-guan-li</id>
+    <id>http://laughmaker.github.io/blog/2014/01/26/nsstringde-nei-cun-guan-li</id>
     <content type="html"><![CDATA[<p>    本文参考了这篇文章，主要针对<a href="http://www.cnblogs.com/hellocby/archive/2012/08/23/2652201.html">这篇文章</a>做了一些补充说明，详细说明NSString的内存管理差异。</p>
 
 <p><strong>生成NSString的方式:</strong></p>

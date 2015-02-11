@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 编程技术 | 闻竹]]></title>
+  <link href="http://laughmaker.github.io/blog/categories/bian-cheng-ji-zhu/atom.xml" rel="self"/>
+  <link href="http://laughmaker.github.io/"/>
+  <updated>2015-02-11T17:45:45+08:00</updated>
+  <id>http://laughmaker.github.io/</id>
+  <author>
+    <name><![CDATA[laughmaker]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[正则表达式简单说明]]></title>
+    <link href="http://laughmaker.github.io/blog/2015/02/11/zheng-ze-biao-da-shi-jian-dan-shuo-ming/"/>
+    <updated>2015-02-11T17:16:22+08:00</updated>
+    <id>http://laughmaker.github.io/blog/2015/02/11/zheng-ze-biao-da-shi-jian-dan-shuo-ming</id>
+    <content type="html"><![CDATA[<p><strong>常用元字符</strong></p>
+
+<pre><code>代码	说明
+.	匹配除换行符以外的任意字符
+\w	匹配字母或数字或下划线或汉字
+\s	匹配任意的空白符
+\d	匹配数字
+\b	匹配单词的开始或结束
+^	匹配字符串的开始
+$	匹配字符串的结束
+</code></pre>
+
+<p><strong>常用限定符</strong></p>
+
+<pre><code>代码/语法	说明
+*	重复零次或更多次
++	重复一次或更多次
+?	重复零次或一次
+{n}	重复n次
+{n,}	重复n次或更多次
+{n,m}	重复n到m次
+</code></pre>
+
+<p><strong>常用反义词</strong></p>
+
+<pre><code>代码/语法	说明
+\W	匹配任意不是字母，数字，下划线，汉字的字符
+\S	匹配任意不是空白符的字符
+\D	匹配任意非数字的字符
+\B	匹配不是单词开头或结束的位置
+[^x]	匹配除了x以外的任意字符
+[^aeiou]	匹配除了aeiou这几个字母以外的任意字符
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

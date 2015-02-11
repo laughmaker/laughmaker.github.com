@@ -2,22 +2,481 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[闻竹]]></title>
-  <link href="http://makeLaugh.github.io/atom.xml" rel="self"/>
-  <link href="http://makeLaugh.github.io/"/>
-  <updated>2015-01-05T14:32:41+08:00</updated>
-  <id>http://makeLaugh.github.io/</id>
+  <link href="http://laughmaker.github.io/atom.xml" rel="self"/>
+  <link href="http://laughmaker.github.io/"/>
+  <updated>2015-02-11T17:45:45+08:00</updated>
+  <id>http://laughmaker.github.io/</id>
   <author>
-    <name><![CDATA[makeLaugh]]></name>
+    <name><![CDATA[laughmaker]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
+    <title type="html"><![CDATA[mac下配置nginx+php+mongo环境]]></title>
+    <link href="http://laughmaker.github.io/blog/2015/02/11/macxia-pei-zhi-nginx-plus-php-plus-mongohuan-jing/"/>
+    <updated>2015-02-11T17:30:09+08:00</updated>
+    <id>http://laughmaker.github.io/blog/2015/02/11/macxia-pei-zhi-nginx-plus-php-plus-mongohuan-jing</id>
+    <content type="html"><![CDATA[<h4 id="brew">安装brew</h4>
+
+<p>安装：</p>
+
+<pre><code>curl -LsSf http://github.com/mxcl/homebrew/tarball/master | sudo tar xvz -C/usr/local --strip 1
+</code></pre>
+
+<p>brew安装的软件目录：</p>
+
+<pre><code>/usr/local/Cellar
+</code></pre>
+
+<p>常用命令：</p>
+
+<ul>
+  <li>更新brew：brew update</li>
+  <li>更新所有brew安装的软件：brew upgrade</li>
+  <li>查看所有brew安装的软件：brew list</li>
+  <li>搜索具体的程序包：brew search mysql</li>
+  <li>安装具体的程序包：brew install mysql</li>
+  <li>查看具体程序的信息：brew info mysql</li>
+  <li>卸载具体的应用：brew uninstall mysql</li>
+</ul>
+
+<hr />
+
+<h4 id="pecl">安装pecl</h4>
+
+<pre><code>cd /usr/lib/php 
+sudo php install-pear-nozlib.phar 
+sudo pear channel-update pear.php.net 
+sudo pecl channel-update pecl.php.net 
+sudo pear upgrade-all
+</code></pre>
+
+<hr />
+
+<h4 id="mongo">安装mongo</h4>
+
+<p>安装</p>
+
+<pre><code>brew install mongodb
+</code></pre>
+
+<p>创建/data/db文件夹，启动数据库需要</p>
+
+<pre><code>sudo mkdir -p /data/db
+</code></pre>
+
+<p>启动数据库</p>
+
+<pre><code>sudo mongod
+</code></pre>
+
+<p>命令行启动mongo操作终端(非必须)</p>
+
+<pre><code>sudo mongo
+</code></pre>
+
+<p>停止数据库</p>
+
+<pre><code>sudo pkill mongo
+</code></pre>
+
+<hr />
+
+<h4 id="php">配置php</h4>
+
+<p>由于mac自带有php，故直接使用系统自带的php</p>
+
+<p>启动,若提示无相关文件，则创建相关文件再启动</p>
+
+<pre><code>sudo php-fpm
+</code></pre>
+
+<p>配置文件路径</p>
+
+<pre><code>/etc/php.ini
+</code></pre>
+
+<p>若无该配置文件，则创建该文件</p>
+
+<pre><code>sudo mv /etc/php.ini.default /etc/php.ini
+</code></pre>
+
+<p>php扩展路径</p>
+
+<pre><code>/usr/lib/php/extensions/
+</code></pre>
+
+<hr />
+
+<h4 id="phpmongo">配置php的mongo扩展</h4>
+
+<p>安装</p>
+
+<pre><code>sudo pecl install mongo
+</code></pre>
+
+<p>在/etc/php.ini文档中最后添加</p>
+
+<pre><code>extension=mongo.so
+</code></pre>
+
+<p>详细文档</p>
+
+<p><a href="http://docs.mongodb.org/ecosystem/drivers/php/">PHP MongoDB Driver</a></p>
+
+<hr />
+
+<h4 id="nginx">安装nginx</h4>
+
+<p>安装</p>
+
+<pre><code>brew install nginx
+</code></pre>
+
+<p>启动</p>
+
+<pre><code>sudo nginx
+</code></pre>
+
+<p>配置文件路径</p>
+
+<pre><code>/usr/local/etc/nginx/nginx.conf
+</code></pre>
+
+<p>页面访问目录</p>
+
+<pre><code>/usr/local/var/www
+</code></pre>
+
+<p>nginx常用命令</p>
+
+<pre><code>nginx -V 查看版本，以及配置文件地址  
+nginx -v 查看版本  
+nginx -c filename 指定配置文件  
+nginx -h 帮助  
+nginx -s [reload\reopen\stop\quit]
+</code></pre>
+
+<p>详细配置教程</p>
+
+<p><a href="http://oilbeater.com/nginx/2014/12/29/nginx-conf-from-zero.html">nginx配置从零开始</a></p>
+
+<hr />
+
+<h4 id="nginxphp">配置nginx支持php文件</h4>
+
+<p>打开配置文档</p>
+
+<p>sudo vim /usr/local/etc/nginx/nginx.conf</p>
+
+<p>将监听端口更改80</p>
+
+<pre><code>server {
+        listen       80;
+        server_name  localhost;
+</code></pre>
+
+<p>添加php解析支持，取消注释，并更改文件目录为/usr/local/var/www</p>
+
+<pre><code>location ~ \.php$ {
+            root           /usr/local/var/www;
+            fastcgi_pass   127.0.0.1:9000;
+            fastcgi_index  index.php;
+            fastcgi_param  SCRIPT_FILENAME  /usr/local/var/www$fastcgi_script_name;
+            include        fastcgi_params;
+        }
+</code></pre>
+
+<p><a href="http://huoding.com/2013/10/23/290">如何正确的配置nginx+php</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[mac下配置web环境]]></title>
+    <link href="http://laughmaker.github.io/blog/2015/02/11/macxia-pei-zhi-webhuan-jing/"/>
+    <updated>2015-02-11T17:26:29+08:00</updated>
+    <id>http://laughmaker.github.io/blog/2015/02/11/macxia-pei-zhi-webhuan-jing</id>
+    <content type="html"><![CDATA[<h3 id="phpjs">配置PHP和JS调试环境</h3>
+<ul>
+  <li>点击tools -&gt; build system -&gt; new build system</li>
+  <li>
+    <p>在其中输入如下代码，保存为PHP.sublime-build </p>
+
+    <pre><code>  {
+      "cmd": ["php", "$file"],
+      "file_regex": "^(...*?):([0-9]*):?([0-9]*)",
+      "selector": "source.php"
+  }
+</code></pre>
+  </li>
+  <li>此后，即可用command+B进行编译调试了</li>
+</ul>
+
+<p>另外，添加一个new build system，命名为JSC.sublime-build，添加以下内容，即可调试js代码：</p>
+
+<pre><code>{
+	"cmd": ["/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc", "$file"],
+	"selector": "source.js"
+}
+</code></pre>
+
+<hr />
+
+<h3 id="xdebug">配置Xdebug</h3>
+
+<h4 id="xdebug-1">安装xdebug</h4>
+
+<p>选择一个xdebug版本</p>
+
+<ul>
+  <li>brew search xdebug</li>
+</ul>
+
+<p>安装xdebug</p>
+
+<ul>
+  <li>brew install php55-xdebug</li>
+</ul>
+
+<p>将以下代码片断加入到php.ini文件最后</p>
+
+<pre><code>zend_extension= "/usr/lib/php/extensions/no-debug-non-zts-20121212/xdebug.so"
+xdebug.default_enable = On
+xdebug.show_exception_trace = On
+xdebug.show_local_vars = 1
+xdebug.max_nesting_level = 50
+xdebug.var_display_max_depth = 6
+
+xdebug.dump_once = On
+xdebug.dump_globals = On
+xdebug.dump_undefined = On
+xdebug.dump.REQUEST = *
+xdebug.cli_color = 2
+</code></pre>
+
+<p><strong>以下为配置sublime</strong></p>
+
+<p>将项目保存为一个project</p>
+
+<ul>
+  <li>
+    <p>sublime-&gt;project-&gt;save project as…</p>
+  </li>
+  <li>
+    <p>利用package control 安装xdebug client</p>
+  </li>
+</ul>
+
+<p>配置项目</p>
+
+<ul>
+  <li>sublime-&gt;project-&gt;edit project</li>
+</ul>
+
+<p>在其中添加类似以下内容</p>
+
+<pre><code>{
+    "folders":
+    [
+        {
+            "follow_symlinks": true,
+            "path": "."
+        }
+    ],
+    "settings": {
+        "xdebug": {
+             "url": "http://my.local.website/",
+        }
+    }
+}
+</code></pre>
+
+<p>开启调试，在项目文件中添加断点</p>
+
+<ul>
+  <li>xdebug-&gt;Add/Remove breakpoint</li>
+</ul>
+
+<p>进行调试</p>
+
+<pre><code>tools-&gt;xdebug-&gt;start debugging(launch browser)
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PHP编程规范]]></title>
+    <link href="http://laughmaker.github.io/blog/2015/02/11/phpbian-cheng-gui-fan/"/>
+    <updated>2015-02-11T17:18:09+08:00</updated>
+    <id>http://laughmaker.github.io/blog/2015/02/11/phpbian-cheng-gui-fan</id>
+    <content type="html"><![CDATA[<h4 id="php">PHP命名规范</h4>
+
+<ol>
+  <li>类文件都是以“<strong>.class.php</strong>“为后缀，且类文件名只允许字母，使用驼峰法命名，并且首字母大写，例如：DbMysql.class.php 。</li>
+  <li>配置和函数等其他类库文件之外的文件一般是分别以“.inc.php“和”.php“为后缀，且文件名命名使用小写字母和下划线的方式，多个单词之间以下 划线分隔，例如config.inc.php ， common.php，install_function.php 。</li>
+  <li>确保文件的命名和调用大小写一致，是由于在类Unix系统上面，对大小写是敏感的。</li>
+  <li>类名和文件名一致（包括上面说的大小写一致），且类名只允许字母，例如 UserAction类的文件命名是UserAction.class.php， InfoModel类的文件名是InfoModel.class.php 。</li>
+  <li>控制器类以Action为后缀，例如 UserAction、InfoAction ，模型类以Model为后缀，例如UserModel、InfoModel ，其他类也分别以相应分类为后缀，例如Service 、Widget。</li>
+  <li>方法名只允许由字母组成，下划线是不允许的，首字母要小写，其后每个单词首字母要大写，即所谓的 “驼峰法命名” 规则，且越详细越好，应该能够描述清楚该方法的功能，例如switchModel、findPage。</li>
+  <li>属性的命名只允许由字母组成，下划线是不允许的，首字母要小写，其后每个单词首字母要大写，即所谓的 “驼峰法命名” 规则，例如tablePrefix、tableName 。</li>
+  <li>
+    <p>对于对象成员的访问，我们必须始终使用 “get” 和 “set” 方法。例如：  </p>
+
+    <pre><code> class Foo
+ {
+     protected $_testObj;
+     public function getTestObj()
+	
+     {
+         return $this-&gt;_testObj;
+     }
+     public function setTestObj($testObj)
+     {
+         $this-&gt;testObj = $_testObj;
+     }
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>当类成员方法被声明为 private 时，必须分别以双下划线 “<em>_“为开头；被声明为 protected 时，必须分别以单下划线 “</em>” 为开头；一般情况下的方法不含下划线。例如 ：</p>
+
+    <pre><code> class Foo
+ {
+     private function __example()
+     {
+         // ...
+     }
+     protected function _example()
+     {
+         // ...
+     }
+     public function example()
+     {
+         // ...
+     }
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>如果我们需要把一些经常使用的方法定义为全局函数，那么应该把它们以静态 (static) 的形式定义在类中。例如：</p>
+
+    <pre><code>class Think
+{
+    // ...
+    static public function autoload($classname)
+    {
+        // ...
+    }
+}
+</code></pre>
+  </li>
+  <li>被声明为 private的类成员属性必须由双下划线 “<em>_” 作为开头；被声明为 protected 的类成员属性必须由下划线 “</em>” 作为开头；而声明为 public 的成员属性则在任何时候都不允许含有下划线。</li>
+  <li>函数的命名使用小写字母和下划线的方式，且越详细越好，应该能够描述清楚该函数的功能，例如 get_client_ip 。</li>
+  <li>当方法或函数参数不一定需要被赋值的时候，用 “null” 来代替 “false” 作为函数参数的默认值，除非该参数是 boolean 值。</li>
+  <li>变量只允许由小写字母和下划线组成，且建议用描述性的变量的命名，越详细越好，以至于像 $i 或 $n 等等都是不鼓励使用的。</li>
+  <li>类中的常量 constant 和全局范围内常量define，只能由大写字母和下划线组成，各个单词之间以下划线分割。</li>
+  <li>boolean 值和 null 值都采用小写。</li>
+</ol>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[正则表达式简单说明]]></title>
+    <link href="http://laughmaker.github.io/blog/2015/02/11/zheng-ze-biao-da-shi-jian-dan-shuo-ming/"/>
+    <updated>2015-02-11T17:16:22+08:00</updated>
+    <id>http://laughmaker.github.io/blog/2015/02/11/zheng-ze-biao-da-shi-jian-dan-shuo-ming</id>
+    <content type="html"><![CDATA[<p><strong>常用元字符</strong></p>
+
+<pre><code>代码	说明
+.	匹配除换行符以外的任意字符
+\w	匹配字母或数字或下划线或汉字
+\s	匹配任意的空白符
+\d	匹配数字
+\b	匹配单词的开始或结束
+^	匹配字符串的开始
+$	匹配字符串的结束
+</code></pre>
+
+<p><strong>常用限定符</strong></p>
+
+<pre><code>代码/语法	说明
+*	重复零次或更多次
++	重复一次或更多次
+?	重复零次或一次
+{n}	重复n次
+{n,}	重复n次或更多次
+{n,m}	重复n到m次
+</code></pre>
+
+<p><strong>常用反义词</strong></p>
+
+<pre><code>代码/语法	说明
+\W	匹配任意不是字母，数字，下划线，汉字的字符
+\S	匹配任意不是空白符的字符
+\D	匹配任意非数字的字符
+\B	匹配不是单词开头或结束的位置
+[^x]	匹配除了x以外的任意字符
+[^aeiou]	匹配除了aeiou这几个字母以外的任意字符
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[mac下安装配置mysql]]></title>
+    <link href="http://laughmaker.github.io/blog/2015/02/11/macxia-an-zhuang-pei-zhi-mysql/"/>
+    <updated>2015-02-11T17:00:22+08:00</updated>
+    <id>http://laughmaker.github.io/blog/2015/02/11/macxia-an-zhuang-pei-zhi-mysql</id>
+    <content type="html"><![CDATA[<h2 id="macmysql">mac下安装配置mysql</h2>
+
+<p>1.安装：</p>
+
+<pre><code>brew install mysql
+</code></pre>
+
+<p>2.添加修改mysql配置<br />
+运行：</p>
+
+<pre><code>mysqld --help --verbose | more  
+</code></pre>
+
+<p>查看这一行：</p>
+
+<pre><code>  Default options are read from the following files in the given order:
+/etc/my.cnf /etc/mysql/my.cnf /usr/local/etc/my.cnf ~/.my.cnf
+</code></pre>
+
+<p>创建连接和配置文件：</p>
+
+<pre><code>ls $(brew --prefix mysql)/support-files/my-* (用这个可以找到样例.cnf)
+cp /usr/local/opt/mysql/support-files/my-default.cnf /etc/my.cnf (拷贝到第一个默认读取目录)
+</code></pre>
+
+<p>3.解决mysql_connect():No such file or director错误</p>
+
+<p>启动mysql后,如果/tmp/mysql.sock文件存在，/var/mysql/mysql.sock不存在，则运行：</p>
+
+<pre><code>cd /var
+sudo mkdir mysql
+cd mysql
+sudo ln -s /tmp/mysql.sock mysql.sock
+</code></pre>
+
+<p>3.启动与停止</p>
+
+<pre><code>mysql.server start
+mysql.server stop
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[mongodb常用操作]]></title>
-    <link href="http://makeLaugh.github.io/blog/2015/01/04/mongodbchang-yong-cao-zuo/"/>
+    <link href="http://laughmaker.github.io/blog/2015/01/04/mongodbchang-yong-cao-zuo/"/>
     <updated>2015-01-04T15:56:30+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2015/01/04/mongodbchang-yong-cao-zuo</id>
+    <id>http://laughmaker.github.io/blog/2015/01/04/mongodbchang-yong-cao-zuo</id>
     <content type="html"><![CDATA[<hr />
 
 <p>PHP对MongoDB的扩展文档地址：http://us3.php.net/manual/en/book.mongo.php</p>
@@ -599,380 +1058,10 @@ Cannot apply $push/$pushAll modifier to non-array
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Phpkai Fa Gui Fan]]></title>
-    <link href="http://makeLaugh.github.io/blog/2015/01/04/phpkai-fa-gui-fan/"/>
-    <updated>2015-01-04T00:00:00+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2015/01/04/phpkai-fa-gui-fan</id>
-    <content type="html"><![CDATA[<h4 id="php">PHP命名规范</h4>
-
-<ol>
-  <li>类文件都是以“<strong>.class.php</strong>“为后缀，且类文件名只允许字母，使用驼峰法命名，并且首字母大写，例如：DbMysql.class.php 。</li>
-  <li>配置和函数等其他类库文件之外的文件一般是分别以“.inc.php“和”.php“为后缀，且文件名命名使用小写字母和下划线的方式，多个单词之间以下 划线分隔，例如config.inc.php ， common.php，install_function.php 。</li>
-  <li>确保文件的命名和调用大小写一致，是由于在类Unix系统上面，对大小写是敏感的。</li>
-  <li>类名和文件名一致（包括上面说的大小写一致），且类名只允许字母，例如 UserAction类的文件命名是UserAction.class.php， InfoModel类的文件名是InfoModel.class.php 。</li>
-  <li>控制器类以Action为后缀，例如 UserAction、InfoAction ，模型类以Model为后缀，例如UserModel、InfoModel ，其他类也分别以相应分类为后缀，例如Service 、Widget。</li>
-  <li>方法名只允许由字母组成，下划线是不允许的，首字母要小写，其后每个单词首字母要大写，即所谓的 “驼峰法命名” 规则，且越详细越好，应该能够描述清楚该方法的功能，例如switchModel、findPage。</li>
-  <li>属性的命名只允许由字母组成，下划线是不允许的，首字母要小写，其后每个单词首字母要大写，即所谓的 “驼峰法命名” 规则，例如tablePrefix、tableName 。</li>
-  <li>
-    <p>对于对象成员的访问，我们必须始终使用 “get” 和 “set” 方法。例如：  </p>
-
-    <pre><code> class Foo
- {
-     protected $_testObj;
-     public function getTestObj()
-	
-     {
-         return $this-&gt;_testObj;
-     }
-     public function setTestObj($testObj)
-     {
-         $this-&gt;testObj = $_testObj;
-     }
- }
-</code></pre>
-  </li>
-  <li>
-    <p>当类成员方法被声明为 private 时，必须分别以双下划线 “<em>_“为开头；被声明为 protected 时，必须分别以单下划线 “</em>” 为开头；一般情况下的方法不含下划线。例如 ：</p>
-
-    <pre><code> class Foo
- {
-     private function __example()
-     {
-         // ...
-     }
-     protected function _example()
-     {
-         // ...
-     }
-     public function example()
-     {
-         // ...
-     }
- }
-</code></pre>
-  </li>
-  <li>
-    <p>如果我们需要把一些经常使用的方法定义为全局函数，那么应该把它们以静态 (static) 的形式定义在类中。例如：</p>
-
-    <pre><code>class Think
-{
-    // ...
-    static public function autoload($classname)
-    {
-        // ...
-    }
-}
-</code></pre>
-  </li>
-  <li>被声明为 private的类成员属性必须由双下划线 “<em>_” 作为开头；被声明为 protected 的类成员属性必须由下划线 “</em>” 作为开头；而声明为 public 的成员属性则在任何时候都不允许含有下划线。</li>
-  <li>函数的命名使用小写字母和下划线的方式，且越详细越好，应该能够描述清楚该函数的功能，例如 get_client_ip 。</li>
-  <li>当方法或函数参数不一定需要被赋值的时候，用 “null” 来代替 “false” 作为函数参数的默认值，除非该参数是 boolean 值。</li>
-  <li>变量只允许由小写字母和下划线组成，且建议用描述性的变量的命名，越详细越好，以至于像 $i 或 $n 等等都是不鼓励使用的。</li>
-  <li>类中的常量 constant 和全局范围内常量define，只能由大写字母和下划线组成，各个单词之间以下划线分割。</li>
-  <li>boolean 值和 null 值都采用小写。</li>
-</ol>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Macxia Pei Zhi Webkai Fa Huan Jing]]></title>
-    <link href="http://makeLaugh.github.io/blog/2015/01/04/macxia-pei-zhi-webkai-fa-huan-jing/"/>
-    <updated>2015-01-04T00:00:00+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2015/01/04/macxia-pei-zhi-webkai-fa-huan-jing</id>
-    <content type="html"><![CDATA[<h3 id="phpjs">配置PHP和JS调试环境</h3>
-<ul>
-  <li>点击tools -&gt; build system -&gt; new build system</li>
-  <li>
-    <p>在其中输入如下代码，保存为PHP.sublime-build </p>
-
-    <pre><code>  {
-      "cmd": ["php", "$file"],
-      "file_regex": "^(...*?):([0-9]*):?([0-9]*)",
-      "selector": "source.php"
-  }
-</code></pre>
-  </li>
-  <li>此后，即可用command+B进行编译调试了</li>
-</ul>
-
-<p>另外，添加一个new build system，命名为JSC.sublime-build，添加以下内容，即可调试js代码：</p>
-
-<pre><code>{
-	"cmd": ["/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc", "$file"],
-	"selector": "source.js"
-}
-</code></pre>
-
-<hr />
-
-<h3 id="xdebug">配置Xdebug</h3>
-
-<h4 id="xdebug-1">安装xdebug</h4>
-
-<p>选择一个xdebug版本</p>
-
-<ul>
-  <li>brew search xdebug</li>
-</ul>
-
-<p>安装xdebug</p>
-
-<ul>
-  <li>brew install php55-xdebug</li>
-</ul>
-
-<p>将以下代码片断加入到php.ini文件最后</p>
-
-<pre><code>zend_extension= "/usr/lib/php/extensions/no-debug-non-zts-20121212/xdebug.so"
-xdebug.default_enable = On
-xdebug.show_exception_trace = On
-xdebug.show_local_vars = 1
-xdebug.max_nesting_level = 50
-xdebug.var_display_max_depth = 6
-
-xdebug.dump_once = On
-xdebug.dump_globals = On
-xdebug.dump_undefined = On
-xdebug.dump.REQUEST = *
-xdebug.cli_color = 2
-</code></pre>
-
-<p><strong>以下为配置sublime</strong></p>
-
-<p>将项目保存为一个project</p>
-
-<ul>
-  <li>
-    <p>sublime-&gt;project-&gt;save project as…</p>
-  </li>
-  <li>
-    <p>利用package control 安装xdebug client</p>
-  </li>
-</ul>
-
-<p>配置项目</p>
-
-<ul>
-  <li>sublime-&gt;project-&gt;edit project</li>
-</ul>
-
-<p>在其中添加类似以下内容</p>
-
-<pre><code>{
-    "folders":
-    [
-        {
-            "follow_symlinks": true,
-            "path": "."
-        }
-    ],
-    "settings": {
-        "xdebug": {
-             "url": "http://my.local.website/",
-        }
-    }
-}
-</code></pre>
-
-<p>开启调试，在项目文件中添加断点</p>
-
-<ul>
-  <li>xdebug-&gt;Add/Remove breakpoint</li>
-</ul>
-
-<p>进行调试</p>
-
-<pre><code>tools-&gt;xdebug-&gt;start debugging(launch browser)
-</code></pre>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Macxia Pei Zhi Nginx Plus Php Plus Mongokai Fa Huan Jing]]></title>
-    <link href="http://makeLaugh.github.io/blog/2015/01/04/macxia-pei-zhi-nginx-plus-php-plus-mongokai-fa-huan-jing/"/>
-    <updated>2015-01-04T00:00:00+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2015/01/04/macxia-pei-zhi-nginx-plus-php-plus-mongokai-fa-huan-jing</id>
-    <content type="html"><![CDATA[<h4 id="brew">安装brew</h4>
-
-<p>安装：</p>
-
-<pre><code>curl -LsSf http://github.com/mxcl/homebrew/tarball/master | sudo tar xvz -C/usr/local --strip 1
-</code></pre>
-
-<p>brew安装的软件目录：</p>
-
-<pre><code>/usr/local/Cellar
-</code></pre>
-
-<p>常用命令：</p>
-
-<ul>
-  <li>更新brew：brew update</li>
-  <li>更新所有brew安装的软件：brew upgrade</li>
-  <li>查看所有brew安装的软件：brew list</li>
-  <li>搜索具体的程序包：brew search mysql</li>
-  <li>安装具体的程序包：brew install mysql</li>
-  <li>查看具体程序的信息：brew info mysql</li>
-  <li>卸载具体的应用：brew uninstall mysql</li>
-</ul>
-
-<hr />
-
-<h4 id="pecl">安装pecl</h4>
-
-<pre><code>cd /usr/lib/php 
-sudo php install-pear-nozlib.phar 
-sudo pear channel-update pear.php.net 
-sudo pecl channel-update pecl.php.net 
-sudo pear upgrade-all
-</code></pre>
-
-<hr />
-
-<h4 id="mongo">安装mongo</h4>
-
-<p>安装</p>
-
-<pre><code>brew install mongodb
-</code></pre>
-
-<p>创建/data/db文件夹，启动数据库需要</p>
-
-<pre><code>sudo mkdir -p /data/db
-</code></pre>
-
-<p>启动数据库</p>
-
-<pre><code>sudo mongod
-</code></pre>
-
-<p>命令行启动mongo操作终端(非必须)</p>
-
-<pre><code>sudo mongo
-</code></pre>
-
-<p>停止数据库</p>
-
-<pre><code>sudo pkill mongo
-</code></pre>
-
-<hr />
-
-<h4 id="php">配置php</h4>
-
-<p>由于mac自带有php，故直接使用系统自带的php</p>
-
-<p>启动,若提示无相关文件，则创建相关文件再启动</p>
-
-<pre><code>sudo php-fpm
-</code></pre>
-
-<p>配置文件路径</p>
-
-<pre><code>/etc/php.ini
-</code></pre>
-
-<p>若无该配置文件，则创建该文件</p>
-
-<pre><code>sudo mv /etc/php.ini.default /etc/php.ini
-</code></pre>
-
-<p>php扩展路径</p>
-
-<pre><code>/usr/lib/php/extensions/
-</code></pre>
-
-<hr />
-
-<h4 id="phpmongo">配置php的mongo扩展</h4>
-
-<p>安装</p>
-
-<pre><code>sudo pecl install mongo
-</code></pre>
-
-<p>在/etc/php.ini文档中最后添加</p>
-
-<pre><code>extension=mongo.so
-</code></pre>
-
-<p>详细文档</p>
-
-<p><a href="http://docs.mongodb.org/ecosystem/drivers/php/">PHP MongoDB Driver</a></p>
-
-<hr />
-
-<h4 id="nginx">安装nginx</h4>
-
-<p>安装</p>
-
-<pre><code>brew install nginx
-</code></pre>
-
-<p>启动</p>
-
-<pre><code>sudo nginx
-</code></pre>
-
-<p>配置文件路径</p>
-
-<pre><code>/usr/local/etc/nginx/nginx.conf
-</code></pre>
-
-<p>页面访问目录</p>
-
-<pre><code>/usr/local/var/www
-</code></pre>
-
-<p>nginx常用命令</p>
-
-<pre><code>nginx -V 查看版本，以及配置文件地址  
-nginx -v 查看版本  
-nginx -c filename 指定配置文件  
-nginx -h 帮助  
-nginx -s [reload\reopen\stop\quit]
-</code></pre>
-
-<p>详细配置教程</p>
-
-<p><a href="http://oilbeater.com/nginx/2014/12/29/nginx-conf-from-zero.html">nginx配置从零开始</a></p>
-
-<hr />
-
-<h4 id="nginxphp">配置nginx支持php文件</h4>
-
-<p>打开配置文档</p>
-
-<p>sudo vim /usr/local/etc/nginx/nginx.conf</p>
-
-<p>将监听端口更改80</p>
-
-<pre><code>server {
-        listen       80;
-        server_name  localhost;
-</code></pre>
-
-<p>添加php解析支持，取消注释，并更改文件目录为/usr/local/var/www</p>
-
-<pre><code>location ~ \.php$ {
-            root           /usr/local/var/www;
-            fastcgi_pass   127.0.0.1:9000;
-            fastcgi_index  index.php;
-            fastcgi_param  SCRIPT_FILENAME  /usr/local/var/www$fastcgi_script_name;
-            include        fastcgi_params;
-        }
-</code></pre>
-
-<p><a href="http://huoding.com/2013/10/23/290">如何正确的配置nginx+php</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[善用Xcode，提高开发效率]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/05/11/shan-yong-xcode%2Cti-gao-kai-fa-xiao-lu/"/>
+    <link href="http://laughmaker.github.io/blog/2014/05/11/shan-yong-xcode%2Cti-gao-kai-fa-xiao-lu/"/>
     <updated>2014-05-11T21:53:08+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/05/11/shan-yong-xcode,ti-gao-kai-fa-xiao-lu</id>
+    <id>http://laughmaker.github.io/blog/2014/05/11/shan-yong-xcode,ti-gao-kai-fa-xiao-lu</id>
     <content type="html"><![CDATA[<p>　　默认的xcode其实已经很强大的了，用起来已经很贴心舒服了，但它还可以更加强大的，以下介绍下我自己的一些增强技巧。</p>
 
 <p>　　<strong>一、配色</strong><br />
@@ -1053,7 +1142,7 @@ pod 'SBAPNSPusher', '~&gt; 2.2.1'!
 
 <p>    2.<strong>ColorSense</strong><br />
     是不是每次设置颜色的时候，不知道效果？用它吧，直接在代码里修改颜色，如下图：<br />
-    <img src="http://makeLaugh.github.io/images/blog/2014/Xcode效率/ColorSense.png" alt="image" /></p>
+    <img src="http://laughmaker.github.io/images/blog/2014/Xcode效率/ColorSense.png" alt="image" /></p>
 
 <p>    3.<strong>VVDocumenter</strong><br />
     注释对于代码很重要，特别是对代码规范要求很严的公司，那更是必须写的，话说，自己写，有一个好的规范不也挺好的么，这个配合<code>appledoc</code>一起工作，简直是神器，下面有介绍。这货可以让你在写注释的时候，大幅的降低繁杂重复的工作量。见下图：<br />
@@ -1117,9 +1206,9 @@ pod 'SBAPNSPusher', '~&gt; 2.2.1'!
   
   <entry>
     <title type="html"><![CDATA[git简单实用操作]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/05/11/gitjian-dan-shi-yong-cao-zuo/"/>
+    <link href="http://laughmaker.github.io/blog/2014/05/11/gitjian-dan-shi-yong-cao-zuo/"/>
     <updated>2014-05-11T12:00:04+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/05/11/gitjian-dan-shi-yong-cao-zuo</id>
+    <id>http://laughmaker.github.io/blog/2014/05/11/gitjian-dan-shi-yong-cao-zuo</id>
     <content type="html"><![CDATA[<p><strong>总则：</strong>  </p>
 
 <pre><code>1.多使用分支操作，体会git强大的分支功能。
@@ -1190,39 +1279,39 @@ pod 'SBAPNSPusher', '~&gt; 2.2.1'!
   
   <entry>
     <title type="html"><![CDATA[人生几许失意]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/05/09/ren-sheng-ji-xu-shi-yi/"/>
+    <link href="http://laughmaker.github.io/blog/2014/05/09/ren-sheng-ji-xu-shi-yi/"/>
     <updated>2014-05-09T20:01:19+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/05/09/ren-sheng-ji-xu-shi-yi</id>
+    <id>http://laughmaker.github.io/blog/2014/05/09/ren-sheng-ji-xu-shi-yi</id>
     <content type="html"><![CDATA[<p>今年的季后赛首轮，是我看得最多的一年，或许也会是我看过的最精彩的一次。相比第二轮的乏善可陈，这一轮可谓之精彩迭出; 可是在精彩落幕之后，在前进的道路上，总会落下落寞的身影。  </p>
 
 <p>在成功者面前，在掌声欢呼中，失意者永远是被忽略的，但，高富帅，你的精彩的人生才刚开始，下个赛季期待你的更进一步。<br />
-  <img src="http://makeLaugh.github.io/images/blog/2014/人生几许失意/1.jpg" alt="link" />  </p>
+  <img src="http://laughmaker.github.io/images/blog/2014/人生几许失意/1.jpg" alt="link" />  </p>
 
 <p>从魔术到湖人，再从湖人到火箭，人生起伏太大，很多人说，你颠峰已过，但季后赛，你展现出一你一直以来的努力，篮球是一部分，生活永远是快乐的！<br />
-  <img src="http://makeLaugh.github.io/images/blog/2014/人生几许失意/2.jpg" alt="link" />  </p>
+  <img src="http://laughmaker.github.io/images/blog/2014/人生几许失意/2.jpg" alt="link" />  </p>
 
 <p>从落榜生到被裁到再上岗再到林疯狂，你的人生已足够精彩，从首发到替补，在质疑中，始终努力奉献着不太稳定的贡献，0.9s，是你不敢相信的表情，你不相信你们一个赛季的努力就这样结束了。虽然状态不太好，但始终努力着，下个赛季，相信你会更好。<br />
-  <img src="http://makeLaugh.github.io/images/blog/2014/人生几许失意/3.jpg" alt="link" />  </p>
+  <img src="http://laughmaker.github.io/images/blog/2014/人生几许失意/3.jpg" alt="link" />  </p>
 
 <p>  你们的时代已经结束了，但你们已经赢得了所有人的尊重，包括你们的对手<br />
-  <img src="http://makeLaugh.github.io/images/blog/2014/人生几许失意/4.jpg" alt="link" />  </p>
+  <img src="http://laughmaker.github.io/images/blog/2014/人生几许失意/4.jpg" alt="link" />  </p>
 
 <p>你的时代才刚开始，明年会更好，更进一步的<br />
-  <img src="http://makeLaugh.github.io/images/blog/2014/人生几许失意/5.jpg" alt="link" />    </p>
+  <img src="http://laughmaker.github.io/images/blog/2014/人生几许失意/5.jpg" alt="link" />    </p>
 
 <p>你们让所有人知道了你们的实力，没有超级球星，但你们有的是其它团队所没有的凝聚力和执行力，可惜你们赛季初的伤病，让遇到的了可能是十年难得一遇的天赋团队，下个赛季不知道你们还能不能再聚一起，希望可以！<br />
-  <img src="http://makeLaugh.github.io/images/blog/2014/人生几许失意/6.jpg" alt="link" />  </p>
+  <img src="http://laughmaker.github.io/images/blog/2014/人生几许失意/6.jpg" alt="link" />  </p>
 
 <p>年轻没有失败，努力，加油，明年再来<br />
-  <img src="http://makeLaugh.github.io/images/blog/2014/人生几许失意/7.jpg" alt="link" />  </p>
+  <img src="http://laughmaker.github.io/images/blog/2014/人生几许失意/7.jpg" alt="link" />  </p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[centos6.5配置nginx+php+mongo服务器环境]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/05/09/centos6-dot-4pei-zhi-nginx-plus-php-plus-mongofu-wu-qi-huan-jing/"/>
+    <link href="http://laughmaker.github.io/blog/2014/05/09/centos6-dot-4pei-zhi-nginx-plus-php-plus-mongofu-wu-qi-huan-jing/"/>
     <updated>2014-05-09T13:56:34+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/05/09/centos6-dot-4pei-zhi-nginx-plus-php-plus-mongofu-wu-qi-huan-jing</id>
+    <id>http://laughmaker.github.io/blog/2014/05/09/centos6-dot-4pei-zhi-nginx-plus-php-plus-mongofu-wu-qi-huan-jing</id>
     <content type="html"><![CDATA[<p>首先系统安装完成后，执行：<code>yum -y update</code> 命令，升级补丁。</p>
 
 <hr />
@@ -1507,9 +1596,9 @@ $MONGO["servers"][$i]["mongo_auth"] = true;//enable mongo authentication?
   
   <entry>
     <title type="html"><![CDATA[MKNetworkEngine的一层小封装]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/02/14/mknetworkenginede-%5B%3F%5D-ceng-xiao-feng-zhuang/"/>
+    <link href="http://laughmaker.github.io/blog/2014/02/14/mknetworkenginede-%5B%3F%5D-ceng-xiao-feng-zhuang/"/>
     <updated>2014-02-14T13:33:09+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/02/14/mknetworkenginede-[?]-ceng-xiao-feng-zhuang</id>
+    <id>http://laughmaker.github.io/blog/2014/02/14/mknetworkenginede-[?]-ceng-xiao-feng-zhuang</id>
     <content type="html"><![CDATA[<p>    之前使用ASI做网络请求的时候，也会对ASI做一层薄薄的封装，以提高代码实际使用时的利用率，后来切换成MKNetworkEngine的时候，也做了一层小封装，现共享如下，<a href="https://github.com/makeLaugh/TWAPP">示例代码</a>在这个目录里：AppGeneral/AppEngine/TWModel/TWNetworkRequest.h里。</p>
 
 <p>    在<strong>TWNetworkRequest.h</strong>头文件里:</p>
@@ -1636,32 +1725,32 @@ typedef void (^TWFailedBlock)   (NSString *error);
   
   <entry>
     <title type="html"><![CDATA[iOS项目架构探索]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/01/27/iosxiang-mu-jia-gou-tan-suo/"/>
+    <link href="http://laughmaker.github.io/blog/2014/01/27/iosxiang-mu-jia-gou-tan-suo/"/>
     <updated>2014-01-27T10:28:48+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/01/27/iosxiang-mu-jia-gou-tan-suo</id>
+    <id>http://laughmaker.github.io/blog/2014/01/27/iosxiang-mu-jia-gou-tan-suo</id>
     <content type="html"><![CDATA[<p>    做了iOS项目两年多，对怎么来做好项目架构，做过一些思考，也参考了一些别人的写法，这里写下自己的一些想法与思考，在我的github上面有<a href="https://github.com/makeLaugh/TWAPP">示例代码</a>。</p>
 
 <h4 id="section">首先来看项目在硬盘上的实际目录结构</h4>
 
-<p><img src="http://makeLaugh.github.io/images/blog/2014/iOS项目架构探索/1.png" alt="实体目录结构" /></p>
+<p><img src="http://laughmaker.github.io/images/blog/2014/iOS项目架构探索/1.png" alt="实体目录结构" /></p>
 
 <p>    在这里，我给每个功能块，都建立实际的目录文件夹来管理，每个功能块里，都建立三个文件夹：Controller、Model、View，这样做，主要是让整个目录结构很清晰，易于管理。	</p>
 
 <h4 id="xcode">再来看看在Xcode中的目录结构</h4>
 
-<p><img src="http://makeLaugh.github.io/images/blog/2014/iOS项目架构探索/2.png" alt="整个项目目录" /></p>
+<p><img src="http://laughmaker.github.io/images/blog/2014/iOS项目架构探索/2.png" alt="整个项目目录" /></p>
 
 <p>    在Xcode里，整体目录结构和实体文件夹结构保持一致。</p>
 
 <h4 id="lib">项目里的Lib目录</h4>
 
-<p><img src="http://makeLaugh.github.io/images/blog/2014/iOS项目架构探索/3.png" alt="Lib目录" /></p>
+<p><img src="http://laughmaker.github.io/images/blog/2014/iOS项目架构探索/3.png" alt="Lib目录" /></p>
 
 <p>    主要用于管理第三方类库，比如我这里添加了FMDB、MKNetworkKit、SDWebImage等几个常用的类库，还有Category里主要是用来管理自己写的一些常用分类; Views管理一些常用的第三方类库。</p>
 
 <h4 id="app">这里是APP真正的结构了，写代码最多的地方</h4>
 
-<p><img src="http://makeLaugh.github.io/images/blog/2014/iOS项目架构探索/4.png" alt="APP代码目录" /></p>
+<p><img src="http://laughmaker.github.io/images/blog/2014/iOS项目架构探索/4.png" alt="APP代码目录" /></p>
 
 <ul>
   <li>Controller：放各种ViewController，实现逻辑控制，为了缩短类名，我ViewController都缩写为VC</li>
@@ -1671,7 +1760,7 @@ typedef void (^TWFailedBlock)   (NSString *error);
 
 <h4 id="app-1">这里是很多APP都可以通用的一个目录，需要做的修改很少，很多甚至直接拖进去都可以直接使用的</h4>
 
-<p><img src="http://makeLaugh.github.io/images/blog/2014/iOS项目架构探索/5.png" alt="AppGeneral目录" /></p>
+<p><img src="http://laughmaker.github.io/images/blog/2014/iOS项目架构探索/5.png" alt="AppGeneral目录" /></p>
 
 <p>AppGeneral分为两个目录：AppDefine和AppEngine</p>
 
@@ -1711,7 +1800,7 @@ typedef void (^TWFailedBlock)   (NSString *error);
 </ul>
 
 <h4 id="pch">最后来看.pch文件引用</h4>
-<p><img src="http://makeLaugh.github.io/images/blog/2014/iOS项目架构探索/6.png" alt="PCH文件" /></p>
+<p><img src="http://laughmaker.github.io/images/blog/2014/iOS项目架构探索/6.png" alt="PCH文件" /></p>
 
 <p>    这里我把一些常用的基本上不会改变的、可能会在很多地方都使用到的头文件，一次在这个文件里引用，这样就不会每次使用的时候，都去引入一次了。</p>
 
@@ -1724,9 +1813,9 @@ typedef void (^TWFailedBlock)   (NSString *error);
   
   <entry>
     <title type="html"><![CDATA[金陵梦]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/01/26/jin-ling-meng/"/>
+    <link href="http://laughmaker.github.io/blog/2014/01/26/jin-ling-meng/"/>
     <updated>2014-01-26T17:36:11+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/01/26/jin-ling-meng</id>
+    <id>http://laughmaker.github.io/blog/2014/01/26/jin-ling-meng</id>
     <content type="html"><![CDATA[<h3 id="section">           <strong>随感-金陵梦</strong></h3>
 
 <p>金陵城里金陵梦，石头城外伴石眠。</p>
@@ -1735,15 +1824,15 @@ typedef void (^TWFailedBlock)   (NSString *error);
 
 <p><em>2013-09-24 13:57</em></p>
 
-<p><img src="http://makeLaugh.github.io/images/blog/2014/金陵梦.jpg" /></p>
+<p><img src="http://laughmaker.github.io/images/blog/2014/金陵梦.jpg" /></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[NSString属性声明中的copy和retain区别]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie/"/>
+    <link href="http://laughmaker.github.io/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie/"/>
     <updated>2014-01-26T14:39:00+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie</id>
+    <id>http://laughmaker.github.io/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie</id>
     <content type="html"><![CDATA[<p>    关于NSString在属性声明中的copy和retain，我想存在一些误解，即和其它不一样的地方。</p>
 
 <p><strong>首先做以下几个变量声明：</strong>   </p>
@@ -1834,9 +1923,9 @@ NSLog(@"\n");
   
   <entry>
     <title type="html"><![CDATA[NSString的内存管理]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/01/26/nsstringde-nei-cun-guan-li/"/>
+    <link href="http://laughmaker.github.io/blog/2014/01/26/nsstringde-nei-cun-guan-li/"/>
     <updated>2014-01-26T14:03:07+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/01/26/nsstringde-nei-cun-guan-li</id>
+    <id>http://laughmaker.github.io/blog/2014/01/26/nsstringde-nei-cun-guan-li</id>
     <content type="html"><![CDATA[<p>    本文参考了这篇文章，主要针对<a href="http://www.cnblogs.com/hellocby/archive/2012/08/23/2652201.html">这篇文章</a>做了一些补充说明，详细说明NSString的内存管理差异。</p>
 
 <p><strong>生成NSString的方式:</strong></p>
@@ -1889,9 +1978,9 @@ NSString *testStr5 = [[NSString alloc] initWithFormat:@"e"];
   
   <entry>
     <title type="html"><![CDATA[新年计划]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/01/11/xin-nian-ji-hua/"/>
+    <link href="http://laughmaker.github.io/blog/2014/01/11/xin-nian-ji-hua/"/>
     <updated>2014-01-11T23:08:13+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/01/11/xin-nian-ji-hua</id>
+    <id>http://laughmaker.github.io/blog/2014/01/11/xin-nian-ji-hua</id>
     <content type="html"><![CDATA[<p>    2014，我的任务，我的成长！</p>
 
 <ol>
@@ -1921,9 +2010,9 @@ NSString *testStr5 = [[NSString alloc] initWithFormat:@"e"];
   
   <entry>
     <title type="html"><![CDATA[你好，github]]></title>
-    <link href="http://makeLaugh.github.io/blog/2014/01/10/ni-hao-%2Cgithub/"/>
+    <link href="http://laughmaker.github.io/blog/2014/01/10/ni-hao-%2Cgithub/"/>
     <updated>2014-01-10T22:04:54+08:00</updated>
-    <id>http://makeLaugh.github.io/blog/2014/01/10/ni-hao-,github</id>
+    <id>http://laughmaker.github.io/blog/2014/01/10/ni-hao-,github</id>
     <content type="html"><![CDATA[<p>    我的第一个博客，欢迎大家光临！</p>
 
 <p>    从这里，算是正式开启我的博客之路了，之前在博客园写过一些博客，写得断断续续的，这次终于正式的搭建了一个自己的博客，以后尽力保持有新的感触、新的成长，就会做一些记录，记录生活成长的点滴！</p>

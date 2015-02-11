@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>金陵梦 - 闻竹</title>
+  <title>mac下配置web环境 - 闻竹</title>
   <meta name="author" content="laughmaker">
 
   
-  <meta name="description" content="           随感-金陵梦 金陵城里金陵梦，石头城外伴石眠。 秣陵秋至池荷尽，良辰好景是他年。 2013-09-24 13:57 ">
+  <meta name="description" content="配置PHP和JS调试环境 点击tools -&gt; build system -&gt; new build system 在其中输入如下代码，保存为PHP.sublime-build { "cmd": ["php", "$file"], "file_regex": "^(...*?):([0- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://laughmaker.github.io/blog/2014/01/26/jin-ling-meng">
+  <link rel="canonical" href="http://laughmaker.github.io/blog/2015/02/11/macxia-pei-zhi-webhuan-jing">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="闻竹" type="application/atom+xml">
@@ -69,7 +69,7 @@
   
   <header>
     
-      <h1 class="entry-title">金陵梦</h1>
+      <h1 class="entry-title">Mac下配置web环境</h1>
     
     
       <p class="meta">
@@ -85,22 +85,119 @@
   
 
 
-<time datetime="2014-01-26T17:36:11+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2014</time>
+<time datetime="2015-02-11T17:26:29+08:00" pubdate data-updated="true">Feb 11<span>th</span>, 2015</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h3 id="section">           <strong>随感-金陵梦</strong></h3>
+<div class="entry-content"><h3 id="phpjs">配置PHP和JS调试环境</h3>
+<ul>
+  <li>点击tools -&gt; build system -&gt; new build system</li>
+  <li>
+    <p>在其中输入如下代码，保存为PHP.sublime-build </p>
 
-<p>金陵城里金陵梦，石头城外伴石眠。</p>
+    <pre><code>  {
+      "cmd": ["php", "$file"],
+      "file_regex": "^(...*?):([0-9]*):?([0-9]*)",
+      "selector": "source.php"
+  }
+</code></pre>
+  </li>
+  <li>此后，即可用command+B进行编译调试了</li>
+</ul>
 
-<p>秣陵秋至池荷尽，良辰好景是他年。</p>
+<p>另外，添加一个new build system，命名为JSC.sublime-build，添加以下内容，即可调试js代码：</p>
 
-<p><em>2013-09-24 13:57</em></p>
+<pre><code>{
+	"cmd": ["/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc", "$file"],
+	"selector": "source.js"
+}
+</code></pre>
 
-<p><img src="/images/blog/2014/金陵梦.jpg" /></p>
+<hr />
+
+<h3 id="xdebug">配置Xdebug</h3>
+
+<h4 id="xdebug-1">安装xdebug</h4>
+
+<p>选择一个xdebug版本</p>
+
+<ul>
+  <li>brew search xdebug</li>
+</ul>
+
+<p>安装xdebug</p>
+
+<ul>
+  <li>brew install php55-xdebug</li>
+</ul>
+
+<p>将以下代码片断加入到php.ini文件最后</p>
+
+<pre><code>zend_extension= "/usr/lib/php/extensions/no-debug-non-zts-20121212/xdebug.so"
+xdebug.default_enable = On
+xdebug.show_exception_trace = On
+xdebug.show_local_vars = 1
+xdebug.max_nesting_level = 50
+xdebug.var_display_max_depth = 6
+
+xdebug.dump_once = On
+xdebug.dump_globals = On
+xdebug.dump_undefined = On
+xdebug.dump.REQUEST = *
+xdebug.cli_color = 2
+</code></pre>
+
+<p><strong>以下为配置sublime</strong></p>
+
+<p>将项目保存为一个project</p>
+
+<ul>
+  <li>
+    <p>sublime-&gt;project-&gt;save project as…</p>
+  </li>
+  <li>
+    <p>利用package control 安装xdebug client</p>
+  </li>
+</ul>
+
+<p>配置项目</p>
+
+<ul>
+  <li>sublime-&gt;project-&gt;edit project</li>
+</ul>
+
+<p>在其中添加类似以下内容</p>
+
+<pre><code>{
+    "folders":
+    [
+        {
+            "follow_symlinks": true,
+            "path": "."
+        }
+    ],
+    "settings": {
+        "xdebug": {
+             "url": "http://my.local.website/",
+        }
+    }
+}
+</code></pre>
+
+<p>开启调试，在项目文件中添加断点</p>
+
+<ul>
+  <li>xdebug-&gt;Add/Remove breakpoint</li>
+</ul>
+
+<p>进行调试</p>
+
+<pre><code>tools-&gt;xdebug-&gt;start debugging(launch browser)
+</code></pre>
+
 </div>
 
 
@@ -123,12 +220,12 @@
   
 
 
-<time datetime="2014-01-26T17:36:11+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2014</time>
+<time datetime="2015-02-11T17:26:29+08:00" pubdate data-updated="true">Feb 11<span>th</span>, 2015</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/wen-zhu/'>闻竹</a>
+    <a class='category' href='/blog/categories/web/'>web</a>
   
 </span>
 
@@ -144,10 +241,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie/" title="Previous Post: NSString属性声明中的copy和retain区别">&laquo; NSString属性声明中的copy和retain区别</a>
+        <a class="basic-alignment left" href="/blog/2015/02/11/phpbian-cheng-gui-fan/" title="Previous Post: PHP编程规范">&laquo; PHP编程规范</a>
       
       
-        <a class="basic-alignment right" href="/blog/2014/01/27/iosxiang-mu-jia-gou-tan-suo/" title="Next Post: iOS项目架构探索">iOS项目架构探索 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2015/02/11/macxia-pei-zhi-nginx-plus-php-plus-mongohuan-jing/" title="Next Post: mac下配置nginx+php+mongo环境">mac下配置nginx+php+mongo环境 &raquo;</a>
       
     </p>
   </footer>

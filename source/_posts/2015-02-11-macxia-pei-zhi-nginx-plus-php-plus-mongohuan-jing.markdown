@@ -1,11 +1,10 @@
 ---
 layout: post
-title: "mac下配置nginx+php+mongo开发环境"
-date: 2015-01-04 22:52:54 +0800
+title: "mac下配置nginx+php+mongo环境"
+date: 2015-02-11 17:30:09 +0800
 comments: true
-categories:web
+categories: web
 ---
-
 
 #### 安装brew
 

@@ -1,11 +1,10 @@
 ---
 layout: post
-title: "mac下配置sublime调试环境"
-date: 2015-01-04 16:01:56 +0800
+title: "mac下配置web环境"
+date: 2015-02-11 17:26:29 +0800
 comments: true
-categories:web
+categories: web
 ---
-
 
 ### 配置PHP和JS调试环境
 * 点击tools -> build system -> new build system
@@ -92,7 +91,4 @@ categories:web
 进行调试
 
 	tools->xdebug->start debugging(launch browser)
-
-
-
 

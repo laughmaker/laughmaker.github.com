@@ -1,11 +1,10 @@
 ---
 layout: post
-title: "php开发规范"
-date: 2015-01-04 16:04:00 +0800
+title: "PHP编程规范"
+date: 2015-02-11 17:18:09 +0800
 comments: true
-categories:web 
+categories: web
 ---
-
 
 #### PHP命名规范
 

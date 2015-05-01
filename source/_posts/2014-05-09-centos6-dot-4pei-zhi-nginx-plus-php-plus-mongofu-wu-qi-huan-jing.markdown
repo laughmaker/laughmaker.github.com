@@ -63,6 +63,24 @@ categories: Web
 * 若`make ZEND_EXTRA_LIBS='-liconv'`时报`make: *** [ext/phar/phar.php] 错误 127`，则。。。
 * 最后make install
 	
+后记：升级5.6.8时，若报`checking for known struct flock definition... configure: error: Don't know how to define struct flock on this system, set --enable-opcache=no`
+则：
+
+```
+vim /etc/ld.so.conf.d/local.conf     # 编辑库文件
+/usr/local/lib                       # 添加该行
+:wq                                  # 保存退出
+ldconfig -v                          # 使之生效
+```
+
+**添加www用户组**  
+
+```
+groupadd www
+useradd -g www -s /sbin/nologin -M www
+```
+
+
 **添加配置文件：**
 
 在安装文件目录，执行以下命令：
@@ -109,14 +127,26 @@ categories: Web
 
 ## 安装NGINX
 
-[下载地址](http://nginx.org/packages/centos/6/x86_64/RPMS/nginx-1.4.6-1.el6.ngx.x86_64.rpm)
+[下载地址1.8.0](http://nginx.org/packages/centos/6/x86_64/RPMS/nginx-1.8.0-1.el6.ngx.x86_64.rpm)
 
-[nginx官方源库](http://nginx.org/packages/centos/6/x86_64/RPMS/nginx-1.4.6-1.el6.ngx.x86_64.rpm)：可以找寻其他版本
+也可以到[nginx官方源库](http://nginx.org/packages/centos/6/x86_64/RPMS)找寻其他版本
 
 安装：
-
+```
 	rpm -ivh nginx-release-centos-6-0.el6.ngx.noarch.rpm
+```
+	
+更新
+	```
+	rpm -Uvh nginx.rpm
+	```
 
+也可使用`yum`安装
+
+先添加nginx的yum源
+`rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm`
+然后安装
+`yum install nginx`
 
 ---
 

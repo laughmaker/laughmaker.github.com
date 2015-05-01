@@ -7,9 +7,9 @@ sharing: true
 footer: true
 ---
 
-![](/images/blog/portrait.png "makeLaugh")
+![](/images/blog/portrait.png "laughmaker")
 
-### 闻竹 : makeLaugh
+### 闻竹 : laughmaker
 
     清夜无尘，月色如银。酒斟时，须满十分。浮名浮利，虚苦劳神。叹隙中驹， 石中火，梦中身。 虽抱文章，开口谁亲。且陶陶，乐尽天真，几时归去，作个闲人。对一张琴， 一壶酒，一溪云。
     ———苏轼
@@ -20,7 +20,7 @@ footer: true
 
 *   email：wskrdfeai@gmail.com
 *   blog：[http://www.smellbamboo.com](http://www.smellbamboo.com)
-*   github：[https://github.com/makelaugh](https://github.com/makelaugh)
+*   github：[https://github.com/laughmaker](https://github.com/laughmaker)
 *   学校：中国矿业大学(徐州)
 *   专业：电气工程及其自动化
 
@@ -48,7 +48,7 @@ footer: true
 
 * * *
 
-#### 工作经历
+<!--#### 工作经历
 
 *   2012.11 &ndash; now Line0
     *   工作岗位：
@@ -64,3 +64,4 @@ footer: true
     *   工作岗位：
     *   工作职责：
     *   参与项目：
+-->

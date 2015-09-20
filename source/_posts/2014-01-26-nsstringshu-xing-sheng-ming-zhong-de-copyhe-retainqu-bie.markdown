@@ -9,7 +9,7 @@ categories: iOS
     关于NSString在属性声明中的copy和retain，我想存在一些误解，即和其它不一样的地方。
 
 
-**首先做以下几个变量声明：**   
+**首先做以下几个变量声明：**  
 
 	@property (retain, nonatomic) NSString *retainStr;
 	@property (copy, nonatomic)   NSString *copyStr;
@@ -19,43 +19,43 @@ categories: iOS
  
 **实现代码如下：**
 
-    NSMutableString *mStr = [NSMutableString string];
-    [mStr setString:@"我没变"];
-    self.retainStr   = mStr;
-    self.copyStr     = mStr;
-    self.retainMStr = mStr;
-    self.copyMStr   = mStr;
-    
-    NSLog(@"retainStr:%@",  self.retainStr);
-    NSLog(@"copyStr:%@",    self.copyStr);
-    NSLog(@"retainMStr:%@", self.retainMStr);
-    NSLog(@"copyMStr:%@",   self.copyMStr);
-    NSLog(@"\n");
-    
-    [mStr setString:@"我变了"];
-    NSLog(@"retainStr:%@",  self.retainStr);
-    NSLog(@"copyStr:%@",    self.copyStr);
-    NSLog(@"retainMStr:%@", self.retainMStr);
-    NSLog(@"copyMStr:%@",   self.copyMStr);
-    NSLog(@"\n");
-    
+	NSMutableString *mStr = [NSMutableString string];
+	[mStr setString:@"我没变"];
+	self.retainStr   = mStr;
+	self.copyStr     = mStr;
+	self.retainMStr = mStr;
+	self.copyMStr   = mStr;
+	
+	NSLog(@"retainStr:%@",  self.retainStr);
+	NSLog(@"copyStr:%@",    self.copyStr);
+	NSLog(@"retainMStr:%@", self.retainMStr);
+	NSLog(@"copyMStr:%@",   self.copyMStr);
+	NSLog(@"\n");
+	
+	[mStr setString:@"我变了"];
+	NSLog(@"retainStr:%@",  self.retainStr);
+	NSLog(@"copyStr:%@",    self.copyStr);
+	NSLog(@"retainMStr:%@", self.retainMStr);
+	NSLog(@"copyMStr:%@",   self.copyMStr);
+	NSLog(@"\n");
+	
 	NSString *str = @"我来了";//[[NSString alloc] initWithFormat:@"我来了"];//两种方式都一样。
-    self.retainStr  = str;
-    self.copyStr    = str;
-    self.retainMStr = [str mutableCopy];
-    self.copyMStr   = [str mutableCopy];
-    NSLog(@"retainStr:%@",  self.retainStr);
-    NSLog(@"copyStr:%@",    self.copyStr);
-    NSLog(@"retainMStr:%@", self.retainMStr);
-    NSLog(@"copyMStr:%@",   self.copyMStr);
-    NSLog(@"\n");
-    
-    str =@"我走了";//[[NSStringalloc] initWithFormat:@"我走了"];//两种方式都一样
-    NSLog(@"retainStr:%@",  self.retainStr);
-    NSLog(@"copyStr:%@",    self.copyStr);
-    NSLog(@"retainMStr:%@", self.retainMStr);
-    NSLog(@"copyMStr:%@",   self.copyMStr);
-    NSLog(@"\n");
+	self.retainStr  = str;
+	self.copyStr    = str;
+	self.retainMStr = [str mutableCopy];
+	self.copyMStr   = [str mutableCopy];
+	NSLog(@"retainStr:%@",  self.retainStr);
+	NSLog(@"copyStr:%@",    self.copyStr);
+	NSLog(@"retainMStr:%@", self.retainMStr);
+	NSLog(@"copyMStr:%@",   self.copyMStr);
+	NSLog(@"\n");
+	
+	str =@"我走了";//[[NSStringalloc] initWithFormat:@"我走了"];//两种方式都一样
+	NSLog(@"retainStr:%@",  self.retainStr);
+	NSLog(@"copyStr:%@",    self.copyStr);
+	NSLog(@"retainMStr:%@", self.retainMStr);
+	NSLog(@"copyMStr:%@",   self.copyMStr);
+	NSLog(@"\n");
 
 **打印结果如下：**
 
@@ -86,5 +86,4 @@ categories: iOS
 
    另外说明一下，这两者对内存计数的影响都是一样的，都会增加内存引用计数，都需要在最后的时候做处理。
 
-   其实说白了，对字符串为啥要用这两种方式？我觉得还是一个安全问题，比如声明的一个NSString *str变量，然后把一个NSMutableString *mStr变量的赋值给它了，如果要求str跟着mStr变化，那么就用retain;如果str不能跟着mStr一起变化，那就用copy。而对于要把NSString类型的字符串赋值给str，那两都没啥区别。不会影响安全性，内存管理也一样。
-
+   其实说白了，对字符串为啥要用这两种方式？我觉得还是一个安全问题，比如声明的一个NSString *str变量，然后把一个NSMutableString *mStr变量的赋值给它了，如果要求str跟着mStr变化，那么就用retain;如果str不能跟着mStr一起变化，那就用copy。而对于要把NSString类型的字符串赋值给str，那两都没啥区别。不会影响安全性，内存管理也一样。

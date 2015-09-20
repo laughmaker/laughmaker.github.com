@@ -1,4 +1,4 @@
----
+I---
 layout: post
 title: "Yii2学习笔记"
 date: 2015-03-19 15:02:54 +0800
@@ -13,6 +13,18 @@ categories:
 	brew install composer
 	
 详细教程见：[composer官网](http://www.phpcomposer.com)
+
+添加[中国镜像](http://pkg.phpcomposer.com)：  
+修改/user/username/.composer/config.json文件，将相应内容改为如下：
+
+	"repositories":[
+	     {"type": "composer", "url":"http://pkg.phpcomposer.com/repo/packagist/"},
+	     {"packagist":false}
+	]
+	
+添加前端资源管理器`composer-asset`
+
+	composer global require "fxp/composer-asset-plugin:1.0.0"
 
 2.安装Yii
 

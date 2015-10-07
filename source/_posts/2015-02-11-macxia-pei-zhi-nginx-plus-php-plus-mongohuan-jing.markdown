@@ -89,8 +89,26 @@ php扩展路径
 安装
 
 	sudo pecl install mongo
+	
+如果安装失败，出现如下错误：
 
-在/etc/php.ini文档中最后添加
+	1 error generated.
+	make: *** [php_mongo.lo] Error 1
+	ERROR: `make' failed
+	
+则可能是未安装命令行开发工具，安装之：
+
+	xcode-select --install
+	
+若出现如下错误，则有可能是openssl版本不够导致：
+
+	make: *** [io_stream.lo] Error 1
+	ERROR: `make' failed
+	
+更新openssl版本即可，若还不够，则升级为开发者版。
+
+
+安装完毕，在/etc/php.ini文档中最后添加
 
 	extension=mongo.so
 

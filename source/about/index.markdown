@@ -21,8 +21,6 @@ footer: true
 *   email：wskrdfeai@gmail.com
 *   blog：[http://www.smellbamboo.com](http://www.smellbamboo.com)
 *   github：[https://github.com/laughmaker](https://github.com/laughmaker)
-*   学校：中国矿业大学(徐州)
-*   专业：电气工程及其自动化
 
 * * *
 

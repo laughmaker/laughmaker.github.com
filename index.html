@@ -9,7 +9,7 @@
   <meta name="author" content="laughmaker">
 
   
-  <meta name="description" content="    Spec Repo是所有的Pods的一个索引，就是一个容器，承载所有公开或私有的的Pods项目源引用，仅保存每个pod库的引用。     公共的Spec Repo是一个Git仓库remote端，在GitHub上，但是当你使用了Cocoapods后他会被clone到本地的~/. &hellip;">
+  <meta name="description" content="    Spec Repo是所有的Pods的一个索引，就是一个容器，承载所有公开或私有的的Pods项目源引用，仅保存每个pod库的引用。     公共的Spec Repo是一个Git仓库remote端，在GitHub上，但是当你使用了Cocoapods后他会被clone到本地的\~/. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -97,17 +97,13 @@
 
   <div class="entry-content"><p>    Spec Repo是所有的Pods的一个索引，就是一个容器，承载所有公开或私有的的Pods项目源引用，仅保存每个pod库的引用。</p>
 
-<p>    公共的Spec Repo是一个Git仓库remote端，在GitHub上，但是当你使用了Cocoapods后他会被clone到本地的~/.cocoapods/repos目录下，这个master目录的结构是这个样子的</p>
+<p>    公共的Spec Repo是一个Git仓库remote端，在GitHub上，但是当你使用了Cocoapods后他会被clone到本地的\~/.cocoapods/repos目录下，这个master目录的结构是这个样子的</p>
 
 <pre><code>├── Specs
     └── [SPEC_NAME]
         └── [VERSION]
-            └── [SPEC_NAME].podspec
+            └── [SPEC_NAME].podspec 备注：运行 `pod repo` 命令，可以查看所有的pod仓库，然后进入到列出来的目录，可查看相关仓库的目录结构 **一、创建私有的Spec Repo**
 </code></pre>
-
-<p>备注：运行 <code>pod repo</code> 命令，可以查看所有的pod仓库，然后进入到列出来的目录，可查看相关仓库的目录结构</p>
-
-<p><strong>一、创建私有的Spec Repo</strong></p>
 
 <p>1.首先在托管服务器上创建一个仓库。<br />
 2.然后将托管服务器中的仓库与本地pod repo关联：  </p>
@@ -160,7 +156,7 @@ pod 'PodTestLibrary', :podspec =&gt; '~/code/Cocoapods/podTest/PodTestLibrary/Po
 <pre><code>pod repo push TWSpecs PodTestLibrary.podspec  #前面是本地Repo名字 后面是podspec名字
 </code></pre>
 
-<p>成功之后这个组件库就添加到我们的私有Spec Repo中了，可以进入到~/.cocoapods/repos/TWSpecs目录下查看</p>
+<p>成功之后这个组件库就添加到我们的私有Spec Repo中了，可以进入到\~/.cocoapods/repos/TWSpecs目录下查看</p>
 
 <p>再去看我们的Spec Repo远端仓库，也有了一次提交，这个podspec也已经被Push上去了。</p>
 
@@ -223,7 +219,7 @@ pod 'TWSNS',:git=&gt;"http://xxxxx.git"
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/03/19/yii2ipbnote/">Yii2ipbnote</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/03/19/yii2ipbnote/">Yii2学习笔记</a></h1>
     
     
       <p class="meta">
@@ -239,22 +235,14 @@ pod 'TWSNS',:git=&gt;"http://xxxxx.git"
   
 
 
-<time datetime="2015-03-19T00:00:00+08:00" pubdate data-updated="true"></time>
+<time datetime="2015-03-19T15:02:54+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2015</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>I—
-layout: post
-title: “Yii2学习笔记”
-date: 2015-03-19 15:02:54 +0800
-comments: true
-categories: 
-—</p>
-
-<p>一、安装</p>
+  <div class="entry-content"><p>一、安装</p>
 
 <p>1.安装composer</p>
 
@@ -641,7 +629,27 @@ sudo pear upgrade-all
 <pre><code>sudo pecl install mongo
 </code></pre>
 
-<p>在/etc/php.ini文档中最后添加</p>
+<p>如果安装失败，出现如下错误：</p>
+
+<pre><code>1 error generated.
+make: *** [php_mongo.lo] Error 1
+ERROR: `make' failed
+</code></pre>
+
+<p>则可能是未安装命令行开发工具，安装之：</p>
+
+<pre><code>xcode-select --install
+</code></pre>
+
+<p>若出现如下错误，则有可能是openssl版本不够导致：</p>
+
+<pre><code>make: *** [io_stream.lo] Error 1
+ERROR: `make' failed
+</code></pre>
+
+<p>更新openssl版本即可，若还不够，则升级为开发者版。</p>
+
+<p>安装完毕，在/etc/php.ini文档中最后添加</p>
 
 <pre><code>extension=mongo.so
 </code></pre>
@@ -1913,7 +1921,7 @@ pod 'SBAPNSPusher', '~&gt; 2.2.1'!
       </li>
     
       <li class="post">
-        <a href="/blog/2015/03/19/yii2ipbnote/">Yii2ipbnote</a>
+        <a href="/blog/2015/03/19/yii2ipbnote/">Yii2学习笔记</a>
       </li>
     
       <li class="post">

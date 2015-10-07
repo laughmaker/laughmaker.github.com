@@ -191,7 +191,27 @@ sudo pear upgrade-all
 <pre><code>sudo pecl install mongo
 </code></pre>
 
-<p>在/etc/php.ini文档中最后添加</p>
+<p>如果安装失败，出现如下错误：</p>
+
+<pre><code>1 error generated.
+make: *** [php_mongo.lo] Error 1
+ERROR: `make' failed
+</code></pre>
+
+<p>则可能是未安装命令行开发工具，安装之：</p>
+
+<pre><code>xcode-select --install
+</code></pre>
+
+<p>若出现如下错误，则有可能是openssl版本不够导致：</p>
+
+<pre><code>make: *** [io_stream.lo] Error 1
+ERROR: `make' failed
+</code></pre>
+
+<p>更新openssl版本即可，若还不够，则升级为开发者版。</p>
+
+<p>安装完毕，在/etc/php.ini文档中最后添加</p>
 
 <pre><code>extension=mongo.so
 </code></pre>
@@ -330,7 +350,7 @@ nginx -s [reload\reopen\stop\quit]
       </li>
     
       <li class="post">
-        <a href="/blog/2015/03/19/yii2ipbnote/">Yii2ipbnote</a>
+        <a href="/blog/2015/03/19/yii2ipbnote/">Yii2学习笔记</a>
       </li>
     
       <li class="post">

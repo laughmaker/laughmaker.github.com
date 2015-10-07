@@ -1,9 +1,9 @@
-I---
+---
 layout: post
 title: "Yii2学习笔记"
 date: 2015-03-19 15:02:54 +0800
 comments: true
-categories: 
+categories: Web
 ---
 
 一、安装

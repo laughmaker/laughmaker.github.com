@@ -9,7 +9,10 @@
   <meta name="author" content="laughmaker">
 
   
-  <meta name="description" content="首先系统安装完成后，执行：yum -y update 命令，升级补丁。 安装PHP5.4 参考教程 1.安装支持套件 yum -y install gcc gcc-c++ autoconf libjpeg libjpeg-devel libpng libpng-devel freetype &hellip;">
+  <meta name="description" content="总则： 1.多使用分支操作，体会git强大的分支功能。
+2.在创建代码仓库的时候，默认会创建一个master分支，这个分支做为一个稳定分支，只合并稳定的代码。
+3.另外创建一个dev分支，这个分支做为日常的开发测试使用，dev分支测试稳家后，方合并到master分支去。
+4. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +69,163 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/11/gitjian-dan-shi-yong-cao-zuo/">Git简单实用操作</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-11T12:00:04+08:00" pubdate data-updated="true">May 11<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>总则：</strong>  </p>
+
+<pre><code>1.多使用分支操作，体会git强大的分支功能。
+2.在创建代码仓库的时候，默认会创建一个master分支，这个分支做为一个稳定分支，只合并稳定的代码。
+3.另外创建一个dev分支，这个分支做为日常的开发测试使用，dev分支测试稳家后，方合并到master分支去。
+4.如果需要开发计划外的功能时，可基于当前的开发分支，创建一个feature分支，完成后如果需要则合并到dev分支，如无需再使用则可删除。
+5.如果遇到bug需要紧急修复，则可基于master分支创建fixed分支，修复完成测试通过，则合并到master分支，删除fixed分支。
+</code></pre>
+
+<p><strong>本地操作</strong></p>
+
+<ul>
+  <li>初始化：git init</li>
+  <li>添加所有修改文件到git仓库：git add -A</li>
+  <li>添加某单个文件到git仓库：git add 文件件</li>
+  <li>确认修改内容：git commit -m “修改内容叙述”</li>
+</ul>
+
+<p><strong>与服务器相连</strong></p>
+
+<ul>
+  <li>克隆一个仓库：git clone 远端地址</li>
+  <li>查看连接的远端地址：git remote -v</li>
+  <li>连接到远端服务器：git remote add origin 远端地址</li>
+  <li>与远端服务器断开连接：git remote rm origin</li>
+  <li>将远端代码合并到本地：git pull origin master</li>
+  <li>将本地代码上传到远端服务器：git push origin master</li>
+</ul>
+
+<p><strong>分支与合并</strong></p>
+
+<ul>
+  <li>查看分支：git branch -a</li>
+  <li>基于当前分支创建分支并切换到新的分支：git checkout -b 分支名</li>
+  <li>当前在master分支，将dev分支合并到master：git merge dev</li>
+  <li>删除本地分支：git branch -d 分支名</li>
+  <li>删除远端分支：
+    <ul>
+      <li>1.git push origin –delete 分支名  </li>
+      <li>2.git push origin :分支名 //用空分支覆盖远端分支方式 </li>
+    </ul>
+  </li>
+  <li>克隆远端某个分支：git checkout –track -b foobar origin/foobar</li>
+  <li>提交本地的test分支到远端的master分支：git push origin test:master</li>
+  <li>提交本地的test分支作为远端的test分支：git push origin test:test</li>
+</ul>
+
+<p><strong>查看状态</strong></p>
+
+<ul>
+  <li>查看当前哪些文件更改了而没有添加到仓库跟踪：git status</li>
+  <li>查看历史提交记录：git log</li>
+</ul>
+
+<p><strong>版本回溯</strong></p>
+
+<p>  <em>为了安全起见，最好基于所在分支创建一个分支，回到历史版本，找到需要的代码，然后再删除该分支。</em></p>
+
+<ul>
+  <li>在当前分支新建分支：git checkout -b 分支名</li>
+  <li>查看历史提交记录，找到提交记录id：git log</li>
+  <li>回到需要的历史版本：git checkout commitId</li>
+  <li>找到需要的代码，复制出来，切换回原分支，删除该分支</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/09/ren-sheng-ji-xu-shi-yi/">人生几许失意</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-09T20:01:19+08:00" pubdate data-updated="true">May 9<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今年的季后赛首轮，是我看得最多的一年，或许也会是我看过的最精彩的一次。相比第二轮的乏善可陈，这一轮可谓之精彩迭出; 可是在精彩落幕之后，在前进的道路上，总会落下落寞的身影。  </p>
+
+<p>在成功者面前，在掌声欢呼中，失意者永远是被忽略的，但，高富帅，你的精彩的人生才刚开始，下个赛季期待你的更进一步。<br />
+  <img src="/images/blog/2014/人生几许失意/1.jpg" alt="link" />  </p>
+
+<p>从魔术到湖人，再从湖人到火箭，人生起伏太大，很多人说，你颠峰已过，但季后赛，你展现出一你一直以来的努力，篮球是一部分，生活永远是快乐的！<br />
+  <img src="/images/blog/2014/人生几许失意/2.jpg" alt="link" />  </p>
+
+<p>从落榜生到被裁到再上岗再到林疯狂，你的人生已足够精彩，从首发到替补，在质疑中，始终努力奉献着不太稳定的贡献，0.9s，是你不敢相信的表情，你不相信你们一个赛季的努力就这样结束了。虽然状态不太好，但始终努力着，下个赛季，相信你会更好。<br />
+  <img src="/images/blog/2014/人生几许失意/3.jpg" alt="link" />  </p>
+
+<p>  你们的时代已经结束了，但你们已经赢得了所有人的尊重，包括你们的对手<br />
+  <img src="/images/blog/2014/人生几许失意/4.jpg" alt="link" />  </p>
+
+<p>你的时代才刚开始，明年会更好，更进一步的<br />
+  <img src="/images/blog/2014/人生几许失意/5.jpg" alt="link" />    </p>
+
+<p>你们让所有人知道了你们的实力，没有超级球星，但你们有的是其它团队所没有的凝聚力和执行力，可惜你们赛季初的伤病，让遇到的了可能是十年难得一遇的天赋团队，下个赛季不知道你们还能不能再聚一起，希望可以！<br />
+  <img src="/images/blog/2014/人生几许失意/6.jpg" alt="link" />  </p>
+
+<p>年轻没有失败，努力，加油，明年再来<br />
+  <img src="/images/blog/2014/人生几许失意/7.jpg" alt="link" />  </p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -162,6 +322,25 @@ make install
   <li>最后make install</li>
 </ul>
 
+<p>后记：升级5.6.8时，若报<code>checking for known struct flock definition... configure: error: Don't know how to define struct flock on this system, set --enable-opcache=no</code>
+则：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">vim /etc/ld.so.conf.d/local.conf     # 编辑库文件
+</span><span class="line">/usr/local/lib                       # 添加该行
+</span><span class="line">:wq                                  # 保存退出
+</span><span class="line">ldconfig -v                          # 使之生效</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><strong>添加www用户组</strong>  </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">groupadd www
+</span><span class="line">useradd -g www -s /sbin/nologin -M www</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 <p><strong>添加配置文件：</strong></p>
 
 <p>在安装文件目录，执行以下命令：</p>
@@ -213,14 +392,25 @@ NOTICE: configuration file /usr/local/php/etc/php-fpm.conf test is successful
 
 <h2 id="nginx">安装NGINX</h2>
 
-<p><a href="http://nginx.org/packages/centos/6/x86_64/RPMS/nginx-1.4.6-1.el6.ngx.x86_64.rpm">下载地址</a></p>
+<p><a href="http://nginx.org/packages/centos/6/x86_64/RPMS/nginx-1.8.0-1.el6.ngx.x86_64.rpm">下载地址1.8.0</a></p>
 
-<p><a href="http://nginx.org/packages/centos/6/x86_64/RPMS/nginx-1.4.6-1.el6.ngx.x86_64.rpm">nginx官方源库</a>：可以找寻其他版本</p>
+<p>也可以到<a href="http://nginx.org/packages/centos/6/x86_64/RPMS">nginx官方源库</a>找寻其他版本</p>
 
-<p>安装：</p>
+<p>安装：
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">rpm -ivh nginx-release-centos-6-0.el6.ngx.noarch.rpm</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
 
-<pre><code>rpm -ivh nginx-release-centos-6-0.el6.ngx.noarch.rpm
-</code></pre>
+<p>更新
+	<code>
+	rpm -Uvh nginx.rpm
+	</code></p>
+
+<p>也可使用<code>yum</code>安装</p>
+
+<p>先添加nginx的yum源
+<code>rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm</code>
+然后安装
+<code>yum install nginx</code></p>
 
 <hr />
 
@@ -726,7 +916,7 @@ typedef void (^TWFailedBlock)   (NSString *error);
 
   <div class="entry-content"><p>    关于NSString在属性声明中的copy和retain，我想存在一些误解，即和其它不一样的地方。</p>
 
-<p><strong>首先做以下几个变量声明：</strong>   </p>
+<p><strong>首先做以下几个变量声明：</strong>  </p>
 
 <pre><code>@property (retain, nonatomic) NSString *retainStr;
 @property (copy, nonatomic)   NSString *copyStr;
@@ -807,8 +997,7 @@ NSLog(@"\n");
 
 <p>   另外说明一下，这两者对内存计数的影响都是一样的，都会增加内存引用计数，都需要在最后的时候做处理。</p>
 
-<p>   其实说白了，对字符串为啥要用这两种方式？我觉得还是一个安全问题，比如声明的一个NSString *str变量，然后把一个NSMutableString *mStr变量的赋值给它了，如果要求str跟着mStr变化，那么就用retain;如果str不能跟着mStr一起变化，那就用copy。而对于要把NSString类型的字符串赋值给str，那两都没啥区别。不会影响安全性，内存管理也一样。</p>
-
+<p>   其实说白了，对字符串为啥要用这两种方式？我觉得还是一个安全问题，比如声明的一个NSString <em>str变量，然后把一个NSMutableString </em>mStr变量的赋值给它了，如果要求str跟着mStr变化，那么就用retain;如果str不能跟着mStr一起变化，那就用copy。而对于要把NSString类型的字符串赋值给str，那两都没啥区别。不会影响安全性，内存管理也一样。</p>
 </div>
   
   
@@ -1012,6 +1201,14 @@ NSString *testStr5 = [[NSString alloc] initWithFormat:@"e"];
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/20/shi-yong-podsguan-li-xiang-mu/">使用pods管理项目</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/03/19/yii2ipbnote/">Yii2ipbnote</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/03/02/2015/">2015，新的一年，加油！</a>
       </li>
     
@@ -1021,14 +1218,6 @@ NSString *testStr5 = [[NSString alloc] initWithFormat:@"e"];
     
       <li class="post">
         <a href="/blog/2015/02/11/macxia-pei-zhi-webhuan-jing/">mac下配置web环境</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/02/11/phpbian-cheng-gui-fan/">PHP编程规范</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/02/11/zheng-ze-biao-da-shi-jian-dan-shuo-ming/">正则表达式简单说明</a>
       </li>
     
   </ul>

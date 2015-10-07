@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>使用pods管理项目 - 闻竹</title>
+  <meta name="author" content="laughmaker">
+
+  
+  <meta name="description" content="    Spec Repo是所有的Pods的一个索引，就是一个容器，承载所有公开或私有的的Pods项目源引用，仅保存每个pod库的引用。     公共的Spec Repo是一个Git仓库remote端，在GitHub上，但是当你使用了Cocoapods后他会被clone到本地的~/. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://laughmaker.github.io/blog/2015/09/20/shi-yong-podsguan-li-xiang-mu">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="闻竹" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'> -->
+  
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">闻竹</a></h1>
+  
+    <h2>于车马喧哗中守一份宁静      于万马齐喑中持一片热忱</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:laughmaker.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">主页</a></li>
+  <li><a href="/blog/archives">文章归档</a></li>
+  <li><a href="/about">关于我</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">使用pods管理项目</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-09-20T21:46:15+08:00" pubdate data-updated="true">Sep 20<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>    Spec Repo是所有的Pods的一个索引，就是一个容器，承载所有公开或私有的的Pods项目源引用，仅保存每个pod库的引用。</p>
+
+<p>    公共的Spec Repo是一个Git仓库remote端，在GitHub上，但是当你使用了Cocoapods后他会被clone到本地的~/.cocoapods/repos目录下，这个master目录的结构是这个样子的</p>
+
+<pre><code>├── Specs
+    └── [SPEC_NAME]
+        └── [VERSION]
+            └── [SPEC_NAME].podspec
+</code></pre>
+
+<p>备注：运行 <code>pod repo</code> 命令，可以查看所有的pod仓库，然后进入到列出来的目录，可查看相关仓库的目录结构</p>
+
+<p><strong>一、创建私有的Spec Repo</strong></p>
+
+<p>1.首先在托管服务器上创建一个仓库。<br />
+2.然后将托管服务器中的仓库与本地pod repo关联：  </p>
+
+<pre><code># pod repo add [Private Repo Name] [GitHub HTTPS clone URL]
+pod repo add TWSpecs https://git.coding.net/laughmaker/TWSpecs.git
+</code></pre>
+
+<p>备注：此处TWSpecs名可以随便取，只是取在你本地的一个命名，作为与远端相关联的一个名称。</p>
+
+<p>备注：若别人需要使用这个私有项目里的代码，需要有单个项目和这个仓库的权限才能使用</p>
+
+<p><strong>二、创建私有模块项目，并创建podspec文件</strong></p>
+
+<p>1.创建一个包含私有代码的项目，并将代码上传到托管服务器<br />
+2.在根目录下，运行以下命令创建podspec文件  </p>
+
+<pre><code>pod spec create PodTestLibrary git@coding.net:wtlucky/podTestLibrary.git
+</code></pre>
+
+<p>备注：由于此步骤会创建一个完整的配置文件，里面包含许多用不到的配置信息和注释，故可以拷贝其他项目的配置文件来做相应修改，简化操作。另此配置文件，应保持简洁，不需要的注释和信息，最好删除掉。</p>
+
+<p><strong>三、配置验证podspec文件</strong></p>
+
+<p>创建成功后，会在根目录下产生一个.podspec文件，按提示中，填入相应信息后，输入以下命令，进行验证：</p>
+
+<pre><code>pod lib lint
+</code></pre>
+
+<p>若成功会提示passed validation.否则按提示进行错误改正。</p>
+
+<p><strong>四、本地测试</strong></p>
+
+<p>创建一个新的项目，在这个项目的Podfile文件中直接指定刚才创建编辑好的podspec文件，看是否可用。 在Podfile中我们可以这样编辑，有两种方式</p>
+
+<pre><code>platform :ios, '7.0'
+
+pod 'PodTestLibrary', :path =&gt; '~/code/Cocoapods/podTest/PodTestLibrary'      #指定路径
+pod 'PodTestLibrary', :podspec =&gt; '~/code/Cocoapods/podTest/PodTestLibrary/PodTestLibrary.podspec'  #指定podspec文件
+</code></pre>
+
+<p>然后执行pod install命令安装依赖，在项目工程中，可以看到pod库安装在Development Pods/PodTestLibrary中。</p>
+
+<p>在项目中编写代码，测试库文件无误后就可以开始下一步了，提交podspec到Spec Repo中。</p>
+
+<p><strong>五、将私有项目提交到本地Spec Repo中</strong></p>
+
+<p>向私有Spec Repo提交podspec只需要一个命令</p>
+
+<pre><code>pod repo push TWSpecs PodTestLibrary.podspec  #前面是本地Repo名字 后面是podspec名字
+</code></pre>
+
+<p>成功之后这个组件库就添加到我们的私有Spec Repo中了，可以进入到~/.cocoapods/repos/TWSpecs目录下查看</p>
+
+<p>再去看我们的Spec Repo远端仓库，也有了一次提交，这个podspec也已经被Push上去了。</p>
+
+<p><strong>六、更新维护私有项目</strong></p>
+
+<p>更新维护将对应的版本一起更新即可，注意，对应tag版本号一定要一致。</p>
+
+<p><strong>七、使用私有项目</strong></p>
+
+<pre><code>source 'https://git.coding.net/laughmaker/TWSpecs.git'  
+source 'https://github.com/CocoaPods/Specs.git'  
+
+pod 'TWSNS',:git=&gt;"http://xxxxx.git"
+</code></pre>
+
+<p>备注：私有库和公有库的源都需要添加，否则只能搜到其中的一个代码。</p>
+
+<p><strong>八、删除私有库</strong></p>
+
+<pre><code>pod repo remove TWSpecs
+</code></pre>
+
+<p><strong>九、部署到公有库</strong></p>
+
+<p>代码创建好了，当然也可以提交到公有库了，之前需要审核一两天的时间，而现在有了trunk，提交即可使用了。</p>
+
+<p>1.首先将代码上传到github。</p>
+
+<p>2.注册trunk服务</p>
+
+<pre><code>pod trunk register wskrdfeai@gmail.com 'laughmaker' --description='我爱我的因我觉得欢喜' --verbose
+</code></pre>
+
+<p>可查看注册信息：</p>
+
+<pre><code>pod trunk me
+</code></pre>
+
+<p>3.将仓库上传到公有库中心</p>
+
+<pre><code>pod trunk push TWSNS.podspec
+</code></pre>
+
+<p>4.也可以将其他人添加进来一起进行开发</p>
+
+<pre><code>pod trunk add-owner ProjectName(项目名) email(要添加进来的人)
+</code></pre>
+
+<p>以上步骤，可能会稍微慢一些，因为这些操作，都会和github打交道。成功之后，其他人更新pod索引库，即可搜索和使用你刚才添加的项目了。</p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">laughmaker</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-09-20T21:46:15+08:00" pubdate data-updated="true">Sep 20<span>th</span>, 2015</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>iOS</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/03/19/yii2ipbnote/" title="Previous Post: Yii2ipbnote">&laquo; Yii2ipbnote</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/09/20/shi-yong-podsguan-li-xiang-mu/">使用pods管理项目</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/03/19/yii2ipbnote/">Yii2ipbnote</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/03/02/2015/">2015，新的一年，加油！</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/02/11/macxia-pei-zhi-nginx-plus-php-plus-mongohuan-jing/">mac下配置nginx+php+mongo环境</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/02/11/macxia-pei-zhi-webhuan-jing/">mac下配置web环境</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<aside>
+	<h3>About Bill <img src="/images/branding/avatar.png" class="left" style="padding-right: 10px;" /></h3>
+	<p>
+		I'm Bill Patrianakos. I created <a href="https://writeapp.me">Write.app</a>, founded  <a href="https://chooseclever.com">Clever Web Design</a>, and  work as a web developer in Chicago.
+		<br />
+		<a class="button" href="">Related Stuff <i class="icon-circle-arrow-down"></i></a>
+	</p>
+</aside>
+
+  
+</aside>
+
+
+
+  <section>
+    <h1>评论</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"smellbamboo"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END --></div>
+  </section>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - laughmaker -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -95,7 +95,7 @@
 
 <div class="entry-content"><p>    关于NSString在属性声明中的copy和retain，我想存在一些误解，即和其它不一样的地方。</p>
 
-<p><strong>首先做以下几个变量声明：</strong>   </p>
+<p><strong>首先做以下几个变量声明：</strong>  </p>
 
 <pre><code>@property (retain, nonatomic) NSString *retainStr;
 @property (copy, nonatomic)   NSString *copyStr;
@@ -176,8 +176,7 @@ NSLog(@"\n");
 
 <p>   另外说明一下，这两者对内存计数的影响都是一样的，都会增加内存引用计数，都需要在最后的时候做处理。</p>
 
-<p>   其实说白了，对字符串为啥要用这两种方式？我觉得还是一个安全问题，比如声明的一个NSString *str变量，然后把一个NSMutableString *mStr变量的赋值给它了，如果要求str跟着mStr变化，那么就用retain;如果str不能跟着mStr一起变化，那就用copy。而对于要把NSString类型的字符串赋值给str，那两都没啥区别。不会影响安全性，内存管理也一样。</p>
-
+<p>   其实说白了，对字符串为啥要用这两种方式？我觉得还是一个安全问题，比如声明的一个NSString <em>str变量，然后把一个NSMutableString </em>mStr变量的赋值给它了，如果要求str跟着mStr变化，那么就用retain;如果str不能跟着mStr一起变化，那就用copy。而对于要把NSString类型的字符串赋值给str，那两都没啥区别。不会影响安全性，内存管理也一样。</p>
 </div>
 
 
@@ -240,6 +239,14 @@ NSLog(@"\n");
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/20/shi-yong-podsguan-li-xiang-mu/">使用pods管理项目</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/03/19/yii2ipbnote/">Yii2ipbnote</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/03/02/2015/">2015，新的一年，加油！</a>
       </li>
     
@@ -249,14 +256,6 @@ NSLog(@"\n");
     
       <li class="post">
         <a href="/blog/2015/02/11/macxia-pei-zhi-webhuan-jing/">mac下配置web环境</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/02/11/phpbian-cheng-gui-fan/">PHP编程规范</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/02/11/zheng-ze-biao-da-shi-jian-dan-shuo-ming/">正则表达式简单说明</a>
       </li>
     
   </ul>

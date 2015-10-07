@@ -159,6 +159,25 @@ make install
   <li>最后make install</li>
 </ul>
 
+<p>后记：升级5.6.8时，若报<code>checking for known struct flock definition... configure: error: Don't know how to define struct flock on this system, set --enable-opcache=no</code>
+则：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">vim /etc/ld.so.conf.d/local.conf     # 编辑库文件
+</span><span class="line">/usr/local/lib                       # 添加该行
+</span><span class="line">:wq                                  # 保存退出
+</span><span class="line">ldconfig -v                          # 使之生效</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><strong>添加www用户组</strong>  </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">groupadd www
+</span><span class="line">useradd -g www -s /sbin/nologin -M www</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 <p><strong>添加配置文件：</strong></p>
 
 <p>在安装文件目录，执行以下命令：</p>
@@ -210,14 +229,25 @@ NOTICE: configuration file /usr/local/php/etc/php-fpm.conf test is successful
 
 <h2 id="nginx">安装NGINX</h2>
 
-<p><a href="http://nginx.org/packages/centos/6/x86_64/RPMS/nginx-1.4.6-1.el6.ngx.x86_64.rpm">下载地址</a></p>
+<p><a href="http://nginx.org/packages/centos/6/x86_64/RPMS/nginx-1.8.0-1.el6.ngx.x86_64.rpm">下载地址1.8.0</a></p>
 
-<p><a href="http://nginx.org/packages/centos/6/x86_64/RPMS/nginx-1.4.6-1.el6.ngx.x86_64.rpm">nginx官方源库</a>：可以找寻其他版本</p>
+<p>也可以到<a href="http://nginx.org/packages/centos/6/x86_64/RPMS">nginx官方源库</a>找寻其他版本</p>
 
-<p>安装：</p>
+<p>安装：
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">rpm -ivh nginx-release-centos-6-0.el6.ngx.noarch.rpm</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
 
-<pre><code>rpm -ivh nginx-release-centos-6-0.el6.ngx.noarch.rpm
-</code></pre>
+<p>更新
+	<code>
+	rpm -Uvh nginx.rpm
+	</code></p>
+
+<p>也可使用<code>yum</code>安装</p>
+
+<p>先添加nginx的yum源
+<code>rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm</code>
+然后安装
+<code>yum install nginx</code></p>
 
 <hr />
 
@@ -433,6 +463,14 @@ $MONGO["servers"][$i]["mongo_auth"] = true;//enable mongo authentication?
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/20/shi-yong-podsguan-li-xiang-mu/">使用pods管理项目</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/03/19/yii2ipbnote/">Yii2ipbnote</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/03/02/2015/">2015，新的一年，加油！</a>
       </li>
     
@@ -442,14 +480,6 @@ $MONGO["servers"][$i]["mongo_auth"] = true;//enable mongo authentication?
     
       <li class="post">
         <a href="/blog/2015/02/11/macxia-pei-zhi-webhuan-jing/">mac下配置web环境</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/02/11/phpbian-cheng-gui-fan/">PHP编程规范</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/02/11/zheng-ze-biao-da-shi-jian-dan-shuo-ming/">正则表达式简单说明</a>
       </li>
     
   </ul>

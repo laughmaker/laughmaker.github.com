@@ -10,13 +10,13 @@
     </url>
     <url>
         <loc>http://laughmaker.github.io/blog/2014/01/26/nsstringde-nei-cun-guan-li/</loc>
-        <lastmod>2014-05-02T20:59:35+08:00</lastmod>
+        <lastmod>2015-03-23T15:19:41+08:00</lastmod>
     </url>
     <url>
         <loc>
             http://laughmaker.github.io/blog/2014/01/26/nsstringshu-xing-sheng-ming-zhong-de-copyhe-retainqu-bie/
         </loc>
-        <lastmod>2014-05-03T10:20:25+08:00</lastmod>
+        <lastmod>2015-06-17T20:50:14+08:00</lastmod>
     </url>
     <url>
         <loc>http://laughmaker.github.io/blog/2014/01/26/jin-ling-meng/</loc>
@@ -36,7 +36,7 @@
         <loc>
             http://laughmaker.github.io/blog/2014/05/09/centos6-dot-4pei-zhi-nginx-plus-php-plus-mongofu-wu-qi-huan-jing/
         </loc>
-        <lastmod>2014-11-21T21:18:52+08:00</lastmod>
+        <lastmod>2015-05-01T13:09:23+08:00</lastmod>
     </url>
     <url>
         <loc>http://laughmaker.github.io/blog/2014/05/09/ren-sheng-ji-xu-shi-yi/</loc>
@@ -82,27 +82,35 @@
     </url>
     <url>
         <loc>http://laughmaker.github.io/blog/2015/03/02/2015/</loc>
-        <lastmod>2015-03-02T19:21:01+08:00</lastmod>
+        <lastmod>2015-03-02T19:41:42+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://laughmaker.github.io/blog/2015/03/19/yii2ipbnote/</loc>
+        <lastmod>2015-06-14T18:58:04+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://laughmaker.github.io/blog/2015/09/20/shi-yong-podsguan-li-xiang-mu/</loc>
+        <lastmod>2015-09-20T22:09:17+08:00</lastmod>
     </url>
     <url>
         <loc>http://laughmaker.github.io/about/</loc>
-        <lastmod>2014-05-03T10:29:59+08:00</lastmod>
+        <lastmod>2015-09-20T21:40:34+08:00</lastmod>
     </url>
     <url>
         <loc>http://laughmaker.github.io/archives/</loc>
-        <lastmod>2015-03-02T19:21:01+08:00</lastmod>
+        <lastmod>2015-09-20T22:09:17+08:00</lastmod>
     </url>
     <url>
         <loc>http://laughmaker.github.io/blog/archives/</loc>
-        <lastmod>2015-03-02T19:21:01+08:00</lastmod>
+        <lastmod>2015-09-20T22:09:17+08:00</lastmod>
     </url>
     <url>
         <loc>http://laughmaker.github.io/blog/</loc>
-        <lastmod>2015-03-02T19:21:01+08:00</lastmod>
+        <lastmod>2015-09-20T22:09:17+08:00</lastmod>
     </url>
     <url>
         <loc>http://laughmaker.github.io/</loc>
-        <lastmod>2015-03-02T19:21:01+08:00</lastmod>
+        <lastmod>2015-09-20T22:09:17+08:00</lastmod>
     </url>
     <url>
         <loc>http://laughmaker.github.io/robots.txt</loc>

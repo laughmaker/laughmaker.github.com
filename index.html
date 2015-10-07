@@ -9,7 +9,7 @@
   <meta name="author" content="laughmaker">
 
   
-  <meta name="description" content="　　休息了三个月，也自由了三个月，从身体到精神，都放松了，身体发了福，精神上虽然也长了杂草，却也有几根青苗在萌芽。 　　以前一直渴望的自由，也降临了，却突然发觉生活失去了规律，时光在散漫中消磨，日复一日。 　　以前一直以为自由，就是想干什么，就干什么，想不干什么，就不干什么。慢慢的发觉，其实错了， &hellip;">
+  <meta name="description" content="    Spec Repo是所有的Pods的一个索引，就是一个容器，承载所有公开或私有的的Pods项目源引用，仅保存每个pod库的引用。     公共的Spec Repo是一个Git仓库remote端，在GitHub上，但是当你使用了Cocoapods后他会被clone到本地的~/. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,383 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2015/09/20/shi-yong-podsguan-li-xiang-mu/">使用pods管理项目</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-09-20T21:46:15+08:00" pubdate data-updated="true">Sep 20<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>    Spec Repo是所有的Pods的一个索引，就是一个容器，承载所有公开或私有的的Pods项目源引用，仅保存每个pod库的引用。</p>
+
+<p>    公共的Spec Repo是一个Git仓库remote端，在GitHub上，但是当你使用了Cocoapods后他会被clone到本地的~/.cocoapods/repos目录下，这个master目录的结构是这个样子的</p>
+
+<pre><code>├── Specs
+    └── [SPEC_NAME]
+        └── [VERSION]
+            └── [SPEC_NAME].podspec
+</code></pre>
+
+<p>备注：运行 <code>pod repo</code> 命令，可以查看所有的pod仓库，然后进入到列出来的目录，可查看相关仓库的目录结构</p>
+
+<p><strong>一、创建私有的Spec Repo</strong></p>
+
+<p>1.首先在托管服务器上创建一个仓库。<br />
+2.然后将托管服务器中的仓库与本地pod repo关联：  </p>
+
+<pre><code># pod repo add [Private Repo Name] [GitHub HTTPS clone URL]
+pod repo add TWSpecs https://git.coding.net/laughmaker/TWSpecs.git
+</code></pre>
+
+<p>备注：此处TWSpecs名可以随便取，只是取在你本地的一个命名，作为与远端相关联的一个名称。</p>
+
+<p>备注：若别人需要使用这个私有项目里的代码，需要有单个项目和这个仓库的权限才能使用</p>
+
+<p><strong>二、创建私有模块项目，并创建podspec文件</strong></p>
+
+<p>1.创建一个包含私有代码的项目，并将代码上传到托管服务器<br />
+2.在根目录下，运行以下命令创建podspec文件  </p>
+
+<pre><code>pod spec create PodTestLibrary git@coding.net:wtlucky/podTestLibrary.git
+</code></pre>
+
+<p>备注：由于此步骤会创建一个完整的配置文件，里面包含许多用不到的配置信息和注释，故可以拷贝其他项目的配置文件来做相应修改，简化操作。另此配置文件，应保持简洁，不需要的注释和信息，最好删除掉。</p>
+
+<p><strong>三、配置验证podspec文件</strong></p>
+
+<p>创建成功后，会在根目录下产生一个.podspec文件，按提示中，填入相应信息后，输入以下命令，进行验证：</p>
+
+<pre><code>pod lib lint
+</code></pre>
+
+<p>若成功会提示passed validation.否则按提示进行错误改正。</p>
+
+<p><strong>四、本地测试</strong></p>
+
+<p>创建一个新的项目，在这个项目的Podfile文件中直接指定刚才创建编辑好的podspec文件，看是否可用。 在Podfile中我们可以这样编辑，有两种方式</p>
+
+<pre><code>platform :ios, '7.0'
+
+pod 'PodTestLibrary', :path =&gt; '~/code/Cocoapods/podTest/PodTestLibrary'      #指定路径
+pod 'PodTestLibrary', :podspec =&gt; '~/code/Cocoapods/podTest/PodTestLibrary/PodTestLibrary.podspec'  #指定podspec文件
+</code></pre>
+
+<p>然后执行pod install命令安装依赖，在项目工程中，可以看到pod库安装在Development Pods/PodTestLibrary中。</p>
+
+<p>在项目中编写代码，测试库文件无误后就可以开始下一步了，提交podspec到Spec Repo中。</p>
+
+<p><strong>五、将私有项目提交到本地Spec Repo中</strong></p>
+
+<p>向私有Spec Repo提交podspec只需要一个命令</p>
+
+<pre><code>pod repo push TWSpecs PodTestLibrary.podspec  #前面是本地Repo名字 后面是podspec名字
+</code></pre>
+
+<p>成功之后这个组件库就添加到我们的私有Spec Repo中了，可以进入到~/.cocoapods/repos/TWSpecs目录下查看</p>
+
+<p>再去看我们的Spec Repo远端仓库，也有了一次提交，这个podspec也已经被Push上去了。</p>
+
+<p><strong>六、更新维护私有项目</strong></p>
+
+<p>更新维护将对应的版本一起更新即可，注意，对应tag版本号一定要一致。</p>
+
+<p><strong>七、使用私有项目</strong></p>
+
+<pre><code>source 'https://git.coding.net/laughmaker/TWSpecs.git'  
+source 'https://github.com/CocoaPods/Specs.git'  
+
+pod 'TWSNS',:git=&gt;"http://xxxxx.git"
+</code></pre>
+
+<p>备注：私有库和公有库的源都需要添加，否则只能搜到其中的一个代码。</p>
+
+<p><strong>八、删除私有库</strong></p>
+
+<pre><code>pod repo remove TWSpecs
+</code></pre>
+
+<p><strong>九、部署到公有库</strong></p>
+
+<p>代码创建好了，当然也可以提交到公有库了，之前需要审核一两天的时间，而现在有了trunk，提交即可使用了。</p>
+
+<p>1.首先将代码上传到github。</p>
+
+<p>2.注册trunk服务</p>
+
+<pre><code>pod trunk register wskrdfeai@gmail.com 'laughmaker' --description='我爱我的因我觉得欢喜' --verbose
+</code></pre>
+
+<p>可查看注册信息：</p>
+
+<pre><code>pod trunk me
+</code></pre>
+
+<p>3.将仓库上传到公有库中心</p>
+
+<pre><code>pod trunk push TWSNS.podspec
+</code></pre>
+
+<p>4.也可以将其他人添加进来一起进行开发</p>
+
+<pre><code>pod trunk add-owner ProjectName(项目名) email(要添加进来的人)
+</code></pre>
+
+<p>以上步骤，可能会稍微慢一些，因为这些操作，都会和github打交道。成功之后，其他人更新pod索引库，即可搜索和使用你刚才添加的项目了。</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/03/19/yii2ipbnote/">Yii2ipbnote</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-03-19T00:00:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I—
+layout: post
+title: “Yii2学习笔记”
+date: 2015-03-19 15:02:54 +0800
+comments: true
+categories: 
+—</p>
+
+<p>一、安装</p>
+
+<p>1.安装composer</p>
+
+<pre><code>brew install composer
+</code></pre>
+
+<p>详细教程见：<a href="http://www.phpcomposer.com">composer官网</a></p>
+
+<p>添加<a href="http://pkg.phpcomposer.com">中国镜像</a>：<br />
+修改/user/username/.composer/config.json文件，将相应内容改为如下：</p>
+
+<pre><code>"repositories":[
+     {"type": "composer", "url":"http://pkg.phpcomposer.com/repo/packagist/"},
+     {"packagist":false}
+]
+</code></pre>
+
+<p>添加前端资源管理器<code>composer-asset</code></p>
+
+<pre><code>composer global require "fxp/composer-asset-plugin:1.0.0"
+</code></pre>
+
+<p>2.安装Yii</p>
+
+<p>安装Yii2高级版，应用名称为：www.3water3.com</p>
+
+<pre><code>composer  create-project --prefer-dist yiisoft/yii2-app-advanced www.3water3.com
+</code></pre>
+
+<p>二、配置框架</p>
+
+<p>默认安装完成后，有两个应用：<code>frontend</code>和<code>backend</code>，还需要添加一个<code>api</code>应用，提供app应用接口。</p>
+
+<p>1.复制backend目录到当前目录，修改名字为api</p>
+
+<pre><code>cp -r backend api
+</code></pre>
+
+<p>2.修改配置，支持api应用，打开environments目录下的index.php文件，添加api部分修改后如下所示：</p>
+
+<pre><code>return [
+    'Development' =&gt; [
+        'path' =&gt; 'dev',
+        'setWritable' =&gt; [
+            'backend/runtime',
+            'backend/web/assets',
+            'backend/models',
+            'backend/views',
+            'backend/controllers',
+            'frontend/runtime',
+            'frontend/web/assets',
+	         'frontend/models',
+            'frontend/views',
+            'frontend/controllers',
+            'api/runtime',
+            'api/web/assets',
+            'api/models',
+            'api/views',
+            'api/controllers',
+        ],
+        'setExecutable' =&gt; [
+            'yii',
+        ],
+        'setCookieValidationKey' =&gt; [
+            'backend/config/main-local.php',
+            'frontend/config/main-local.php',
+            'api/config/main-local.php',
+        ],
+    ],
+    'Production' =&gt; [
+        'path' =&gt; 'prod',
+        'setWritable' =&gt; [
+            'backend/runtime',
+            'backend/web/assets',
+            'frontend/runtime',
+            'frontend/web/assets',
+            'api/runtime',
+            'api/web/assets',
+        ],
+        'setExecutable' =&gt; [
+            'yii',
+        ],
+        'setCookieValidationKey' =&gt; [
+            'backend/config/main-local.php',
+            'frontend/config/main-local.php',
+            'api/config/main-local.php',
+        ],
+    ],
+];
+</code></pre>
+
+<p>分别进入www.3water3.com/environments/dev和prod目录，复制backend为api</p>
+
+<pre><code>cp -r backend api
+</code></pre>
+
+<p>3.在根目录下，运行初始化命令</p>
+
+<pre><code>./init
+</code></pre>
+
+<p>根据需求，选择开发环境和产品环境。至此，项目框架搭建完成。</p>
+
+<p>三、配置与使用Mysql数据库</p>
+
+<p>1.创建一个测试数据库，进入mysql命令行终端：</p>
+
+<pre><code>create database dev;
+</code></pre>
+
+<p>2.创建<code>hzd</code>用户，密码为<code>hZd</code>，权限为dev数据库下所所有操作</p>
+
+<pre><code>grant all privileges on dev.* to hzd@localhost identified by 'hZd';
+</code></pre>
+
+<p>3.修改common/config/main-local.php文件，添加数据库连接信息，分别修改dbname、username、password为以上创建的对应内容。</p>
+
+<p>4.创建数据库中相应的表，使用migrate来创建。以user表为例：</p>
+
+<p>进入console/migrations目录，修改init.php文件，将其中的up、down分别修改为safeUp、safeDown。</p>
+
+<p>运行数据库迁移命令：</p>
+
+<pre><code>./yii migrate/up
+</code></pre>
+
+<p>以上则可创建数据表，./yii migrate/down则可删除user表。</p>
+
+<p>四、设置局域网域名</p>
+
+<p>五、RUL美化</p>
+
+<p>1.打开common/config/bootstrap.php文件，在文件下面添加一行</p>
+
+<pre><code>Yii::setAlias('api', dirname(dirname(__DIR__)) . '/api');
+</code></pre>
+
+<p>2.修改api/config/main.php文件中内容为如下：</p>
+
+<pre><code>return [
+    'id' =&gt; 'app-api',
+    'basePath' =&gt; dirname(__DIR__),
+    'controllerNamespace' =&gt; 'api\controllers',
+    'bootstrap' =&gt; ['log'],
+    'modules' =&gt; [],
+    'components' =&gt; [
+        'user' =&gt; [
+            'identityClass' =&gt; 'common\models\User',
+            'enableAutoLogin' =&gt; true,
+        ],
+        'log' =&gt; [
+            'traceLevel' =&gt; YII_DEBUG ? 3 : 0,
+            'targets' =&gt; [
+                [
+                    'class' =&gt; 'yii\log\FileTarget',
+                    'levels' =&gt; ['error', 'warning'],
+                ],
+            ],
+        ],
+        'errorHandler' =&gt; [
+            'errorAction' =&gt; 'site/error',
+        ],
+        'urlManager' =&gt; [
+            'enablePrettyUrl' =&gt; true,
+            'enableStrictParsing' =&gt; true,
+            'showScriptName' =&gt; false,
+            'rules' =&gt; [
+                ['class' =&gt; 'yii\rest\urlRule', 'controller' =&gt; ['section', 'comment', 'user']],
+            ],
+        ],
+    ],
+    'params' =&gt; $params,
+];
+</code></pre>
+
+<p>六、添加Mongo扩展</p>
+
+<p><strong>附录</strong>：<br />
+1.<a href="http://www.yiiframework.com/doc-2.0/ext-mongodb-index.html">Mongo扩展资料</a><br />
+2.<a href="http://www.yiiframework.com/doc-2.0/index.html">Yii2官方API文档</a><br />
+3.<a href="http://www.yiichina.com">官方中文网</a><br />
+4.<a href="http://www.digpage.com">深入理解Yii2.0</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2015/03/02/2015/">2015，新的一年，加油！</a></h1>
     
     
@@ -99,15 +476,10 @@
 
 <p>　　以前一直渴望的自由，也降临了，却突然发觉生活失去了规律，时光在散漫中消磨，日复一日。  </p>
 
-<p>　　以前一直以为自由，就是想干什么，就干什么，想不干什么，就不干什么。慢慢的发觉，其实错了，有一句名言说“<code>人是生而自由的，但无往不在枷锁之中，自以为是其他一切主人的人，反而比其他一切更是奴隶。</code>”。其实只有自律才，才会有自由; 当一个人缺乏自律的时候，他做的事情，总是在受习惯和即时诱惑的影响，要么就是被他人的思想观念所扰，几乎永远不可能去做内心真正渴望去做的事。　　</p>
+<p>　　以前一直以为自由，就是想干什么，就干什么，想不干什么，就不干什么。慢慢的发觉，其实错了，有一句名言说“<code>人是生而自由的，但无往不在枷锁之中，自以为是其他一切主人的人，反而比其他一切更是奴隶。</code>”。其实只有自律，才会有自由; 当一个人缺乏自律的时候，他做的事情，总是在受习惯和即时诱惑的影响，要么就是被他人的思想观念所扰，几乎永远不可能去做内心真正渴望去做的事。　　</p>
 
-<p>　　我们总是给自己借口，万事皆可明日重来，但很少意识到，时光，就在这样年复一年的明日之中流失而一去不复返，如诗所云：</p>
-
-<pre><code>明日复明日
-明日何其多
-此生复明日
-万事成蹉跎
-</code></pre>
+<p>　　我们总是给自己借口，万事皆可明日重来，但很少意识到，时光，就在这样年复一年的明日之中流失而一去不复返，如诗所云：
+&gt;明日复明日，明日何其多，此生复明日，万事成蹉跎。</p>
 
 <p>　　从明天起，做一个热爱生活的人，每天都有很强大的起床的动力，每天都按时起床、吃饭、睡觉，用心去拥抱每个时刻，珍惜美好的人与物，自律而自由的生活。</p>
 
@@ -1522,163 +1894,6 @@ pod 'SBAPNSPusher', '~&gt; 2.2.1'!
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/11/gitjian-dan-shi-yong-cao-zuo/">Git简单实用操作</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-11T12:00:04+08:00" pubdate data-updated="true">May 11<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>总则：</strong>  </p>
-
-<pre><code>1.多使用分支操作，体会git强大的分支功能。
-2.在创建代码仓库的时候，默认会创建一个master分支，这个分支做为一个稳定分支，只合并稳定的代码。
-3.另外创建一个dev分支，这个分支做为日常的开发测试使用，dev分支测试稳家后，方合并到master分支去。
-4.如果需要开发计划外的功能时，可基于当前的开发分支，创建一个feature分支，完成后如果需要则合并到dev分支，如无需再使用则可删除。
-5.如果遇到bug需要紧急修复，则可基于master分支创建fixed分支，修复完成测试通过，则合并到master分支，删除fixed分支。
-</code></pre>
-
-<p><strong>本地操作</strong></p>
-
-<ul>
-  <li>初始化：git init</li>
-  <li>添加所有修改文件到git仓库：git add -A</li>
-  <li>添加某单个文件到git仓库：git add 文件件</li>
-  <li>确认修改内容：git commit -m “修改内容叙述”</li>
-</ul>
-
-<p><strong>与服务器相连</strong></p>
-
-<ul>
-  <li>克隆一个仓库：git clone 远端地址</li>
-  <li>查看连接的远端地址：git remote -v</li>
-  <li>连接到远端服务器：git remote add origin 远端地址</li>
-  <li>与远端服务器断开连接：git remote rm origin</li>
-  <li>将远端代码合并到本地：git pull origin master</li>
-  <li>将本地代码上传到远端服务器：git push origin master</li>
-</ul>
-
-<p><strong>分支与合并</strong></p>
-
-<ul>
-  <li>查看分支：git branch -a</li>
-  <li>基于当前分支创建分支并切换到新的分支：git checkout -b 分支名</li>
-  <li>当前在master分支，将dev分支合并到master：git merge dev</li>
-  <li>删除本地分支：git branch -d 分支名</li>
-  <li>删除远端分支：
-    <ul>
-      <li>1.git push origin –delete 分支名  </li>
-      <li>2.git push origin :分支名 //用空分支覆盖远端分支方式 </li>
-    </ul>
-  </li>
-  <li>克隆远端某个分支：git checkout –track -b foobar origin/foobar</li>
-  <li>提交本地的test分支到远端的master分支：git push origin test:master</li>
-  <li>提交本地的test分支作为远端的test分支：git push origin test:test</li>
-</ul>
-
-<p><strong>查看状态</strong></p>
-
-<ul>
-  <li>查看当前哪些文件更改了而没有添加到仓库跟踪：git status</li>
-  <li>查看历史提交记录：git log</li>
-</ul>
-
-<p><strong>版本回溯</strong></p>
-
-<p>  <em>为了安全起见，最好基于所在分支创建一个分支，回到历史版本，找到需要的代码，然后再删除该分支。</em></p>
-
-<ul>
-  <li>在当前分支新建分支：git checkout -b 分支名</li>
-  <li>查看历史提交记录，找到提交记录id：git log</li>
-  <li>回到需要的历史版本：git checkout commitId</li>
-  <li>找到需要的代码，复制出来，切换回原分支，删除该分支</li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/09/ren-sheng-ji-xu-shi-yi/">人生几许失意</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-09T20:01:19+08:00" pubdate data-updated="true">May 9<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>今年的季后赛首轮，是我看得最多的一年，或许也会是我看过的最精彩的一次。相比第二轮的乏善可陈，这一轮可谓之精彩迭出; 可是在精彩落幕之后，在前进的道路上，总会落下落寞的身影。  </p>
-
-<p>在成功者面前，在掌声欢呼中，失意者永远是被忽略的，但，高富帅，你的精彩的人生才刚开始，下个赛季期待你的更进一步。<br />
-  <img src="/images/blog/2014/人生几许失意/1.jpg" alt="link" />  </p>
-
-<p>从魔术到湖人，再从湖人到火箭，人生起伏太大，很多人说，你颠峰已过，但季后赛，你展现出一你一直以来的努力，篮球是一部分，生活永远是快乐的！<br />
-  <img src="/images/blog/2014/人生几许失意/2.jpg" alt="link" />  </p>
-
-<p>从落榜生到被裁到再上岗再到林疯狂，你的人生已足够精彩，从首发到替补，在质疑中，始终努力奉献着不太稳定的贡献，0.9s，是你不敢相信的表情，你不相信你们一个赛季的努力就这样结束了。虽然状态不太好，但始终努力着，下个赛季，相信你会更好。<br />
-  <img src="/images/blog/2014/人生几许失意/3.jpg" alt="link" />  </p>
-
-<p>  你们的时代已经结束了，但你们已经赢得了所有人的尊重，包括你们的对手<br />
-  <img src="/images/blog/2014/人生几许失意/4.jpg" alt="link" />  </p>
-
-<p>你的时代才刚开始，明年会更好，更进一步的<br />
-  <img src="/images/blog/2014/人生几许失意/5.jpg" alt="link" />    </p>
-
-<p>你们让所有人知道了你们的实力，没有超级球星，但你们有的是其它团队所没有的凝聚力和执行力，可惜你们赛季初的伤病，让遇到的了可能是十年难得一遇的天赋团队，下个赛季不知道你们还能不能再聚一起，希望可以！<br />
-  <img src="/images/blog/2014/人生几许失意/6.jpg" alt="link" />  </p>
-
-<p>年轻没有失败，努力，加油，明年再来<br />
-  <img src="/images/blog/2014/人生几许失意/7.jpg" alt="link" />  </p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1694,6 +1909,14 @@ pod 'SBAPNSPusher', '~&gt; 2.2.1'!
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/20/shi-yong-podsguan-li-xiang-mu/">使用pods管理项目</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/03/19/yii2ipbnote/">Yii2ipbnote</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/03/02/2015/">2015，新的一年，加油！</a>
       </li>
     
@@ -1703,14 +1926,6 @@ pod 'SBAPNSPusher', '~&gt; 2.2.1'!
     
       <li class="post">
         <a href="/blog/2015/02/11/macxia-pei-zhi-webhuan-jing/">mac下配置web环境</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/02/11/phpbian-cheng-gui-fan/">PHP编程规范</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/02/11/zheng-ze-biao-da-shi-jian-dan-shuo-ming/">正则表达式简单说明</a>
       </li>
     
   </ul>

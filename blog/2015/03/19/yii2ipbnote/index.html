@@ -1,0 +1,191 @@
+<p>I—
+layout: post
+title: “Yii2学习笔记”
+date: 2015-03-19 15:02:54 +0800
+comments: true
+categories: 
+—</p>
+
+<p>一、安装</p>
+
+<p>1.安装composer</p>
+
+<pre><code>brew install composer
+</code></pre>
+
+<p>详细教程见：<a href="http://www.phpcomposer.com">composer官网</a></p>
+
+<p>添加<a href="http://pkg.phpcomposer.com">中国镜像</a>：<br />
+修改/user/username/.composer/config.json文件，将相应内容改为如下：</p>
+
+<pre><code>"repositories":[
+     {"type": "composer", "url":"http://pkg.phpcomposer.com/repo/packagist/"},
+     {"packagist":false}
+]
+</code></pre>
+
+<p>添加前端资源管理器<code>composer-asset</code></p>
+
+<pre><code>composer global require "fxp/composer-asset-plugin:1.0.0"
+</code></pre>
+
+<p>2.安装Yii</p>
+
+<p>安装Yii2高级版，应用名称为：www.3water3.com</p>
+
+<pre><code>composer  create-project --prefer-dist yiisoft/yii2-app-advanced www.3water3.com
+</code></pre>
+
+<p>二、配置框架</p>
+
+<p>默认安装完成后，有两个应用：<code>frontend</code>和<code>backend</code>，还需要添加一个<code>api</code>应用，提供app应用接口。</p>
+
+<p>1.复制backend目录到当前目录，修改名字为api</p>
+
+<pre><code>cp -r backend api
+</code></pre>
+
+<p>2.修改配置，支持api应用，打开environments目录下的index.php文件，添加api部分修改后如下所示：</p>
+
+<pre><code>return [
+    'Development' =&gt; [
+        'path' =&gt; 'dev',
+        'setWritable' =&gt; [
+            'backend/runtime',
+            'backend/web/assets',
+            'backend/models',
+            'backend/views',
+            'backend/controllers',
+            'frontend/runtime',
+            'frontend/web/assets',
+	         'frontend/models',
+            'frontend/views',
+            'frontend/controllers',
+            'api/runtime',
+            'api/web/assets',
+            'api/models',
+            'api/views',
+            'api/controllers',
+        ],
+        'setExecutable' =&gt; [
+            'yii',
+        ],
+        'setCookieValidationKey' =&gt; [
+            'backend/config/main-local.php',
+            'frontend/config/main-local.php',
+            'api/config/main-local.php',
+        ],
+    ],
+    'Production' =&gt; [
+        'path' =&gt; 'prod',
+        'setWritable' =&gt; [
+            'backend/runtime',
+            'backend/web/assets',
+            'frontend/runtime',
+            'frontend/web/assets',
+            'api/runtime',
+            'api/web/assets',
+        ],
+        'setExecutable' =&gt; [
+            'yii',
+        ],
+        'setCookieValidationKey' =&gt; [
+            'backend/config/main-local.php',
+            'frontend/config/main-local.php',
+            'api/config/main-local.php',
+        ],
+    ],
+];
+</code></pre>
+
+<p>分别进入www.3water3.com/environments/dev和prod目录，复制backend为api</p>
+
+<pre><code>cp -r backend api
+</code></pre>
+
+<p>3.在根目录下，运行初始化命令</p>
+
+<pre><code>./init
+</code></pre>
+
+<p>根据需求，选择开发环境和产品环境。至此，项目框架搭建完成。</p>
+
+<p>三、配置与使用Mysql数据库</p>
+
+<p>1.创建一个测试数据库，进入mysql命令行终端：</p>
+
+<pre><code>create database dev;
+</code></pre>
+
+<p>2.创建<code>hzd</code>用户，密码为<code>hZd</code>，权限为dev数据库下所所有操作</p>
+
+<pre><code>grant all privileges on dev.* to hzd@localhost identified by 'hZd';
+</code></pre>
+
+<p>3.修改common/config/main-local.php文件，添加数据库连接信息，分别修改dbname、username、password为以上创建的对应内容。</p>
+
+<p>4.创建数据库中相应的表，使用migrate来创建。以user表为例：</p>
+
+<p>进入console/migrations目录，修改init.php文件，将其中的up、down分别修改为safeUp、safeDown。</p>
+
+<p>运行数据库迁移命令：</p>
+
+<pre><code>./yii migrate/up
+</code></pre>
+
+<p>以上则可创建数据表，./yii migrate/down则可删除user表。</p>
+
+<p>四、设置局域网域名</p>
+
+<p>五、RUL美化</p>
+
+<p>1.打开common/config/bootstrap.php文件，在文件下面添加一行</p>
+
+<pre><code>Yii::setAlias('api', dirname(dirname(__DIR__)) . '/api');
+</code></pre>
+
+<p>2.修改api/config/main.php文件中内容为如下：</p>
+
+<pre><code>return [
+    'id' =&gt; 'app-api',
+    'basePath' =&gt; dirname(__DIR__),
+    'controllerNamespace' =&gt; 'api\controllers',
+    'bootstrap' =&gt; ['log'],
+    'modules' =&gt; [],
+    'components' =&gt; [
+        'user' =&gt; [
+            'identityClass' =&gt; 'common\models\User',
+            'enableAutoLogin' =&gt; true,
+        ],
+        'log' =&gt; [
+            'traceLevel' =&gt; YII_DEBUG ? 3 : 0,
+            'targets' =&gt; [
+                [
+                    'class' =&gt; 'yii\log\FileTarget',
+                    'levels' =&gt; ['error', 'warning'],
+                ],
+            ],
+        ],
+        'errorHandler' =&gt; [
+            'errorAction' =&gt; 'site/error',
+        ],
+        'urlManager' =&gt; [
+            'enablePrettyUrl' =&gt; true,
+            'enableStrictParsing' =&gt; true,
+            'showScriptName' =&gt; false,
+            'rules' =&gt; [
+                ['class' =&gt; 'yii\rest\urlRule', 'controller' =&gt; ['section', 'comment', 'user']],
+            ],
+        ],
+    ],
+    'params' =&gt; $params,
+];
+</code></pre>
+
+<p>六、添加Mongo扩展</p>
+
+<p><strong>附录</strong>：<br />
+1.<a href="http://www.yiiframework.com/doc-2.0/ext-mongodb-index.html">Mongo扩展资料</a><br />
+2.<a href="http://www.yiiframework.com/doc-2.0/index.html">Yii2官方API文档</a><br />
+3.<a href="http://www.yiichina.com">官方中文网</a><br />
+4.<a href="http://www.digpage.com">深入理解Yii2.0</a></p>

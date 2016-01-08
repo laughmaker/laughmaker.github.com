@@ -102,6 +102,7 @@ php扩展路径
 	
 若出现如下错误，则有可能是openssl版本不够导致：
 
+	configure: error: Cannot find OpenSSL's <evp.h>
 	make: *** [io_stream.lo] Error 1
 	ERROR: `make' failed
 	
